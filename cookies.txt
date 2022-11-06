@@ -1,0 +1,95 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.sonyliv.com	TRUE	/	FALSE	1693038693	__gads	ID=7338fa112a352a59:T=1659342693:S=ALNI_MabHJr84RlrhgBpgybR2paFTc1Jcg
+.sonyliv.com	TRUE	/	FALSE	1670326328	_fbp	fb.1.1659171377853.1995641417
+.sonyliv.com	TRUE	/	FALSE	1693038693	__gpi	UID=00000825dd65c37b:T=1659342693:RT=1659342693:S=ALNI_MYsKTJJ5zkiqRf9EdQHD4p4fEsDJg
+.sonyliv.com	TRUE	/	FALSE	1685878221	_cc_id	4ee5f2a397f103ae5b8c5920fc30b5b8
+.sonyliv.com	TRUE	/	FALSE	1666947366	_gcl_au	1.1.628917747.1659171366
+.sonyliv.com	TRUE	/	FALSE	1725708622	afUserId	440625c9-1fb3-49bd-b755-02d93e20408f-p
+.sonyliv.com	TRUE	/	TRUE	1662553797	AKA_A2	A
+.sonyliv.com	TRUE	/	FALSE	1662564597	bm_sz	8E6D64C6D617035D6D1139F4BA2EF7B6~YAAQHNgsMYjl0wCDAQAA3ci2FxEkw+aZoSOaOBI5MHNo2g7UFXq8+rpDzaRDMs0qzqM85zt6M5ucOHQbwHzN4/kt1CHIqwTwWTlSgobvhwetP5j0s19z/Pi5jOxjYRxW9Z7STsK4G7r5YMDW+9Jhm6rtJnA7aQiLK4SEymiXwuXO4Dyya1a05XqKMVeaS8fFt49j8CSiBkVA90NPAGgpM5jH5os7v9iJC8EGEgrilqDj2wLBvRr4rT16Bv0N4ZumPjBD8gdx4gOi5yq+cPJNUVbPrJ5wlM/IyYn1X9X/l0mpbwL9~3618869~3225912
+.sonyliv.com	TRUE	/	FALSE	1662557399	ak_bmsc	886E55E6A19654F3E6A6D5374DD6591A~000000000000000000000000000000~YAAQHNgsMb7n0wCDAQAAktW2FxE2NrHdV2S/BOcTgKzQk8pjuQlZdBvmMHErooYuVNDExURaZZq6USWACazuCjux37OqJ2aGIfocWJjZK0Y5bQAkabE2A9VmoZSSQSPyHnF3RbfMKhC+z4I2cd1cTtGToVGniuXkeL9VQKBY6PAOsl9y7fQOKdryp4bCCkXyZ0gUyjmqSn53wDNQ1SAp8ywWBSpVoaXMklM6qpKcy0ujY8eYuNGWkUi0S65T2s0nilBqiPEzYJMvTpFf+sd8ObEtcX+JAeyLAnGQW0ugdRagEjc1m72dxRVPz+zx+USYb8GwbjdhkmR8bj4gE6YW3r0vQY6m4hlzru5pHu0aOac9HtrEYQM4Sz1HxfxOuRnlC35NWVaK2T7bzv2XkGhiQiBiBVXRQ9tPJCGNP6z01jPcSXcn2sI0PwoJv/w+xHIFRuRvaPmFIXHSLIadeJKcWvjg+15pvRvGk38Jb1o7VsLfcVDUzoWc6ANfSu8Q18rZ7aRiW0txb8rw1fwJDbQ4c8/NfKlUCA==
+apiv2.sonyliv.com	FALSE	/	FALSE	0	sessionId	5ce84f0cb79241ff9553f82070ee4a5b-1662550208253
+.sonyliv.com	TRUE	/	FALSE	1662636730	_gid	GA1.2.1735890033.1662550220
+.sonyliv.com	TRUE	/	FALSE	1662636622	panoramaId_expiry	1662636621819
+.sonyliv.com	TRUE	/	FALSE	1663155022	AF_SYNC	1662550222912
+.sonyliv.com	TRUE	/	FALSE	1725622330	_ga	GA1.2.38105669.1659171375
+.sonyliv.com	TRUE	/	TRUE	1694086234	_abck	41AEA2742DE97A93862E10D26A005A08~0~YAAQHNgsMQn80wCDAQAAPli3FwgvfZfluDnSTqKnJD5+QNL7PwTo5MKsNfZDVxuUaGqewJDgJHPWIGmfGqO6QmuDJcfLL/3uOk6fzC+qZLWqP1t2Z1K5w8EO2bCIPhHs/402p0K0hdJYK0Lsyqh6r2vIHzd+J09W5eg1nItH2RkGwlazlrQum163CPaHZkLjMlkdLI5R8HRCOY246QVeG/qDUvGqDZ67GAhExkdygj2W/IO0q9nq1CGNjO5sZKtjXxLsThVQBll3UIfWZevNmu2UDnOYDWtVKv/cN2OSmHynq4BB2Kk18Y5zANMAEotSalSUeYpO84/CPA/uAww8mt0PFKFj2X3GusKqrg99nXPfxbBLxJjAN6EQcR4uCiFyu4egoATDoGjFfadCUjG81M3owLnhGV5CZiM=~-1~-1~-1
+.sonyliv.com	TRUE	/	FALSE	1662550354	_dc_gtm_UA-34728540-15	1
+.sonyliv.com	TRUE	/	FALSE	1977910296	WZRK_G	2870d8cd05114986b3120d7bdf1facb4
+.www.sonyliv.com	TRUE	/	FALSE	1663155119	RT	"z=1&dm=www.sonyliv.com&si=3e2ba592-a86d-4a4c-835c-ab4c371fd0d7&ss=l7rjgmax&sl=1&se=xc&tt=ifm&bcn=%2F%2F684d0d48.akstat.io%2F&ld=igr&nu=rrtnf11b&cl=2mg3"
+.sonyliv.com	TRUE	/	FALSE	1662551521	WZRK_S_48K-8WW-754Z	%7B%22s%22%3A1662550297%2C%22t%22%3A1662550321%7D
+.sonyliv.com	TRUE	/	TRUE	1662557409	bm_sv	0B06693D5F6054E1BF233D315EEBC993~YAAQHNgsMVss1ACDAQAA97O4FxEyDJGf8AJIsYZzFMIxqWB7rNLbnvxD8YE7z45qa2fn8+N8T8SoMZHl+4JF29dnetDLLHNP6QeW/ZTYcWwQYQ8y0L31Mwy1OUMF89qiOQQ334AI7nYo/gTGugKIXqz8gC96TmQ0E/yYC+noc33yNZhR5KEnVswKHW0ev1C8e++S+GR7ma8TQvTlPx3z2cqGRVcz8XEb49td8yLiNP35x049xqnD/Dt6n86OopclI9I=~1
+.sonyliv.com	TRUE	/	FALSE	1725622330	_ga_1WZE8VR8Q1	GS1.1.1662550220.4.1.1662550330.24.0.0
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.instagram.com	TRUE	/	TRUE	1727854543	mid	YzqQ0AABAAHiigHrMSVrBmE6YH_X
+.instagram.com	TRUE	/	TRUE	1727854543	ig_did	E14FC1CE-A27E-4B60-8EAF-F9687FA13D0A
+.instagram.com	TRUE	/	TRUE	1696318543	ig_nrcb	1
+.instagram.com	TRUE	/	TRUE	1696232260	csrftoken	rPZsGTM0XWP72uTnwv3RsUBA75CKwO92
+.instagram.com	TRUE	/	TRUE	1672558660	ds_user_id	55746562012
+.instagram.com	TRUE	/	TRUE	1696318582	sessionid	55746562012%3AYdviaJ6e6My0me%3A26%3AAYdVpCKgy5kFr5Q7CG5SYO9mo8LuPNL_sL5q4FedxQ
+.instagram.com	TRUE	/	TRUE	1665387394	dpr	2
+.instagram.com	TRUE	/	TRUE	0	rur	"PRN\05455746562012\0541696318661:01f74ca6d7dc7924085291d2fc21dd1fdd0bb2c3b80b472873d1d4905420d3d3f93ba9ac"
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.hses6-vod-cf.cdn.hotstar.com	TRUE	/videos/plus/shamisback/1260103747/1260119284/v3/1665757518989/651e1040045f6dee8363ad81f53de239/	TRUE	1665954100	CloudFront-Policy	eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9oc2VzNi12b2QtY2YuY2RuLmhvdHN0YXIuY29tL3ZpZGVvcy9wbHVzL3NoYW1pc2JhY2svMTI2MDEwMzc0Ny8xMjYwMTE5Mjg0L3YzLzE2NjU3NTc1MTg5ODkvNjUxZTEwNDAwNDVmNmRlZTgzNjNhZDgxZjUzZGUyMzkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY2NTkyODI2OX19fV19
+.hses6-vod-cf.cdn.hotstar.com	TRUE	/videos/plus/shamisback/1260103747/1260119284/v3/1665757518989/651e1040045f6dee8363ad81f53de239/	TRUE	1665954100	CloudFront-Key-Pair-Id	APKAJC3ILMJXG4AINKJA
+.hses6-vod-cf.cdn.hotstar.com	TRUE	/videos/plus/shamisback/1260103747/1260119284/v3/1665757518989/651e1040045f6dee8363ad81f53de239/	TRUE	1665954100	CloudFront-Signature	Ddv33RjEzuIfNStrTwFcG3JDO54FHFLksgOwCfM1~ACjioB0YCqdW2UsuAOpWSy1ETAiF9foCO17aVSnBhg4p7SFArgK-kWoBc58BtiH7IEn4E70OoKEUd98XiSDLXV5xc8VNPp5uThDCfdpInle455ZYmbV4sUA2LX4Zy2Xb~LFIi0YTRpYijouS6sqRA~NHWuJ1RTcj-4NjvQG~oQI825A4vDMDdTuLcEATKeIHJoAkHqVJ~ZYPwV9M0sTImckhcpH0s~CfjD7BNvxBO~5BUmzdVEjRU6WvEAjM3UTyJ1w1RMcW-s89EMXszHu1csJLWbphR6B2B~UkQfknCgesg__
+www.hotstar.com	FALSE	/in	TRUE	1697377740	userUP	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1bV9hY2Nlc3MiLCJleHAiOjE2NjU5MjgxMzksImlhdCI6MTY2NTg0MTczOSwiaXNzIjoiVFMiLCJqdGkiOiI2NWJmYzdmMjRiYWQ0Y2FkODM0YjBkNDdhMDE2ZjFlMyIsInN1YiI6IntcImhJZFwiOlwiZTU5NDgxNTkwNjA3NGZjMmE0MmJjOTZlNThmYjViMDVcIixcInBJZFwiOlwiM2JkNDljNGM0N2UyNGQ1NjlhZjgyOTUwOTQ0ZWIxZTNcIixcIm5hbWVcIjpcIklyZmFuXCIsXCJwaG9uZVwiOlwiNjM2NzUyNDYwMFwiLFwiaXBcIjpcIjI0MDU6MjA1OjEyODY6OWRlNzo6MjhiYjpiMGExXCIsXCJjb3VudHJ5Q29kZVwiOlwiaW5cIixcImN1c3RvbWVyVHlwZVwiOlwibnVcIixcInR5cGVcIjpcInBob25lXCIsXCJpc0VtYWlsVmVyaWZpZWRcIjpmYWxzZSxcImlzUGhvbmVWZXJpZmllZFwiOnRydWUsXCJkZXZpY2VJZFwiOlwiMmU3ZjBjMmUtZmRjYi00NGI4LTllZDEtZWJkNzE3M2EwNjc1XCIsXCJwcm9maWxlXCI6XCJBRFVMVFwiLFwidmVyc2lvblwiOlwidjJcIixcInN1YnNjcmlwdGlvbnNcIjp7XCJpblwiOnt9fSxcImVudFwiOlwiQ2lJS0dnb09FZ1UxTlRnek5oSUZOalF3TkRrS0NDSUdabWx5WlhSMkVnUTRaRmdCQ2dzU0NRZ0tPQUZRNEFOWUFRcVdBUW9GQ2dNS0FRQVNqQUVTQjJGdVpISnZhV1FTQTJsdmN4SUpZVzVrY205cFpIUjJFZ1ptYVhKbGRIWVNCMkZ3Y0d4bGRIWVNCSEp2YTNVU0EzZGxZaElFYlhkbFloSUhkR2w2Wlc1MGRoSUZkMlZpYjNNU0JtcHBiM04wWWhJS1kyaHliMjFsWTJGemRCSUVkSFp2Y3hJRWNHTjBkaElEYW1sdkVnZHFhVzh0YkhsbUdnSnpaQ0lEYzJSeUtnWnpkR1Z5Wlc5WUFSSUNDQUU9XCIsXCJpc3N1ZWRBdFwiOjE2NjU4NDE3Mzk5NzR9IiwidmVyc2lvbiI6IjFfMCJ9.QF5mJLTwbgoxiLkCskQQs83-OsmD6sJvO35KRrO1WJg
+www.hotstar.com	FALSE	/	TRUE	1697377812	device_id	2e7f0c2e-fdcb-44b8-9ed1-ebd7173a0675
+.hotstar.com	TRUE	/	TRUE	1974795240	hs_uid	2e7f0c2e-fdcb-44b8-9ed1-ebd7173a0675
+www.hotstar.com	FALSE	/	TRUE	1690712041	userLocale	eng
+.hotstar.com	TRUE	/	FALSE	1697377753	ajs_group_id	null
+.hotstar.com	TRUE	/	FALSE	1666952080	_gcl_au	1.1.1117849664.1659176081
+.hotstar.com	TRUE	/	FALSE	1673617780	_fbp	fb.1.1659176085028.1954006535
+www.hotstar.com	FALSE	/	TRUE	1690712106	facebookCookie	{"deviceId":"2e7f0c2e-fdcb-44b8-9ed1-ebd7173a0675","fbId":"","emailId":"","isProfileRequired":false,"token":"","dateOfBirth":"","age":"","gender":""}
+.hotstar.com	TRUE	/	FALSE	1697377818	ajs_user_id	%223bd49c4c47e24d569af82950944eb1e3%22
+.hotstar.com	TRUE	/	FALSE	1690712107	ajs_anonymous_id	%2244c82bd3-a482-489b-b257-e08b12fe4fba%22
+www.hotstar.com	FALSE	/	FALSE	1666446531	X-Akamai-Device	mweb
+www.hotstar.com	FALSE	/	TRUE	0	userPlanAttributes	{"packages":[],"attributes":{"is_device_limit_upgradable":true,"min_expiry_time":0},"client_entitlements":{"max_concurrent_signins":10,"playback_list_platforms":["android","ios","androidtv","firetv","appletv","roku","web","mweb","tizentv","webos","jiostb","chromecast","tvos","pctv","jio","jio-lyf"],"list_video_resolution_text":["sd"],"list_video_dynamic_range":null,"list_audio_channel_text":null,"max_concurrent_playbacks":1,"is_casting_allowed":false,"max_auto_bitrate":null,"max_auto_resolution":480,"show_ads":true,"requested_subs_tag":null}}
+.hotstar.com	TRUE	/	FALSE	1665928168	_uetsid	302fb9404c9011ed8a9277f33f2c97b9
+.hotstar.com	TRUE	/	FALSE	1699537768	_uetvid	6d706c300ff011ed923f7f3ae0b8a506
+.hotstar.com	TRUE	/	FALSE	1728913818	_ga	GA1.2.1965062996.1659176084
+.hotstar.com	TRUE	/	FALSE	1665928218	_gid	GA1.2.1828989752.1665841769
+.hotstar.com	TRUE	/	FALSE	1697377801	_clck	xna9cq|1|f5q|0
+.hotstar.com	TRUE	/	FALSE	1665928203	_clsk	1tz0dso|1665841803768|1|0|e.clarity.ms/collect
+.hotstar.com	TRUE	/	FALSE	1728913818	_ga_QV5FD29XJC	GS1.1.1665841769.3.1.1665841818.11.0.0
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.jiocinema.com	TRUE	/	FALSE	1728914070	_ga	GA1.2.637594828.1665228286
+.jiocinema.com	TRUE	/	FALSE	1981202072	WZRK_G	403bb8adf3e640b287668b6a4c4cff24
+.jiocinema.com	TRUE	/	FALSE	1665928470	_gid	GA1.2.654094661.1665842031
+.jiocinema.com	TRUE	/	FALSE	1665843297	WZRK_S_WW5-K94-874Z	%7B%22p%22%3A4%2C%22s%22%3A1665842032%2C%22t%22%3A1665842097%7D
+
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.mxplayer.in	TRUE	/	FALSE	1729000709	Platform	com.mxplay.mobile
+.mxplayer.in	TRUE	/	FALSE	1729000709	UserID	d878bb17-6d85-4f67-9477-6919a2372294
+.mxplayer.in	TRUE	/	FALSE	1729000709	Content-Languages	hi,en
+.mxplayer.in	TRUE	/	FALSE	1729000709	scrnWdth	360
+.mxplayer.in	TRUE	/	FALSE	1729000709	scrnDPI	2
+.mxplayer.in	TRUE	/	FALSE	1729000709	isWebpSupported	1
+.mxplayer.in	TRUE	/	FALSE	1729000709	isDarkModeActive	0
+.mxplayer.in	TRUE	/	FALSE	1729000709	kidsModeActive	0
+.mxplayer.in	TRUE	/	FALSE	1729000709	_fbp	fb.1.1664784308765.1111259774
+.mxplayer.in	TRUE	/	FALSE	1729000709	_gid	GA1.2.360905163.1665842143
+.mxplayer.in	TRUE	/	FALSE	1729000709	_gat	1
+.mxplayer.in	TRUE	/	FALSE	1729000709	_ga	GA1.1.1833895836.1664784303
+.mxplayer.in	TRUE	/	FALSE	1729000709	__gads	ID
+.mxplayer.in	TRUE	/	FALSE	1729000709	__gpi	UID
+.mxplayer.in	TRUE	/	FALSE	1729000709	_ga_L9MTP48BE1	GS1.1.1665842146.2.1.1665842178.28.0.0
+.mxplayer.in	TRUE	/	FALSE	1729000709	totalWatchTime	36
