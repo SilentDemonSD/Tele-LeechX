@@ -14,19 +14,19 @@ A `Telegram Leech Bot` Upto 4GB Uploading With Premium Telegram Account and Mode
 ----
 
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/5MysterySD/Tele-LeechX/?ref=repository-badge)
-[![](https://img.shields.io/github/repo-size/5MysterySD/Tele-LeechX?color=green&label=Repo%20Size&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/commit-activity/m/5MysterySD/Tele-LeechX?logo=github&labelColor=292c3b&label=Github%20Commits)](#)
-[![](https://img.shields.io/github/license/5MysterySD/Tele-LeechX?style=flat&label=License&labelColor=292c3b)](#)[![](https://img.shields.io/github/issues-raw/5MysterySD/Tele-LeechX?style=flat&label=Open%20Issues&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/issues-closed-raw/5MysterySD/Tele-LeechX?style=flat&label=Closed%20Issues&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/issues-pr-raw/5MysterySD/Tele-LeechX?style=flat&label=Open%20Pull%20Requests&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/issues-pr-closed-raw/5MysterySD/Tele-LeechX?style=flat&label=Closed%20Pull%20Requests&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/languages/count/5MysterySD/Tele-LeechX?style=flat&label=Total%20Languages&labelColor=292c3b&color=blueviolet)](#)
-[![](https://img.shields.io/github/languages/top/5MysterySD/Tele-LeechX?style=flat&logo=python&labelColor=292c3b)](#)
-[![](https://img.shields.io/github/last-commit/5MysterySD/Tele-LeechX?style=flat&label=Last%20Commit&labelColor=292c3b&color=important)](#)
-[![](https://img.shields.io/github/forks/5MysterySD/Tele-LeechX?style=flat&logo=github&label=Forks&labelColor=292c3b&color=critical)](#)
-[![](https://img.shields.io/github/stars/5MysterySD/Tele-LeechX?style=flat&logo=github&label=Stars&labelColor=292c3b&color=yellow)](#)
-[![DeepSource](https://deepsource.io/gh/5MysterySD/Tele-LeechX.svg/?label=active+issues&show_trend=true&token=6xDT_5dS8U3boWTwGwkDMZ2m)](https://deepsource.io/gh/5MysterySD/Tele-LeechX/?ref=repository-badge)
-[![DeepSource](https://deepsource.io/gh/5MysterySD/Tele-LeechX.svg/?label=resolved+issues&show_trend=true&token=6xDT_5dS8U3boWTwGwkDMZ2m)](https://deepsource.io/gh/5MysterySD/Tele-LeechX/?ref=repository-badge)
+[![](https://img.shields.io/github/repo-size/SilentDemonSD/Tele-LeechX-V2?color=green&label=Repo%20Size&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/commit-activity/m/SilentDemonSD/Tele-LeechX-V2?logo=github&labelColor=292c3b&label=Github%20Commits)](#)
+[![](https://img.shields.io/github/license/SilentDemonSD/Tele-LeechX-V2?style=flat&label=License&labelColor=292c3b)](#)[![](https://img.shields.io/github/issues-raw/5MysterySD/Tele-LeechX?style=flat&label=Open%20Issues&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/issues-closed-raw/SilentDemonSD/Tele-LeechX-V2?style=flat&label=Closed%20Issues&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/issues-pr-raw/SilentDemonSD/Tele-LeechX-V2?style=flat&label=Open%20Pull%20Requests&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/issues-pr-closed-raw/SilentDemonSD/Tele-LeechX-V2?style=flat&label=Closed%20Pull%20Requests&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/languages/count/SilentDemonSD/Tele-LeechX-V2?style=flat&label=Total%20Languages&labelColor=292c3b&color=blueviolet)](#)
+[![](https://img.shields.io/github/languages/top/SilentDemonSD/Tele-LeechX-V2?style=flat&logo=python&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/last-commit/SilentDemonSD/Tele-LeechX-V2?style=flat&label=Last%20Commit&labelColor=292c3b&color=important)](#)
+[![](https://img.shields.io/github/forks/SilentDemonSD/Tele-LeechX-V2?style=flat&logo=github&label=Forks&labelColor=292c3b&color=critical)](#)
+[![](https://img.shields.io/github/stars/SilentDemonSD/Tele-LeechX-V2?style=flat&logo=github&label=Stars&labelColor=292c3b&color=yellow)](#)
+[![DeepSource](https://deepsource.io/gh/SilentDemonSD/Tele-LeechX-V2.svg/?label=active+issues&show_trend=true&token=6xDT_5dS8U3boWTwGwkDMZ2m)](https://deepsource.io/gh/5MysterySD/Tele-LeechX/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/SilentDemonSD/Tele-LeechX-V2.svg/?label=resolved+issues&show_trend=true&token=6xDT_5dS8U3boWTwGwkDMZ2m)](https://deepsource.io/gh/5MysterySD/Tele-LeechX/?ref=repository-badge)
 [![](https://img.shields.io/badge/Telegram%20Channel-Join-9cf?style=for-the-badge&logo=telegram&logoColor=blue&style=flat&labelColor=292c3b)](https://t.me/FXTorrentz)
 [![](https://img.shields.io/badge/Support%20Group-Join-9cf?style=for-the-badge&logo=telegram&logoColor=blue&style=flat&labelColor=292c3b)](https://t.me/+aj0yG0qvAjZiOTNl)
 
@@ -42,12 +42,14 @@ A `Telegram Leech Bot` Upto 4GB Uploading With Premium Telegram Account and Mode
 
 ----
 
+<!---
 ## Full Documentation 🗂
 
 * Check **Full Documentation**:
   > [![](https://img.shields.io/badge/Doc%20Website-Check-ffb9b4?style=flat&logo=devdotto&style=flat&labelColor=292c3b)](https://5mysterysd.github.io/categories/tele-leechx/)
 
 ---
+--->
 
 ## Bug 🐞 & Treatment 🏥
 
