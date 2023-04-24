@@ -64,7 +64,7 @@ except:
 
 if UPSTREAM_REPO is not None:
     if opath.exists('.git'):
-        srun(["rm", "-rf", ".git"])
+        srun(["rm", "-rf", ".git"], check=True)
 
     update = srun([f"git init -q \
                      && git config --global user.email mysterysd.sd@gmail.com \
@@ -73,7 +73,7 @@ if UPSTREAM_REPO is not None:
                      && git commit -sm update -q \
                      && git remote add origin {UPSTREAM_REPO} \
                      && git fetch origin -q \
-                     && git reset --hard origin/{UPSTREAM_BRANCH} -q"], shell=True)
+                     && git reset --hard origin/{UPSTREAM_BRANCH} -q"], shell=True, check=True)
 
     if update.returncode == 0:
         log_info(f'Successfully updated with latest commit from {UPSTREAM_REPO}')

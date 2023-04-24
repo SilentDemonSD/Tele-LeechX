@@ -162,8 +162,8 @@ async def restart(client: Client, message: Message):
             await clean_all()
         except Exception as err:
             LOGGER.info(f"Restart Clean Error : {err}")
-        srun(["pkill", "-f", "extra-api|new-api"])
-        srun(["python3", "update.py"])
+        srun(["pkill", "-f", "extra-api|new-api"], check=True)
+        srun(["python3", "update.py"], check=True)
         with open(".restartmsg", "w") as f:
             f.truncate(0)
             f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
