@@ -18,7 +18,7 @@ nexPageToken = ""
 def authorization_token(username, password):
     user_pass = f"{username}:{password}"
     return f"Basic {base64.b64encode(user_pass.encode()).decode()}"
-	 	 
+
 async def scrapeURL(payload_input, url, username, password): 
     global nexPage
     global nexPageToken
@@ -88,8 +88,8 @@ async def scrapeURL(payload_input, url, username, password):
         scpText += "</pre>"
     LOGGER.info(scpText)
     return scpText, False
-	        
-	
+
+
 async def index_scrape(client, message):
     '''  /indexscape <link>\n username\n password uscommand '''
     lm = await message.reply_text(

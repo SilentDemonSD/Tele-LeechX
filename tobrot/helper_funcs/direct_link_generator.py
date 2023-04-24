@@ -618,10 +618,10 @@ def gplink(url):
 
     scraper = cloudscraper.create_scraper(allow_brotli=False)
     res = scraper.get(url)
-    
+
     h = { "referer": res.url }
     res = scraper.get(url, headers=h)
-    
+
     bs4 = BeautifulSoup(res.content, 'lxml')
     inputs = bs4.find_all('input')
     data = { input.get('name'): input.get('value') for input in inputs }
@@ -630,9 +630,9 @@ def gplink(url):
         'content-type': 'application/x-www-form-urlencoded',
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     time.sleep(10) # !important
-    
+
     p = urlparse(url)
     final_url = f'{p.scheme}://{p.netloc}/links/go'
     res = scraper.post(final_url, data=data, headers=h).json()
@@ -864,7 +864,7 @@ def upindia(url: str) -> str:
   match = re.findall(REGEX, url)
   if not match:
     return "The Provided Link Do not Match with the Standard Format."
-  
+
   session = requests.Session()
   url = match[0]
   LOGGER.debug(f"Matched URL: {url}")
@@ -876,7 +876,7 @@ def upindia(url: str) -> str:
   itemlink = re.findall(r'class="download_box_new[^"]*".*itemlink="([^">]+)"', page_html)
   if not itemlink:
     return "File Does Not Exist!"
-  
+
   itemlink = itemlink[0]
   itemlink_parsed = urllib.parse.parse_qs(itemlink)
   file_key = itemlink_parsed['down_key'][0]
@@ -1068,7 +1068,7 @@ def androidfilehost(url: str) -> str:
         dl_url = item["url"]
         #reply += f"[{name}]({dl_url}) "
     return dl_url 
- 
+
 def useragent():
     try:
         useragents = BeautifulSoup(
@@ -1174,7 +1174,7 @@ def drivefire_dl(url: str):
 
     client = requests.Session()
     client.cookies.update({'crypt': DRIVEFIRE_CRYPT})
-    
+
     res = client.get(url)
 
     info_parsed = {}
@@ -1183,22 +1183,22 @@ def drivefire_dl(url: str):
     info_parsed['title'] = title
     for i in range(0, len(info_chunks), 2):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
-    
+
     info_parsed['error'] = False
-    
+
     up = urlparse(url)
     req_url = f"{up.scheme}://{up.netloc}/ajax.php?ajax=download"
-    
+
     file_id = url.split('/')[-1]
     data = { 'id': file_id }
     headers = {
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
     except: return {'error': True, 'src_url': url}
-    
+
     decoded_id = res.rsplit('/', 1)[-1]
     info_parsed = f"https://drive.google.com/file/d/{decoded_id}"
 
@@ -1212,7 +1212,7 @@ def katdrive_dl(url):
 
     client = requests.Session()
     client.cookies.update({'crypt': KATDRIVE_CRYPT})
-    
+
     res = client.get(url)
 
     info_parsed = {}
@@ -1221,24 +1221,24 @@ def katdrive_dl(url):
     info_parsed['title'] = title
     for i in range(0, len(info_chunks), 2):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
-    
+
     info_parsed['error'] = False
-    
+
     up = urlparse(url)
     req_url = f"{up.scheme}://{up.netloc}/ajax.php?ajax=download"
-    
+
     file_id = url.split('/')[-1]
     data = { 'id': file_id }
     headers = {
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
     except: return {'error': True, 'src_url': url}
-    
+
     gd_id = re.findall('gd=(.*)', res, re.DOTALL)[0]
-    
+
     info_parsed['gdrive_url'] = f"https://drive.google.com/open?id={gd_id}"
     info_parsed['src_url'] = url
 
@@ -1252,7 +1252,7 @@ def kolop_dl(url):
 
     client = requests.Session()
     client.cookies.update({'crypt': KOLOP_CRYPT})
-    
+
     res = client.get(url)
     info_parsed = {}
     title = re.findall(r'>(.*?)<\/h4>', res.text)[0]
@@ -1261,22 +1261,22 @@ def kolop_dl(url):
     for i in range(0, len(info_chunks), 2):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
     info_parsed['error'] = False
-    
+
     up = urlparse(url)
     req_url = f"{up.scheme}://{up.netloc}/ajax.php?ajax=download"
-    
+
     file_id = url.split('/')[-1]
     data = { 'id': file_id }
     headers = {
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
     except: return {'error': True, 'src_url': url}
-    
+
     gd_id = re.findall('gd=(.*)', res, re.DOTALL)[0]
-    
+
     info_parsed['gdrive_url'] = f"https://drive.google.com/open?id={gd_id}"
     info_parsed['src_url'] = url
 
@@ -1290,7 +1290,7 @@ def drivebuzz_dl(url):
 
     client = requests.Session()
     client.cookies.update({'crypt': DRIVEBUZZ_CRYPT})
-    
+
     res = client.get(url)
 
     info_parsed = {}
@@ -1299,24 +1299,24 @@ def drivebuzz_dl(url):
     info_parsed['title'] = title
     for i in range(0, len(info_chunks), 2):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
-    
+
     info_parsed['error'] = False
-    
+
     up = urlparse(url)
     req_url = f"{up.scheme}://{up.netloc}/ajax.php?ajax=download"
-    
+
     file_id = url.split('/')[-1]
     data = { 'id': file_id }
     headers = {
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
     except: return {'error': True, 'src_url': url}
-    
+
     gd_id = re.findall('gd=(.*)', res, re.DOTALL)[0]
-    
+
     info_parsed['gdrive_url'] = f"https://drive.google.com/open?id={gd_id}"
     info_parsed['src_url'] = url
 
@@ -1330,7 +1330,7 @@ def gadrive_dl(url):
 
     client = requests.Session()
     client.cookies.update({'crypt': GADRIVE_CRYPT})
-    
+
     res = client.get(url)
 
     info_parsed = {}
@@ -1339,24 +1339,24 @@ def gadrive_dl(url):
     info_parsed['title'] = title
     for i in range(0, len(info_chunks), 2):
         info_parsed[info_chunks[i]] = info_chunks[i+1]
-    
+
     info_parsed['error'] = False
-    
+
     up = urlparse(url)
     req_url = f"{up.scheme}://{up.netloc}/ajax.php?ajax=download"
-    
+
     file_id = url.split('/')[-1]
     data = { 'id': file_id }
     headers = {
         'x-requested-with': 'XMLHttpRequest'
     }
-    
+
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
     except: return {'error': True, 'src_url': url}
-    
+
     gd_id = re.findall('gd=(.*)', res, re.DOTALL)[0]
-    
+
     info_parsed['gdrive_url'] = f"https://drive.google.com/open?id={gd_id}"
     info_parsed['src_url'] = url
 
@@ -1364,22 +1364,22 @@ def gadrive_dl(url):
 
 def try2link_bypass(url):
 	client = cloudscraper.create_scraper(allow_brotli=False)
-	
+
 	url = url[:-1] if url[-1] == '/' else url
-	
+
 	params = (('d', int(time.time()) + (60 * 4)),)
 	r = client.get(url, params=params, headers= {'Referer': 'https://newforex.online/'})
-	
+
 	soup = BeautifulSoup(r.text, 'html.parser')
 	inputs = soup.find(id="go-link").find_all(name="input")
 	data = { input.get('name'): input.get('value') for input in inputs }	
 	time.sleep(7)
-	
+
 	headers = {'Host': 'try2link.com', 'X-Requested-With': 'XMLHttpRequest', 'Origin': 'https://try2link.com', 'Referer': url}
-	
+
 	bypassed_url = client.post('https://try2link.com/links/go', headers=headers,data=data)
 	return bypassed_url.json()["url"]
-		
+
 
 def try2link_scrape(url):
 	client = cloudscraper.create_scraper(allow_brotli=False)	
@@ -1389,7 +1389,7 @@ def try2link_scrape(url):
 	res = client.get(url, cookies={}, headers=h)
 	url = 'https://try2link.com/'+re.findall('try2link\.com\/(.*?) ', res.text)[0]
 	return try2link_bypass(url)
-    
+
 
 def psa_bypasser(psa_url):
     client = cloudscraper.create_scraper(allow_brotli=False)
@@ -1486,7 +1486,7 @@ def filecrypt(url):
     "upgrade-insecure-requests": "1",
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" 
     }
-    
+
 
     resp = client.get(url, headers=headers)
     soup = BeautifulSoup(resp.content, "html.parser")
@@ -1517,19 +1517,19 @@ def shortlingly(url):
     url = url[:-1] if url[-1] == '/' else url
 
     code = url.split("/")[-1]
-    
+
     final_url = f"{DOMAIN}/{code}"
 
     resp = client.get(final_url)
     soup = BeautifulSoup(resp.content, "html.parser")
-    
+
     try: inputs = soup.find(id="go-link").find_all(name="input")
     except: return "Incorrect Link"
-    
+
     data = { input.get('name'): input.get('value') for input in inputs }
 
     h = { "x-requested-with": "XMLHttpRequest" }
-    
+
     time.sleep(5)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
@@ -1546,19 +1546,19 @@ def gyanilinks(url):
     url = url[:-1] if url[-1] == '/' else url
 
     code = url.split("/")[-1]
-    
+
     final_url = f"{DOMAIN}/{code}"
 
     resp = client.get(final_url)
     soup = BeautifulSoup(resp.content, "html.parser")
-    
+
     try: inputs = soup.find(id="go-link").find_all(name="input")
     except: return "Incorrect Link"
-    
+
     data = { input.get('name'): input.get('value') for input in inputs }
 
     h = { "x-requested-with": "XMLHttpRequest" }
-    
+
     time.sleep(5)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
@@ -1683,14 +1683,14 @@ def rocklinks(url):
 
     resp = client.get(final_url)
     soup = BeautifulSoup(resp.content, "html.parser")
-    
+
     try: inputs = soup.find(id="go-link").find_all(name="input")
     except: return "Incorrect Link"
-    
+
     data = { input.get('name'): input.get('value') for input in inputs }
 
     h = { "x-requested-with": "XMLHttpRequest" }
-    
+
     time.sleep(10)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
@@ -1729,7 +1729,7 @@ def olamovies(url):
             id = ele.split("&id=")[1]
         except:
             continue
-        
+
         count = 3
         params = { 'key': key, 'id': id}
         soup = "None"
@@ -1753,7 +1753,7 @@ def olamovies(url):
                 else:
                     count -= 1
                     # print("retrying")
-                
+
             # print("waiting 10 secs")
             time.sleep(10)
 

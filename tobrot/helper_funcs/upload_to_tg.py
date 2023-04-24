@@ -403,7 +403,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, c
     start_time = time()
 
     __uploadAsDoc = user_specific_config.get(from_user, False)
-        
+
     global PRM_LOG
     if isUserPremium and (not PRM_LOG) and LEECH_LOG:
         PRM_LOG = LEECH_LOG
@@ -426,7 +426,7 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, c
                 thumbnail_location, opath.dirname(opath.abspath(local_file_name))
             )
         thumb = thumb_image_path
-        
+
         message_for_progress_display = message
         if not edit_media:
             message_for_progress_display = await message.reply_text(

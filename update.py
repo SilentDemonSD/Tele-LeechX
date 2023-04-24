@@ -65,7 +65,7 @@ except:
 if UPSTREAM_REPO is not None:
     if opath.exists('.git'):
         srun(["rm", "-rf", ".git"])
-        
+
     update = srun([f"git init -q \
                      && git config --global user.email mysterysd.sd@gmail.com \
                      && git config --global user.name tele-leechx \

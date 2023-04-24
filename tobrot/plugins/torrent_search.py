@@ -172,7 +172,7 @@ class TorrentSearch:
         self.command = command
         self.source = source.rstrip('/')
         self.RESULT_STR = result_str
-        
+
     @staticmethod
     def format_magnet(string: str):
         if not string:
