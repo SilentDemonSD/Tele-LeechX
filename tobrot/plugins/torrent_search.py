@@ -192,7 +192,7 @@ class TorrentSearch:
             magnet = values.get('magnet', values.get('Magnet'))  # Avoid updating source dict
             if magnet:
                 extra += f"⚡Magnet: `{self.format_magnet(magnet)}`"
-        if (extra):
+        if extra:
             string += "\n" + extra
         return string
 
@@ -202,10 +202,10 @@ class TorrentSearch:
         nextBtn = InlineKeyboardButton(f"Next", callback_data=f"{self.command}_next")
 
         inline = []
-        if (self.index != 0):
+        if self.index != 0:
             inline.append(prevBtn)
         inline.append(delBtn)
-        if (self.index != len(self.response_range) - 1):
+        if self.index != len(self.response_range) - 1:
             inline.append(nextBtn)
 
         res_lim = min(self.RESULT_LIMIT, len(self.response) - self.RESULT_LIMIT*self.index)
@@ -231,7 +231,7 @@ class TorrentSearch:
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(f"{self.source}/{query}", timeout=15) as resp:
-                    if (resp.status != 200):
+                    if resp.status != 200:
                         raise Exception('unsuccessful request')
                     result = await resp.json()
                     if (result and isinstance(result[0], list)):

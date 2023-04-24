@@ -300,7 +300,7 @@ async def picture_add(client: Client, message: Message):
             pic_add = msg_text.strip()
             await editable.edit("Adding your Link ...")
     elif resm.photo:
-        if not ((resm.photo and resm.photo.file_size <= TGH_LIMIT)):
+        if not resm.photo and resm.photo.file_size <= TGH_LIMIT:
             await editable.edit("This Media is Not Supported! Only Send Photos !!")
             return
         await editable.edit("Uploading to te.legra.ph Server ...")

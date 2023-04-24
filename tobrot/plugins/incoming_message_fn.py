@@ -109,7 +109,7 @@ async def incoming_message_f(client: Client, message: Message, auto_cmd=None):
             return
 
     if BOT_PM and LEECH_LOG and not auto_cmd:
-        if not (await check_bot_pm(client, message)):
+        if not await check_bot_pm(client, message):
             return
     elif BOT_PM and not auto_cmd:
         LOGGER.warning("[BOT PM] Must Provide LEECH_LOG to Use it")
@@ -321,12 +321,12 @@ async def g_clonee(client: Client, message: Message):
     g_id, _ = getUserOrChaDetails(message)
 
     if BOT_PM and LEECH_LOG: 
-        if not (await check_bot_pm(client, message)):
+        if not await check_bot_pm(client, message):
             return
     elif BOT_PM and (not LEECH_LOG):
         LOGGER.warning("[Bot PM] Must Provide LEECH_LOG to Use it")
 
-    if (not RCLONE_CONF_URL):
+    if not RCLONE_CONF_URL:
         LOGGER.info("[RCLONE] RCLONE_CONF_URL not Provided !!")
         return
     _link = message.text.split(" ", maxsplit=1)
@@ -366,7 +366,7 @@ __Google Drive, GDToT, AppDrive, Kolop, HubDrive, DriveLinks__'''
 async def rename_tg_file(client: Client, message: Message):
     usr_id, tag_me = getUserOrChaDetails(message)
     if BOT_PM and LEECH_LOG:
-        if not (await check_bot_pm(client, message)):
+        if not await check_bot_pm(client, message):
             return
     elif BOT_PM and (not LEECH_LOG):
         LOGGER.warning("[Bot PM] Must Provide LEECH_LOG to Use it")
