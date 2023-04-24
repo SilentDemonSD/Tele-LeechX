@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) 5MysterySD | Anasty17 ( MLTB ) | HuzunluArtemis
+# (c) SilentDemonSD | Anasty17 | HuzunluArtemis
 #
-# Copyright 2022 - TeamTele-LeechX
+# Copyright 2022-present ~ Team[Tele-LeechX]
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 from requests import get as rget
@@ -46,10 +46,10 @@ load_dotenv('config.env', override=True)
 ## Update Packages ++++
 if env.get('UPDATE_PACKAGES', 'False').lower() == 'true':
     packages = [dist.project_name for dist in working_set]
-    scall("pip install --upgrade " + ' '.join(packages), shell=True)
+    scall("pip install " + ' '.join(packages), shell=True)
 ## Update Packages ----
 
-UPSTREAM_REPO = env.get('UPSTREAM_REPO', "https://github.com/5MysterySD/Tele-LeechX")
+UPSTREAM_REPO = env.get('UPSTREAM_REPO', "https://github.com/SilentDemonSD/Tele-LeechX")
 UPSTREAM_BRANCH = env.get('UPSTREAM_BRANCH', "h-code")
 try:
     if len(UPSTREAM_REPO) == 0:
