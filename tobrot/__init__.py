@@ -22,7 +22,7 @@ from sys import exit
 from dotenv import load_dotenv
 from pyrogram import Client
 
-run(["chmod", "+x", "extract"])
+run(["chmod", "+x", "extract"], check=True)
 
 def getVar(var: str, val):
     return environ.get(var, val)
