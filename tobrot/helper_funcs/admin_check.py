@@ -17,5 +17,4 @@ async def AdminCheck(client, chat_id, user_id):
     SELF = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
     if SELF.status not in (enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
         return False
-    else:
-        return True
+    return True

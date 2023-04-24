@@ -408,8 +408,7 @@ def pixeldrain(url: str) -> str:
     resp = requests.get(info_link).json()
     if resp["success"]:
         return dl_link
-    else:
-        raise DirectDownloadLinkException("ERROR: Cant't download due {}.".format(resp.text["value"]))
+    raise DirectDownloadLinkException("ERROR: Cant't download due {}.".format(resp.text["value"]))
 
 
 def antfiles(url: str) -> str:
@@ -558,9 +557,8 @@ def krakenfiles(page_link: str) -> str:
 
     if "url" in dl_link_json:
         return dl_link_json["url"]
-    else:
-        raise DirectDownloadLinkException(
-            f"Failed to acquire download URL from kraken for : {page_link}")
+    raise DirectDownloadLinkException(
+        f"Failed to acquire download URL from kraken for : {page_link}")
 
 
 def gdtot(url: str) -> str:
@@ -787,8 +785,7 @@ def droplink(url):
         return "API UnResponsive / Invalid Link !"
     if res["success"] is True:
         return res["url"]
-    else:
-        return res["msg"]
+    return res["msg"]
 
 def gofile(url: str):
     api_uri = 'https://api.gofile.io'
@@ -1432,8 +1429,7 @@ def megaup(url):
         return "API UnResponsive / Invalid Link !"
     if res["success"] is True:
         return res["url"]
-    else:
-        return res["msg"]
+    return res["msg"]
 
 def mediafire(url: str) -> str:
     """ MediaFire direct link generator """

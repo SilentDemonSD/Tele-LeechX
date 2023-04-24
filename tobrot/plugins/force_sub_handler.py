@@ -28,7 +28,7 @@ async def handle_force_sub(client: Client, cmd: Message):
         if user.status in (enums.ChatMemberStatus.BANNED, enums.ChatMemberStatus.RESTRICTED):
             await client.reply_text(text="<b>Sorry, You are Banned to Use me.</b>", parse_mode=enums.ParseMode.HTML)
             return 400
-        elif user.status == enums.ChatMemberStatus.LEFT:
+        if user.status == enums.ChatMemberStatus.LEFT:
             raise UserNotParticipant
     except UserNotParticipant:
         try:
