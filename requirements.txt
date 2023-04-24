@@ -23,7 +23,7 @@ pyrogram
 python-dotenv
 pytz
 pyprog
-python-telegram-bot
+python-telegram-bot==13.15
 pybase64
 requests
 speedtest-cli
