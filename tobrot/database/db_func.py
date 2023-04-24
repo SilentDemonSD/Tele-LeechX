@@ -81,7 +81,7 @@ class DatabaseManager:
     def user_rm_thumb(self, user_id: int, path):
         if self.err:
             return
-        elif self.user_check(user_id):
+        if self.user_check(user_id):
             sql = 'UPDATE users SET thumb = NULL WHERE uid = {}'.format(user_id)
         self.cur.execute(sql)
         self.conn.commit()
@@ -90,7 +90,7 @@ class DatabaseManager:
     def user_vid(self, user_id: int):
         if self.err:
             return
-        elif not self.user_check(user_id):
+        if not self.user_check(user_id):
             sql = 'INSERT INTO users (uid, vid) VALUES ({}, TRUE)'.format(user_id)
         else:
             sql = 'UPDATE users SET vid = TRUE, doc = FALSE WHERE uid = {}'.format(user_id)
@@ -101,7 +101,7 @@ class DatabaseManager:
     def user_doc(self, user_id: int):
         if self.err:
             return
-        elif not self.user_check(user_id):
+        if not self.user_check(user_id):
             sql = 'INSERT INTO users (uid, doc) VALUES ({}, TRUE)'.format(user_id)
         else:
             sql = 'UPDATE users SET vid = FALSE, doc = TRUE WHERE uid = {}'.format(user_id)
@@ -112,7 +112,7 @@ class DatabaseManager:
     def user_pre(self, user_id: int, user_pre):
         if self.err:
             return
-        elif not self.user_check(user_id):
+        if not self.user_check(user_id):
             sql = 'INSERT INTO users (pre, uid) VALUES (%s, %s)'
         else:
             sql = 'UPDATE users SET pre = %s WHERE uid = %s'
@@ -123,7 +123,7 @@ class DatabaseManager:
     def user_cap(self, user_id: int, user_cap):
         if self.err:
             return
-        elif not self.user_check(user_id):
+        if not self.user_check(user_id):
             sql = 'INSERT INTO users (cap, uid) VALUES (%s, %s)'
         else:
             sql = 'UPDATE users SET cap = %s WHERE uid = %s'
@@ -134,7 +134,7 @@ class DatabaseManager:
     def user_imdb(self, user_id: int, user_imdb):
         if self.err:
             return
-        elif not self.user_check(user_id):
+        if not self.user_check(user_id):
             sql = 'INSERT INTO users (imdb, uid) VALUES (%s, %s)'
         else:
             sql = 'UPDATE users SET imdb = %s WHERE uid = %s'

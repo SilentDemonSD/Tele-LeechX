@@ -228,7 +228,7 @@ async def exec_message_f(client, message):
     elif message.chat.type == enums.ChatType.SUPERGROUP:
         if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHANNEL:
             return
-        elif message.chat.id not in AUTH_CHANNEL:
+        if message.chat.id not in AUTH_CHANNEL:
             return
     DELAY_BETWEEN_EDITS = 0.3
     PROCESS_RUN_TIME = 100
@@ -292,7 +292,7 @@ async def eval_message_f(client, message):
     elif message.chat.type == enums.ChatType.SUPERGROUP:
         if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHANNEL:
             return
-        elif message.chat.id not in AUTH_CHANNEL:
+        if message.chat.id not in AUTH_CHANNEL:
             return
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]

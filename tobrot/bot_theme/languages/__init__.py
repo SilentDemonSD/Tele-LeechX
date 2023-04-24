@@ -8,5 +8,4 @@ def BotLang():
 
     if BOT_LANG.lower() in AVAILABLE_LANG.keys():
         return (AVAILABLE_LANG.get(BOT_LANG)).TXLanguage()
-    else:
-        return en.TXLanguage()
+    return en.TXLanguage()

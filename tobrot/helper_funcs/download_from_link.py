@@ -34,5 +34,4 @@ async def request_download(url, file_name, r_user_id):
 
     if os.path.exists(local_file_path):
         return True, local_file_path
-    else:
-        return False, final_m_r
+    return False, final_m_r

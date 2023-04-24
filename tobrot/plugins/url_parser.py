@@ -39,8 +39,7 @@ async def url_parser(client, message):
         if trigger is True:
             ok = await oo.edit_text(text="⛔ __Url Parsing Stopped__ ⛔ \n\n `Check your Link First, if I can Parse it or Not !!` \n\n#UnParseable", disable_web_page_preview=True)
             return 
-        else:
-            tell = await oo.edit_text(text=f"⚡️__URL Parsing Initiated__⚡️\n\n👤 **User** : {u_men} \n🆔 **User ID** : `{user_id}` \n🔗 **Link** : `{url}`\n\n📇 **Bypass Info** 📇 : \n\n {bypassed_url}\n\n#Parsed", disable_web_page_preview=True)
+        tell = await oo.edit_text(text=f"⚡️__URL Parsing Initiated__⚡️\n\n👤 **User** : {u_men} \n🆔 **User ID** : `{user_id}` \n🔗 **Link** : `{url}`\n\n📇 **Bypass Info** 📇 : \n\n {bypassed_url}\n\n#Parsed", disable_web_page_preview=True)
     else:
         oo = await op.edit_text(text="**Send Link Along with Command :**\n/parser(BotName) `{link}`\n\n **Reply to a Link :**\n/parser(BotName) to Link \n\n**SUPPORTED SITES**\n__Coming Soon__",)
         return

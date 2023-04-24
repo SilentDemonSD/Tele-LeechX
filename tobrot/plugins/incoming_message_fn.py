@@ -149,9 +149,8 @@ async def incoming_message_f(client: Client, message: Message, auto_cmd=None):
             buttons.append([InlineKeyboardButton('❌️ Cancel ❌️', callback_data=f'alxClose {g_id}')])
             await i_m_sefg.edit(text="🎛 <b><i>Here you can Configure your Leech Preferences !!</i></b>", reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML, disable_web_page_preview=True)
             return
-        else:
-            await i_m_sefg.delete()
-            await incoming_message_f(client, message, _auto[1])
+        await i_m_sefg.delete()
+        await incoming_message_f(client, message, _auto[1])
     elif AUTO_LEECH and auto_cmd:
         dl_url, cf_name, _, _ = await extract_link(message, "LEECH")
         user_command = auto_cmd

@@ -231,7 +231,7 @@ def get_anime_query(client, message, aniid=None):
             LOGGER.error(e)
         if aniid:
             return template, buttons
-        else: message.reply_photo(photo = (title_img or 'https://te.legra.ph/file/8a5155c0fc61cc2b9728c.jpg'), caption = template, parse_mode=enums.ParseMode.HTML, reply_markup=InlineKeyboardMarkup(buttons))
+        message.reply_photo(photo = (title_img or 'https://te.legra.ph/file/8a5155c0fc61cc2b9728c.jpg'), caption = template, parse_mode=enums.ParseMode.HTML, reply_markup=InlineKeyboardMarkup(buttons))
 
 async def anilist_callbackquery(client, query: CallbackQuery):
     qdata = query.data

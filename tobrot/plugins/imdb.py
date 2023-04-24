@@ -135,19 +135,18 @@ async def get_poster(query, bulk=False, id=False, file=None):
 def list_to_str(k):
     if not k:
         return ""
-    elif len(k) == 1:
+    if len(k) == 1:
         return str(k[0])
-    elif MAX_LIST_ELM:
+    if MAX_LIST_ELM:
         k = k[:int(MAX_LIST_ELM)]
         return ' '.join(f'{elem},' for elem in k)[:-1]+' ...'
-    else:
-        return ' '.join(f'{elem},' for elem in k)[:-1]
+    return ' '.join(f'{elem},' for elem in k)[:-1]
 
 def list_to_hash(k, flagg=False):
     listing = ""
     if not k:
         return ""
-    elif len(k) == 1:
+    if len(k) == 1:
         if not flagg:
             return str("#"+k[0].replace(" ", "_").replace("-", "_"))
         try:

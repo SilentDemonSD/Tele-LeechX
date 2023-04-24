@@ -41,5 +41,4 @@ async def take_screen_shot(video_file, output_directory, ttl):
         t_response = stdout.decode().strip()
     if opath.lexists(out_put_file_name):
         return out_put_file_name
-    else:
-        return None
+    return None
