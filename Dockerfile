@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Kolkata
 
 RUN apt-get -qq update --fix-missing && \
-    apt-get -qq install -y \
+    apt-get -qq upgrade -y && \
+    apt-get -q install -y \
     git \
     wget \
     curl \
@@ -27,11 +28,11 @@ RUN apt-get -qq update --fix-missing && \
     mkvtoolnix
 
 # Install RClone
-RUN wget https://rclone.org/install.sh
+RUN wget -q https://rclone.org/install.sh
 RUN bash install.sh
 
 # Install GClone-1.6.2 < https://github.com/l3v11/gclone >
-#RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
+RUN mkdir /app/gclone
 RUN wget -O /app/gclone/gclone.zip https://github.com/l3v11/gclone/releases/download/v1.62.2-purple/gclone-v1.62.2-purple-linux-amd64.zip
 RUN cd gclone && unzip gclone.zip
 RUN chmod 0775 /app/gclone
