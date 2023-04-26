@@ -9,7 +9,7 @@ hachoir
 heroku3
 html-telegraph-poster
 hurry.filesize
-imdbpy
+git+https://github.com/cinemagoer/cinemagoer
 js2py
 lk21
 lxml

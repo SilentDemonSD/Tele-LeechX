@@ -207,15 +207,15 @@ if __name__ == "__main__":
     elif OWNER_ID:
         if RDM_QUOTE:
             try:
-                qResponse = rget("https://quote-garden.herokuapp.com/api/v3/quotes/random")
+                qResponse = rget("https://api.quotable.io/random")
                 if qResponse.status_code == 200:
                     qData = qResponse.json() 
-                    qText = qData['data'][0]['quoteText']
-                    qAuthor = qData['data'][0]['quoteAuthor']
-                    #qGenre = qData['data'][0]['quoteGenre']
+                    qText = qData['content']
+                    qAuthor = qData['author']
+                    #qGenre = ', '.join(qData['tags'])[:2]
                     text += f"\n\n📬 𝙌𝙪𝙤𝙩𝙚 :\n\n<b>{qText}</b>\n\n🏷 <i>By {qAuthor}</i>"
             except Exception as q:
-                LOGGER.error("Quote API Error : {q}")
+                LOGGER.error("Quotable API Error : {q}")
         for chatx in AUTH_CHANNEL:
             for a in app:
                 try:

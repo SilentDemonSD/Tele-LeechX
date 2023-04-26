@@ -340,9 +340,8 @@ if STRING_SESSION:
         userBot.start()
         if (userBot.get_me()).is_premium:
             isUserPremium = True
-            LOGGER.info("[SUCCESS] Initiated UserBot : Premium Mode") #Logging is Needed Very Much
+            LOGGER.info("[SUCCESS] Initiated UserBot : Premium Mode")
         else:
-            isUserPremium = False
             LOGGER.info("[SUCCESS] Initiated UserBot : Non-Premium Mode. Add Premium Account StringSession to Use 4GB Upload. ")
     else:
         LOGGER.warning("[FAILED] Userbot Not Started. ReCheck Your STRING_SESSION, and Other Vars")

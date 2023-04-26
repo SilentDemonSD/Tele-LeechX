@@ -8,7 +8,7 @@
 # All Right Reserved
 
 from re import findall, IGNORECASE
-from imdb import IMDb
+from imdb import Cinemagoer
 from pycountry import countries as conn
 
 from tobrot import LOGGER
@@ -21,7 +21,7 @@ from pyrogram import filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 
-imdb = IMDb() 
+imdb = Cinemagoer() 
 
 async def imdb_search(client, message):
     if ' ' in message.text:
