@@ -215,7 +215,7 @@ if __name__ == "__main__":
                     #qGenre = ', '.join(qData['tags'])[:2]
                     text += f"\n\n📬 𝙌𝙪𝙤𝙩𝙚 :\n\n<b>{qText}</b>\n\n🏷 <i>By {qAuthor}</i>"
             except Exception as q:
-                LOGGER.error("Quotable API Error : {q}")
+                LOGGER.error(f"Quotable API Error : {q}")
         for chatx in AUTH_CHANNEL:
             for a in app:
                 try:
