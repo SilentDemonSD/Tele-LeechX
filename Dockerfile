@@ -33,7 +33,7 @@ RUN bash install.sh
 # Install GClone-1.6.2 < https://github.com/l3v11/gclone >
 #RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
 RUN wget -O /app/gclone.zip https://github.com/l3v11/gclone/releases/download/v1.62.2-purple/gclone-v1.62.2-purple-linux-amd64.zip
-RUN unzip gclone.zip -d /app/gclone.zip
+RUN unzip gclone.zip
 RUN chmod 0775 /app/gclone
 
 COPY requirements.txt .
