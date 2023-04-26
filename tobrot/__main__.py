@@ -161,7 +161,7 @@ async def restart(client: Client, message: Message):
             await clean_all()
         except Exception as err:
             LOGGER.info(f"Restart Clean Error : {err}")
-        srun(["pkill", "-f", "extra-api|new-api"], check=True)
+        srun(["pkill", "-f", "chrome|firefox"], check=True)
         srun(["python3", "update.py"], check=True)
         with open(".restartmsg", "w") as f:
             f.truncate(0)
@@ -213,7 +213,7 @@ if __name__ == "__main__":
                     qText = qData['content']
                     qAuthor = qData['author']
                     #qGenre = ', '.join(qData['tags'])[:2]
-                    text += f"\n\n📬 𝙌𝙪𝙤𝙩𝙚 :\n\n<b>{qText}</b>\n\n🏷 <i>By {qAuthor}</i>"
+                    rst_text += f"\n\n📬 𝙌𝙪𝙤𝙩𝙚 :\n\n<b>{qText}</b>\n\n🏷 <i>By {qAuthor}</i>"
             except Exception as q:
                 LOGGER.error(f"Quotable API Error : {q}")
         for chatx in AUTH_CHANNEL:
