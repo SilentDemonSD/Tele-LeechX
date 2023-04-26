@@ -14,13 +14,12 @@ from logging import FileHandler, StreamHandler, INFO, basicConfig, error as log_
 from subprocess import run as srun, call as scall
 from dotenv import load_dotenv
 
-searchLogFile = listdir()
-for log in searchLogFile:
+for log in listdir():
     if log.endswith('Logs.txt'):
         with open(log, 'r+') as f:
               f.truncate(0)
 
-basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
+basicConfig(format='[%(asctime)s] [%(name)s - %(levelname)s] %(message)s [%(filename)s:%(lineno)d]',
                     datefmt="%d-%b-%y %I:%M:%S %p",
                     handlers=[FileHandler('Logs.txt'), StreamHandler()],
                     level=INFO)
@@ -76,6 +75,6 @@ if UPSTREAM_REPO is not None:
                      && git reset --hard origin/{UPSTREAM_BRANCH} -q"], shell=True, check=True)
 
     if update.returncode == 0:
-        log_info(f'Successfully updated with latest commit from {UPSTREAM_REPO}')
+        log_info(f'Successfully Updated with latest commit from {UPSTREAM_REPO}')
     else:
         log_error(f'Something went wrong while updating, check {UPSTREAM_REPO} if valid or not!')

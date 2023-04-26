@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD
+# (c) Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD
 #
 # Copyright 2022 - TeamTele-LeechX
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 import sys, aria2p
@@ -110,7 +110,7 @@ def __changeFileName(to_upload_file, u_id):
                         n_name = f"{root}/{prefix}{org}"
                         orename(p_name, n_name)
     elif suffix:
-     # <!--- Total Code Made by 5MysterySD, Give Credits at least !! --->
+     # <!--- Total Code Made by SilentDemonSD, Give Credits at least !! --->
         sufLen = len(suffix)
         if opath.isfile(to_upload_file):
             fileDict = to_upload_file.split('.')

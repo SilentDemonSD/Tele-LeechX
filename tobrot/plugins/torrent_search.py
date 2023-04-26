@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) 5MysterySD | Other Contributors 
+# (c) SilentDemonSD | Other Contributors 
 # Total Code Kanged from MLTB by Anasty17 
 # Copyright 2022 - TeamTele-LeechX
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 import time

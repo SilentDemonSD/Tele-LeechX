@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD | Other Contributors 
 #
-# Copyright 2022 - TeamTele-LeechX
+# Copyright (c) 2022-2023 Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD 
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved 
 
 import logging
@@ -56,7 +55,7 @@ if opath.exists(LOG_FILE_NAME):
 # Logging Requirements >>>>>>>>>>>
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]",
+    format="[%(asctime)s] [%(levelname)s] - %(message)s [%(filename)s:%(lineno)d]",
     datefmt="%d-%b-%y %I:%M:%S %p",
     handlers=[
         RotatingFileHandler(
@@ -80,7 +79,18 @@ USER_THEMES = {}
 AVAILABLE_THEMES = {}
 USER_LOGS = {}
 AUTO_USERS = {}
-__version__ = "2.9.1"
+
+__version__ = "3.0.0"
+
+# Compulsory Variables >>>>>>>>
+for imp in ["TG_BOT_TOKEN1", "APP_ID1", "API_HASH1", "OWNER_ID", "AUTH_CHANNEL"]:
+    try:
+        value = environ[imp]
+        if not value:
+            raise KeyError
+    except KeyError:
+        LOGGER.critical(f"ENV Variable : {imp} Missing from config.env fill Up and Retry")
+        exit()
 
 TG_BOT_TOKEN, APP_ID, API_HASH = [], [], []
 
@@ -94,7 +104,8 @@ for x in count():
     TG_BOT_TOKEN.append(bot_tok)
     APP_ID.append(int(tg_id))
     API_HASH.append(tg_hash)
-OWNER_ID = int(getVar("OWNER_ID", ""))
+
+OWNER_ID = int(getVar("OWNER_ID", 0))
 
 # Heroku & Restart Utils >>>>>>>>>>>
 HEROKU_API_KEY = getVar('HEROKU_API_KEY', None)
@@ -108,22 +119,12 @@ AUTH_CHANNEL += SUDO_USERS # Change Permissions Soon
 # Download Directory >>>>>>>>>>>
 DOWNLOAD_LOCATION = "./Downloads"
 
-# Compulsory Variables >>>>>>>>
-for imp in ["TG_BOT_TOKEN1", "APP_ID1", "API_HASH1", "OWNER_ID", "AUTH_CHANNEL"]:
-    try:
-        value = environ[imp]
-        if not value:
-            raise KeyError
-    except KeyError:
-        LOGGER.critical(f"[ERROR] Variable : {imp} Missing from config.env. Fill Up and Retry")
-        exit()
-
 # Telegram Max File Upload Size >>>>>>>>>>
 TG_MAX_FILE_SIZE = 2097152000
 TG_PRM_FILE_SIZE = 4194304000
 
 # Chunk Size that should be used with Requests >>>>>>>>>>
-CHUNK_SIZE = int(getVar("CHUNK_SIZE", "128"))
+CHUNK_SIZE = int(getVar("CHUNK_SIZE", 128))
 DEF_THUMB_NAIL_VID_S = getVar("DEF_THUMB_NAIL_VID_S", "")
 MAX_MESSAGE_LENGTH = 4096
 
@@ -253,9 +254,9 @@ LEECH_INVITE = getVar("LEECH_INVITE", "False")
 EX_LEECH_LOG = [int(chats) if (' ' not in getVar('EX_LEECH_LOG', '')) else int(chats) for chats in getVar('EX_LEECH_LOG', '').split()]
 EXCEP_CHATS = [int(chats) if (' ' not in getVar('EXCEP_CHATS', '')) else int(chats) for chats in getVar('EXCEP_CHATS', '').split()]
 BOT_PM = getVar("BOT_PM", "False")
-BOT_PM = True if BOT_PM.lower() == "true" else False
+BOT_PM = BOT_PM.lower() == "true"
 AUTO_LEECH = getVar("AUTO_LEECH", "False")
-AUTO_LEECH = True if AUTO_LEECH.lower() == "true" else False
+AUTO_LEECH = AUTO_LEECH.lower() == "true"
 
 #Status Photos & Pixabay API >>>>>>>>>>
 PICS_LIST = (getVar("PICS", "")).split()
@@ -276,13 +277,13 @@ FSUB_CHANNEL = getVar("FSUB_CHANNEL", "")
 # Quotes in Restart Message & Utils >>>>>>>>
 TIMEZONE = getVar("TIMEZONE", "Asia/Kolkata")
 RDM_QUOTE = getVar("RDM_QUOTE", "False")
-RDM_QUOTE = True if RDM_QUOTE.lower() == "true" else False
+RDM_QUOTE = RDM_QUOTE.lower() == "true"
 
 # Buttons in Start Message >>>>>>>>
 START_BTN1 = getVar("START_BTN1", "🛃 FXTorrentz 🛃")
 START_URL1 = getVar("START_URL1", "https://t.me/FXTorrentz")
 START_BTN2 = getVar("START_BTN2", "🔍 Source Code")
-START_URL2 = getVar("START_URL2", "https://github.com/5MysterySD/Tele-LeechX")
+START_URL2 = getVar("START_URL2", "https://github.com/SilentDemonSD/Tele-LeechX")
 
 # Database Handler >>>>>>>>
 DB_URI = getVar("DATABASE_URL", "")

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD | Other Contributors | Scripts | Anasty [MLTB]
+# (c) Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD | Other Contributors | Scripts | Anasty [MLTB]
 #
 # Copyright 2022 - TeamTele-LeechX | Copyright (C) 2019 The Raphielscape Company LLC.
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 

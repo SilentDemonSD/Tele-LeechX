@@ -16,7 +16,7 @@ A `Telegram Leech Bot` Upto 4GB Uploading With Premium Telegram Account and Mode
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/SilentDemonSD/Tele-LeechX/?ref=repository-badge)
 [![](https://img.shields.io/github/repo-size/SilentDemonSD/Tele-LeechX?color=green&label=Repo%20Size&labelColor=292c3b)](#)
 [![](https://img.shields.io/github/commit-activity/m/SilentDemonSD/Tele-LeechX?logo=github&labelColor=292c3b&label=Github%20Commits)](#)
-[![](https://img.shields.io/github/license/SilentDemonSD/Tele-LeechX?style=flat&label=License&labelColor=292c3b)](#)[![](https://img.shields.io/github/issues-raw/5MysterySD/Tele-LeechX?style=flat&label=Open%20Issues&labelColor=292c3b)](#)
+[![](https://img.shields.io/github/license/SilentDemonSD/Tele-LeechX?style=flat&label=License&labelColor=292c3b)](#)[![](https://img.shields.io/github/issues-raw/SilentDemonSD/Tele-LeechX?style=flat&label=Open%20Issues&labelColor=292c3b)](#)
 [![](https://img.shields.io/github/issues-closed-raw/SilentDemonSD/Tele-LeechX?style=flat&label=Closed%20Issues&labelColor=292c3b)](#)
 [![](https://img.shields.io/github/issues-pr-raw/SilentDemonSD/Tele-LeechX?style=flat&label=Open%20Pull%20Requests&labelColor=292c3b)](#)
 [![](https://img.shields.io/github/issues-pr-closed-raw/SilentDemonSD/Tele-LeechX?style=flat&label=Closed%20Pull%20Requests&labelColor=292c3b)](#)
@@ -39,7 +39,7 @@ A `Telegram Leech Bot` Upto 4GB Uploading With Premium Telegram Account and Mode
 
 #### 1. Heroku ⚕️
 
-- Go to [`Heroku Branch`](https://github.com/5MysterySD/Tele-LeechX/tree/heroku) .
+- Go to [`Heroku Branch`](https://github.com/SilentDemonSD/Tele-LeechX/tree/heroku) .
 
 ----
 --->
@@ -47,7 +47,7 @@ A `Telegram Leech Bot` Upto 4GB Uploading With Premium Telegram Account and Mode
 ## Full Documentation 🗂
 
 * Check **Full Documentation**:
-  > [![](https://img.shields.io/badge/Doc%20Website-Check-ffb9b4?style=flat&logo=devdotto&style=flat&labelColor=292c3b)](https://5mysterysd.github.io/categories/tele-leechx/)
+  > [![](https://img.shields.io/badge/Doc%20Website-Check-ffb9b4?style=flat&logo=devdotto&style=flat&labelColor=292c3b)](https://silentdemonsd.github.io/categories/tele-leechx/)
 
 ---
 --->
@@ -72,7 +72,7 @@ This program is free software: you can redistribute it and/or modify it under th
 as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details at 
-< https://github.com/5MysterySD/Tele-LeechX/blob/h-code/LICENSE >.
+< https://github.com/SilentDemonSD/Tele-LeechX/blob/h-code/LICENSE >.
 
 You should have received a copy of the GNU General Public License along with this program.
 ```
@@ -95,7 +95,7 @@ I will be very Obliged if, you help in Bug Fixing, Features Adding, and More  . 
 <details>
     <summary><b>Click Here For Description</b></summary>
 
-* [`MysterySD`](https://github.com/5MysterySD) Me 🧐 For Speedtest, Direct Link Support, UI, 4GB Uploading, Telegram Log Display and More
+* [`MysterySD`](https://github.com/SilentDemonSD) Me 🧐 For Speedtest, Direct Link Support, UI, 4GB Uploading, Telegram Log Display and More
 * [`KGK06`](https://github.com/KGK06) For Merging Different Repos 
 * [`XcodersHub`](https://github.com/XcodersHub) For The Aria2 Config & Little More
 * [`GautamKumar`](https://github.com/gautamajay52/TorrentLeech-Gdrive) 😬

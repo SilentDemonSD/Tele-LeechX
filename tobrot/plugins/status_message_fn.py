@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | 5MysterySD | Other Contributors 
+# (c) Shrimadhav U K | gautamajay52 | SilentDemonSD | Other Contributors 
 #
 # Copyright 2022 - TeamTele-LeechX
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 import sys
@@ -361,7 +361,7 @@ def up_time(time_taken):
 
 
 async def upload_log_file(client, message):
-    ## No Kanged From Anywhere, Programmed By 5MysterySD >>>>>>>>
+    ## No Kanged From Anywhere, Programmed By SilentDemonSD >>>>>>>>
     logFile = await AdminCheck(client, message.chat.id, message.from_user.id)
     if logFile and opath.exists(LOG_FILE_NAME):
         logFileRead = open(LOG_FILE_NAME, "r")

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD | Other Contributors 
+# (c) Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD | Other Contributors 
 #
 # Copyright 2022 - TeamTele-LeechX
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 from asyncio import create_subprocess_exec, subprocess, sleep as asleep
@@ -221,7 +221,7 @@ class CloneHelper:
         destination = f"{DESTINATION_FOLDER}"
         idd = "{" f"{self.g_id}" "}"
         cmd = [
-            "/app/gautam/gclone",
+            "/app/gclone",
             "copy",
             "--config=rclone.conf",
             f"{self.dname}:{idd}",

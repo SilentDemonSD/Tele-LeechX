@@ -26,13 +26,14 @@ RUN apt-get -qq update --fix-missing && \
     mediainfo \
     mkvtoolnix
 
-RUN wget https://rclone.org/install.sh
-RUN bash install.sh
+# Install RClone
+RUN curl https://rclone.org/install.sh | sudo bash
 
-RUN mkdir /app/gautam
-RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
-RUN gzip -d /app/gautam/gclone.gz
-RUN chmod 0775 /app/gautam/gclone
+# Install GClone-1.6.2 < https://github.com/l3v11/gclone >
+#RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
+RUN wget -O /app/gclone.zip https://github.com/l3v11/gclone/releases/download/v1.62.2-purple/gclone-v1.62.2-purple-linux-amd64.zip
+RUN unzip gclone.zip -d /app/gclone.zip
+RUN chmod 0775 /app/gclone
 
 COPY requirements.txt .
 

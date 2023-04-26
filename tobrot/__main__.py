@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD | Other Contributors 
 #
-# Copyright 2022 - TeamTele-LeechX
+# Copyright (c) 2022-2023 Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD 
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 import logging

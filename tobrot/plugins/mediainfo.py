@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 # (c) @MysterySD (https://github.com/code-rgb/USERGE-X/issues/9)
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
-# Taken From Slam-mirrorbot !! Added Direct Link Code by 5MysterySD
+# Taken From Slam-mirrorbot !! Added Direct Link Code by SilentDemonSD
 #
 # Copyright 2022 - TeamTele-LeechX
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 import os

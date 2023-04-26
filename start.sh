@@ -1,10 +1,10 @@
 #bin #!bash
 # -*- coding: utf-8 -*-
-# Shrimadhav U K | gautamajay52 | MaxxRider | 5MysterySD | Other Contributors 
+# Shrimadhav U K | gautamajay52 | MaxxRider | SilentDemonSD | Other Contributors 
 #
-# Copyright 2022 - TeamTele-LeechX
+# Copyright 2022-present ~ Team[Tele-LeechX]
 # 
-# This is Part of < https://github.com/5MysterySD/Tele-LeechX >
+# This is Part of < https://github.com/SilentDemonSD/Tele-LeechX >
 # All Right Reserved
 
 ## Adding Files ++++
