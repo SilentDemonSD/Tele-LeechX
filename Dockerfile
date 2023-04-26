@@ -27,7 +27,8 @@ RUN apt-get -qq update --fix-missing && \
     mkvtoolnix
 
 # Install RClone
-RUN curl https://rclone.org/install.sh | sudo bash
+RUN wget https://rclone.org/install.sh
+RUN bash install.sh
 
 # Install GClone-1.6.2 < https://github.com/l3v11/gclone >
 #RUN wget -O /app/gautam/gclone.gz https://git.io/JJMSG
