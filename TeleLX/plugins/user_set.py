@@ -11,10 +11,10 @@ from re import split as rsplit
 from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
-from tobrot import LOGGER, DB_URI, PRE_DICT, CAP_DICT, IMDB_TEMPLATE, ANILIST_TEMPLATE, USER_LOGS
-from tobrot.database.db_func import DatabaseManager
-from tobrot.bot_theme.themes import BotTheme
-from tobrot.plugins import getUserOrChaDetails
+from TeleLX import LOGGER, DB_URI, PRE_DICT, CAP_DICT, IMDB_TEMPLATE, ANILIST_TEMPLATE, USER_LOGS
+from TeleLX.core.database.mongodb import DatabaseManager
+from TeleLX.core.bot_theme.themes import BotTheme
+from TeleLX.plugins import getUserOrChaDetails
 
 async def prefix_set(client, message):
     '''/setpre command '''
