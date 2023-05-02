@@ -1,7 +1,7 @@
 from os import path as ospath, makedirs
 from psycopg2 import connect, DatabaseError
 
-from tobrot import DOWNLOAD_LOCATION, DB_URI, LOGGER, user_specific_config, PRE_DICT, CAP_DICT, IMDB_TEMPLATE
+from TeleLX import DOWNLOAD_LOCATION, DB_URI, LOGGER, user_specific_config, PRE_DICT, CAP_DICT, IMDB_TEMPLATE
 
 class DatabaseManager:
     def __init__(self):

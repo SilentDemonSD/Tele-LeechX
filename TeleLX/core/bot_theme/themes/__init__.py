@@ -1,7 +1,7 @@
 from random import choice
 
 from TeleLX import BOT_THEME, USER_THEMES, LOGGER
-from TeleLX.core.bot_theme.themes import fx_optimised, fx_minimal
+from TeleLX.coreyyyy.bot_theme.themes import fx_optimised, fx_minimal
 
 AVAILABLE_THEMES = {'fx-optimised-theme': fx_optimised, 'fx-minimal-theme': fx_minimal}
 
