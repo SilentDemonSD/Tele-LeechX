@@ -5,7 +5,7 @@ from pyrogram.errors import UserIsBot
 ## Run python3 genStringSession.py Or Run python genStringSession.py
 ## In Terminal of Heroku or Locally
 
-print("<<<<<<<< Pyrogram StringSession V2 >>>>>>>>\n")
+print("<<<<<<<< Pyrogram StringSession V2 >>>>>>>>\n\n")
 
 with Client(
     "Tele-LeechX",

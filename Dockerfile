@@ -7,25 +7,13 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Kolkata
 
-RUN apt-get -qq update --fix-missing && \
-    apt-get -qq upgrade -y && \
+# Install Packages
+RUN apt-get -qq update --fix-missing && apt-get -qq upgrade -y && \
     apt-get -q install -y \
-    git \
-    wget \
-    curl \
-    busybox \
-    unzip \
-    unrar \
-    tar \
-    python3 \
-    python3-pip \
-    p7zip-full \
-    p7zip-rar \
-    pv \
-    jq \
-    python3-dev \
-    mediainfo \
-    mkvtoolnix
+    git wget curl busybox unzip \
+    unrar tar python3 python3-pip \
+    p7zip-full p7zip-rar pv jq \
+    python3-dev mediainfo mkvtoolnix
 
 # Install RClone
 RUN wget -q https://rclone.org/install.sh

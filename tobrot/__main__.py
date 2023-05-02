@@ -84,7 +84,9 @@ botcmds = [
     ]
 
 async def start(client, message):
-    """/start command"""
+    """
+    Command : start , Usage : Works on Leech Log or Owner
+    """
     buttons = [
             [InlineKeyboardButton(START_BTN1, url=START_URL1),
             InlineKeyboardButton(START_BTN2, url=START_URL2)]
@@ -169,7 +171,7 @@ async def restart(client: Client, message: Message):
         execl(executable, executable, "-m", "tobrot")
 
 if __name__ == "__main__":
-    # Generat Download Directory, if Not Exist !!
+    # General Download Directory, if Not Exist !!
     if not opath.isdir(DOWNLOAD_LOCATION):
         makedirs(DOWNLOAD_LOCATION)
 
