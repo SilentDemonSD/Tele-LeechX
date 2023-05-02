@@ -17,7 +17,7 @@ from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidD
 
 from TeleLX import LOGGER, app, MAX_LIST_ELM, DEF_IMDB_TEMPLATE
 from TeleLX.plugins import getUserOrChaDetails
-from tobrot.plugins.custom_utils import *
+from TeleLX.plugins.custom_utils import *
 from TeleLX.core.display.display_utils import format_time
 
 imdb = Cinemagoer() 
