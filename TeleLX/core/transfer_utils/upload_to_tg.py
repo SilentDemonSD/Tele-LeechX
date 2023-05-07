@@ -26,18 +26,18 @@ from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import InputMediaAudio, InputMediaDocument, InputMediaVideo
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from tobrot import DESTINATION_FOLDER, DOWNLOAD_LOCATION, EDIT_SLEEP_TIME_OUT, INDEX_LINK, VIEW_LINK, LOGGER, \
-                   TG_MAX_FILE_SIZE, UPLOAD_AS_DOC, CAP_STYLE, CUSTOM_CAPTION, user_specific_config, LEECH_LOG, \
-                   EXCEP_CHATS, EX_LEECH_LOG, BOT_PM, TG_PRM_FILE_SIZE, PRM_USERS, PRM_LOG, isUserPremium, AUTH_CHANNEL, \
+from TeleLX import DESTINATION_FOLDER, DL_DIR, EDIT_SLEEP_TIME_OUT, INDEX_LINK, VIEW_LINK, LOGGER, \
+                   TG_MAX_FILE_SIZE, UPLOAD_AS_DOC, CAP_STYLE, CUSTOM_CAPTION, user_doc, LEECH_LOG, \
+                   EXCEP_CHATS, EX_LEECH_LOG, BOT_PM, TG_PRM_FILE_SIZE, PRM_USERS, PRM_LOG, isUserPremium, AUTH_CHATS, \
                    UPDATES_CHANNEL, SPLIT_SIZE, USER_LOGS
 if isUserPremium:
-    from tobrot import userBot
-from tobrot.bot_theme.themes import BotTheme
-from tobrot.helper_funcs.help_Nekmo_ffmpeg import copy_file
-from tobrot.helper_funcs.display_progress import humanbytes, Progress
-from tobrot.helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
-from tobrot.helper_funcs.split_large_files import split_large_files
-from tobrot.plugins.custom_utils import *
+    from TeleLX import userBot
+from TeleLX.core.bot_themes.themes import BotTheme
+from TeleLX.helper_funcs.help_Nekmo_ffmpeg import copy_file
+from TeleLX.helper_funcs.display_progress import humanbytes, Progress
+from TeleLX.helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
+from TeleLX.helper_funcs.split_large_files import split_large_files
+from TeleLX.plugins.custom_utils import *
 
 def getFolderSize(p):
     prepend = partial(opath.join, p)
@@ -399,10 +399,10 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, c
     await asleep(EDIT_SLEEP_TIME_OUT)
     local_file_name = str(Path(local_file_name).resolve())
     sent_message = None
-    thumbnail_location = f"{DOWNLOAD_LOCATION}/thumbnails/{from_user}.jpg"
+    thumbnail_location = f"{DL_DIR}/thumbnails/{from_user}.jpg"
     start_time = time()
 
-    __uploadAsDoc = user_specific_config.get(from_user, False)
+    __uploadAsDoc = user_doc.get(from_user, False)
 
     global PRM_LOG
     if isUserPremium and (not PRM_LOG) and LEECH_LOG:
@@ -414,8 +414,8 @@ async def upload_single_file(message, local_file_name, caption_str, from_user, c
 
     global EXCEP_CHATS
     if (not EXCEP_CHATS) and (not LEECH_LOG):
-        EXCEP_CHATS = AUTH_CHANNEL
-        LOGGER.info("[IDLE] Switching AUTH_CHANNEL to EXCEP_CHATS")
+        EXCEP_CHATS = AUTH_CHATS
+        LOGGER.info("[IDLE] Switching AUTH_CHATS to EXCEP_CHATS")
 
     log_chat = USER_LOGS.get(from_user, None)
     if UPLOAD_AS_DOC.lower() == "true" or __uploadAsDoc:

@@ -11,8 +11,9 @@ import asyncio
 import json
 import os
 import shutil
-from tobrot import DOWNLOAD_LOCATION, LOGGER, GYTDL_COMMAND
-from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
+
+from TeleLX import DL_DIR, LOGGER, GYTDL_COMMAND
+from TeleLX.core.transfer_utils.upload_to_tg import upload_to_gdrive, upload_to_tg
 
 
 async def youtube_dl_call_back(bot, update):
@@ -38,7 +39,7 @@ async def youtube_dl_call_back(bot, update):
         )
         return False, None
 
-    user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
+    user_working_dir = os.path.join(DL_DIR, str(current_user_id))
     # create download directory, if not exist
     if not os.path.isdir(user_working_dir):
         await bot.delete_messages(
@@ -80,7 +81,7 @@ async def youtube_dl_call_back(bot, update):
     await update.message.edit_caption(caption="**Trying To Download.... Please wait..**")
 
     tmp_directory_for_each_user = os.path.join(
-        DOWNLOAD_LOCATION, str(update.message.id)
+        DL_DIR, str(update.message.id)
     )
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)

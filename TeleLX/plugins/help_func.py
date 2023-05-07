@@ -16,11 +16,11 @@ from psutil import disk_usage, cpu_percent, swap_memory, cpu_count, virtual_memo
 from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, Message
 
-from tobrot import *
-from tobrot.helper_funcs.display_progress import humanbytes, TimeFormatter
-from tobrot.bot_theme.themes import BotTheme
-from tobrot.helper_funcs.bot_commands import BotCommands
-from tobrot.plugins import getUserOrChaDetails, progressBar
+from TeleLX import *
+from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.core.bot_themes.themes import BotTheme
+from TeleLX.helper_funcs.bot_commands import BotCommands
+from TeleLX.plugins import getUserOrChaDetails, progressBar
 
 TGH_LIMIT = 5242880*2
 
@@ -124,7 +124,7 @@ async def settings_callback(client, query: CallbackQuery):
         await query.answer(text="Why Messing with Others Settings ??", show_alert=True)
         return
     if query.data.startswith("setthumb"):
-        thumb_path = f'{DOWNLOAD_LOCATION}/thumbnails/{getData[1]}.jpg'
+        thumb_path = f'{DL_DIR}/thumbnails/{getData[1]}.jpg'
         if not opath.exists(thumb_path):
             _text = '''• ᑌՏᗴᖇ TᕼᑌᗰᗷᑎᗩIᒪ :
 ┃
@@ -154,7 +154,7 @@ async def settings_callback(client, query: CallbackQuery):
 ╼╾╼╾╼╾╼╾╼╾╼╾╼╾╼╾'''
         await query.edit_message_caption(caption=_text, parse_mode=enums.ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⌫ Back", callback_data = f"sethome {usid}")]]))
     elif query.data.startswith("setupload"):
-        __toggle = user_specific_config.get(usid, False)
+        __toggle = user_doc.get(usid, False)
         toggle_ = 'Document' if __toggle else 'Video'
         _text = f'''• ᑌՏᗴᖇ ᑌᑭᒪOᗩᗪ TYᑭᗴ :
 ┃
@@ -306,7 +306,7 @@ async def picture_add(client: Client, message: Message):
         await editable.edit("Uploading to te.legra.ph Server ...")
         df = await client.download_media(
             message=resm,
-            file_name=f'{DOWNLOAD_LOCATION}/thumbnails/'
+            file_name=f'{DL_DIR}/thumbnails/'
         )
         await editable.edit("`Uploading to te.legra.ph Server, Please Wait...`")
         try:

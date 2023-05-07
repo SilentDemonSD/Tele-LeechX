@@ -14,13 +14,13 @@ from shutil import rmtree
 from pyrogram import enums
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton 
 
-from tobrot import *
-from tobrot.helper_funcs.bot_commands import BotCommands
-from tobrot.helper_funcs.admin_check import AdminCheck
-from tobrot.helper_funcs.download_aria_p_n import aria_start
-from tobrot.helper_funcs.youtube_dl_button import youtube_dl_call_back
-from tobrot.plugins.choose_rclone_config import rclone_button_callback 
-from tobrot.plugins.status_message_fn import bot_button_stats
+from TeleLX import *
+from TeleLX.helper_funcs.bot_commands import BotCommands
+from TeleLX.helper_funcs.admin_check import AdminCheck
+from TeleLX.helper_funcs.download_aria_p_n import aria_start
+from TeleLX.helper_funcs.youtube_dl_button import youtube_dl_call_back
+from TeleLX.plugins.choose_rclone_config import rclone_button_callback 
+from TeleLX.plugins.status_message_fn import bot_button_stats
 
 async def button(bot, update: CallbackQuery):
     cb_data = update.data
@@ -78,7 +78,7 @@ async def button(bot, update: CallbackQuery):
         else:
             await update.answer(text="⚠️ Opps ⚠️ \n I Got a False Visitor 🚸 !! \n\n 📛 Stay At Your Limits !!📛", show_alert=True)
     elif cb_data == "fuckingdo":
-        if (update.from_user.id in AUTH_CHANNEL) or g:
+        if (update.from_user.id in AUTH_CHATS) or g:
             await update.answer(text="📇 Trying to Delete Local Files...", show_alert=False)
             g_d_list = [
                 "app.json",
@@ -99,7 +99,7 @@ async def button(bot, update: CallbackQuery):
                 "requirements.txt",
                 "runtime.txt",
                 "start.sh",
-                "tobrot",
+                "TeleLX",
                 "gautam",
                 f"{UPDATES_CHANNEL}Logs.txt",
                 "vendor",

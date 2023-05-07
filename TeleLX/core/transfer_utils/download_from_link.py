@@ -11,11 +11,11 @@ import asyncio
 import os
 import time
 
-from tobrot import DOWNLOAD_LOCATION
+from TeleLX import DL_DIR
 
 
 async def request_download(url, file_name, r_user_id):
-    directory_path = os.path.join(DOWNLOAD_LOCATION, str(r_user_id), str(time.time()))
+    directory_path = os.path.join(DL_DIR, str(r_user_id), str(time.time()))
 
     if not os.path.isdir(directory_path):
         os.makedirs(directory_path)

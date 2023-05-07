@@ -1,4 +1,4 @@
-from tobrot import *
+from TeleLX import *
 
 class _BotCommands:
     def __init__(self):

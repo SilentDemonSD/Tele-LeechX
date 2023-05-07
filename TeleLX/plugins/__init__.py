@@ -18,7 +18,7 @@ from typing import Tuple
 from re import match as rmatch
 from urllib.parse import unquote, quote
 
-from TeleLX import DOWNLOAD_LOCATION, LOGGER, app, AUTO_LEECH
+from TeleLX import DL_DIR, LOGGER, app, AUTO_LEECH
 from TeleLX.core.display.display_utils import format_bytes
 
 async def getUserName():
@@ -40,7 +40,7 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 
 def start_cleanup():
     try:
-        rmtree(DOWNLOAD_LOCATION)
+        rmtree(DL_DIR)
     except FileNotFoundError:
         pass
 

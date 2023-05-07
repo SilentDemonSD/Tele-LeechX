@@ -9,7 +9,7 @@
 
 
 import aiohttp
-from tobrot import REAL_DEBRID_KEY, LOGGER
+from TeleLX import REAL_DEBRID_KEY, LOGGER
 
 
 BASE_URL = "https://api.real-debrid.com/rest/1.0"

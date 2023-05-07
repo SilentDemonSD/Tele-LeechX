@@ -12,8 +12,8 @@ from configparser import ConfigParser
 from pyrogram import enums
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from tobrot import LOGGER, OWNER_ID
-from tobrot.plugins import getUserOrChaDetails
+from TeleLX import LOGGER, OWNER_ID
+from TeleLX.plugins import getUserOrChaDetails
 
 async def rclone_command_f(client, message):
     # This is code to switch which rclone config section to use. This setting affects the entire bot

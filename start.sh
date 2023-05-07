@@ -23,5 +23,5 @@ if [ -f .env ]; then
 fi
 
 echo "Starting Tele-LeechX... ♻️♻️"
-python3 update.py && python3 -m tobrot
+python3 update.py && python3 -m TeleLX
 

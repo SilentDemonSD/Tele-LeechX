@@ -11,26 +11,32 @@ import asyncio
 import os
 import shutil
 
-from tobrot import LOGGER
+from TeleLX import LOGGER
 
+async def create_archive(input_directory, archive_format='zip'):
+    valid_formats = ["zip", "tar", "rar", "7z"]
+    if archive_format not in valid_formats:
+        raise ValueError("Invalid archive format")
 
-async def create_archive(input_directory):
     return_name = None
     if os.path.exists(input_directory):
         base_dir_name = os.path.basename(input_directory)
-        compressed_file_name = f"{base_dir_name}.tar.gz"
-        suffix_extention_length = 1 + 3 + 1 + 2
-        if len(base_dir_name) > (64 - suffix_extention_length):
-            compressed_file_name = base_dir_name[0 : (64 - suffix_extention_length)]
-            compressed_file_name += ".tar.gz"
-        file_genertor_command = [
-            "tar",
-            "-zcvf",
-            compressed_file_name,
-            f"{input_directory}",
-        ]
+        compressed_file_name = f"{base_dir_name}{archive_format}"
+        suffix_extension_length = len(archive_format) + 1
+        if len(base_dir_name) > (64 - suffix_extension_length):
+            compressed_file_name = f"{base_dir_name[:64-suffix_extension_length]}{archive_format}"
+
+        if archive_format == ".zip":
+            file_generator_command = ["zip", "-r", compressed_file_name, input_directory]
+        elif archive_format == ".tar":
+            file_generator_command = ["tar", "-zcvf", compressed_file_name, input_directory]
+        elif archive_format == ".rar":
+            file_generator_command = ["rar", "a", "-r", compressed_file_name, input_directory]
+        elif archive_format == ".7z":
+            file_generator_command = ["7z", "a", "-r", compressed_file_name, input_directory]
+
         process = await asyncio.create_subprocess_exec(
-            *file_genertor_command,
+            *file_generator_command,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
@@ -45,20 +51,18 @@ async def create_archive(input_directory):
     return return_name
 
 
-async def unzip_me(input_directory):
+async def extract_archive(input_directory):
     return_name = None
     if os.path.exists(input_directory):
         base_dir_name = os.path.basename(input_directory)
-        # uncompressed_file_name = os.path.splitext(base_dir_name)[0]
         uncompressed_file_name = get_base_name(base_dir_name)
-        LOGGER.info(uncompressed_file_name)
-        g_cmd = ["./extract", f"{input_directory}"]
-        ga_utam = await asyncio.create_subprocess_exec(
-            *g_cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+        LOGGER.info(f"Compressed FileName : {uncompressed_file_name}")
+        cmd = ["./extract", f"{input_directory}"]
+        process = await asyncio.create_subprocess_exec(
+            *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
-        gau, tam = await ga_utam.communicate()
-        LOGGER.info(gau.decode().strip())
-        LOGGER.info(tam.decode().strip())
+        stdout, stderr = await process.communicate()
+        LOGGER.info(f"{stdout}") #More Good
         if os.path.exists(uncompressed_file_name):
             try:
                 os.remove(input_directory)

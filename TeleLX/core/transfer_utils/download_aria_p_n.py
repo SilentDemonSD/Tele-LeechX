@@ -19,26 +19,26 @@ from natsort import natsorted
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram.errors import FloodWait, MessageNotModified
 
-from tobrot import ARIA_TWO_STARTED_PORT, CUSTOM_PREFIX, CUSTOM_SUFFIX, EDIT_SLEEP_TIME_OUT, LOGGER, UPDATES_CHANNEL, \
+from TeleLX import ARIA_TWO_STARTED_PORT, CUSTOM_PREFIX, CUSTOM_SUFFIX, EDIT_SLEEP_TIME_OUT, LOGGER, UPDATES_CHANNEL, \
                    MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START, CLONE_COMMAND_G, user_settings_lock, user_settings, LEECH_LOG, \
                    BOT_PM, LEECH_INVITE, EXCEP_CHATS
-from tobrot.helper_funcs.create_compressed_archive import create_archive, get_base_name, unzip_me
-from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
-from tobrot.helper_funcs.download import download_tg
-from tobrot.bot_theme.themes import BotTheme
-from tobrot.helper_funcs.direct_link_generator import url_link_generate
-from tobrot.helper_funcs.exceptions import DirectDownloadLinkException
-from tobrot.plugins import getUserOrChaDetails
-from tobrot.plugins.custom_utils import *
-from tobrot.plugins import is_appdrive_link, is_gdtot_link, is_hubdrive_link 
-from tobrot.helper_funcs.display_progress import TimeFormatter
+from TeleLX.helper_funcs.create_compressed_archive import create_archive, get_base_name, extract_archive
+from TeleLX.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
+from TeleLX.helper_funcs.download import download_tg
+from TeleLX.core.bot_themes.themes import BotTheme
+from TeleLX.helper_funcs.direct_link_generator import url_link_generate
+from TeleLX.helper_funcs.exceptions import DirectDownloadLinkException
+from TeleLX.plugins import getUserOrChaDetails
+from TeleLX.plugins.custom_utils import *
+from TeleLX.plugins import is_appdrive_link, is_gdtot_link, is_hubdrive_link 
+from TeleLX.helper_funcs.display_progress import TimeFormatter
 
 sys.setrecursionlimit(10 ** 4)
 
 async def aria_start():
     TRACKERS = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
-    aria2_daemon_start_cmd = ["chrome", "--conf-path=/app/tobrot/aria2/aria2.conf", f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}", f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}", f"--bt-tracker=[{TRACKERS}]"]
-    #f"--dir={DOWNLOAD_LOCATION}", "--disk-cache=0", "--seed-ratio=0.01"
+    aria2_daemon_start_cmd = ["chrome", "--conf-path=/app/TeleLX/aria2/aria2.conf", f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}", f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}", f"--bt-tracker=[{TRACKERS}]"]
+    #f"--dir={DL_DIR}", "--disk-cache=0", "--seed-ratio=0.01"
     LOGGER.info("[ARIA2C] Daemon Initiated ")
 
     process = await create_subprocess_exec(
@@ -301,7 +301,7 @@ async def call_apropriate_function(
     if is_unzip:
         try:
             check_ifi_file = get_base_name(to_upload_file)
-            await unzip_me(to_upload_file)
+            await extract_archive(to_upload_file)
             if opath.exists(check_ifi_file):
                 to_upload_file = check_ifi_file
         except Exception as ge:

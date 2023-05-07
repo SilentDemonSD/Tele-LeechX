@@ -1,10 +1,11 @@
 import asyncio
 from datetime import datetime, timedelta
 
-from tobrot import FSUB_CHANNEL, LOGGER
 from pyrogram import enums, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+
+from TeleLX import FSUB_CHANNEL, LOGGER
 
 
 async def get_invite_link(client, chat_id):

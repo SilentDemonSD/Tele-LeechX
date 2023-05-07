@@ -23,20 +23,21 @@ from psutil import virtual_memory, cpu_percent, net_io_counters
 from pyrogram.errors import FloodWait, MessageIdInvalid, MessageNotModified
 from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, Message
-from tobrot.plugins import getUserOrChaDetails, getUserName, progressBar
-from tobrot.helper_funcs.admin_check import AdminCheck
-from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_specific_config, \
+
+from TeleLX.plugins import getUserOrChaDetails, getUserName, progressBar
+from TeleLX.helper_funcs.admin_check import AdminCheck
+from TeleLX import AUTH_CHATS, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_doc, \
                    gid_dict, _lock, EDIT_SLEEP_TIME_OUT, FINISHED_PROGRESS_STR, UN_FINISHED_PROGRESS_STR, \
                    UPDATES_CHANNEL, LOG_FILE_NAME, DB_URI, user_settings, HALF_FINISHED, PICS_LIST
-from tobrot.helper_funcs.display_progress import humanbytes, TimeFormatter
-from tobrot.helper_funcs.download_aria_p_n import aria_start
-from tobrot.helper_funcs.upload_to_tg import upload_to_tg
-from tobrot.database.db_func import DatabaseManager
-from tobrot.bot_theme.themes import BotTheme
+from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.helper_funcs.download_aria_p_n import aria_start
+from TeleLX.helper_funcs.upload_to_tg import upload_to_tg
+from TeleLX.database.db_func import DatabaseManager
+from TeleLX.core.bot_themes.themes import BotTheme
 
 async def upload_as_doc(client, message):
     uid, u_tag = getUserOrChaDetails(message)
-    user_specific_config[uid] = True
+    user_doc[uid] = True
     if DB_URI:
         DatabaseManager().user_doc(uid)
         LOGGER.info("[DB] User Toggle DOC Settings Saved to Database")
@@ -48,7 +49,7 @@ async def upload_as_doc(client, message):
 
 async def upload_as_video(client, message):
     uid, u_tag = getUserOrChaDetails(message)
-    user_specific_config[uid] = False
+    user_doc[uid] = False
     if DB_URI:
         DatabaseManager().user_vid(uid)
         LOGGER.info("[DB] User Toggle VID Settings Saved to Database")
@@ -223,12 +224,12 @@ async def cancel_message_f(client, message):
 
 async def exec_message_f(client, message):
     if message.chat.type == enums.ChatType.CHANNEL:
-        if message.chat.id not in AUTH_CHANNEL:
+        if message.chat.id not in AUTH_CHATS:
             return
     elif message.chat.type == enums.ChatType.SUPERGROUP:
-        if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHANNEL:
+        if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHATS:
             return
-        if message.chat.id not in AUTH_CHANNEL:
+        if message.chat.id not in AUTH_CHATS:
             return
     DELAY_BETWEEN_EDITS = 0.3
     PROCESS_RUN_TIME = 100
@@ -277,23 +278,21 @@ async def upload_document_f(client, message):
         u_id_ = message.from_user.id
     else:
         u_id_ = message.chat.id
-    if u_id_ in AUTH_CHANNEL and " " in message.text:
+    if u_id_ in AUTH_CHATS and " " in message.text:
         recvd_command, local_file_name = message.text.split(" ", 1)
-        recvd_response = await upload_to_tg(
-            imsegd, local_file_name, u_id_, {}, client
-        )
+        recvd_response = await upload_to_tg(imsegd, local_file_name, u_id_, {}, client)
         LOGGER.info(recvd_response)
     await imsegd.delete()
 
 async def eval_message_f(client, message):
-    if message.chat.type == enums.ChatType.CHANNEL:
-        if message.chat.id not in AUTH_CHANNEL:
-            return
+    if message.chat.type == enums.ChatType.CHANNEL and message.chat.id not in AUTH_CHATS:
+        return
     elif message.chat.type == enums.ChatType.SUPERGROUP:
-        if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHANNEL:
+        if hasattr(message.from_user, 'id') and message.from_user.id not in AUTH_CHATS:
             return
-        if message.chat.id not in AUTH_CHANNEL:
+        if message.chat.id not in AUTH_CHATS:
             return
+
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
@@ -301,11 +300,10 @@ async def eval_message_f(client, message):
     if message.reply_to_message:
         reply_to_id = message.reply_to_message.id
 
-    old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = StringIO()
-    redirected_error = sys.stderr = StringIO()
-    stdout, stderr, exc = None, None, None
+
+    stdout, exc = None, None
 
     try:
         await aexec(cmd, client, message)
@@ -313,44 +311,30 @@ async def eval_message_f(client, message):
         exc = format_exc()
 
     stdout = redirected_output.getvalue()
-    stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
-    sys.stderr = old_stderr
 
-    evaluation = ""
-    if exc:
-        evaluation = exc
-    elif stderr:
-        evaluation = stderr
-    elif stdout:
-        evaluation = stdout
-    else:
-        evaluation = "Success"
+    evaluation = exc or stdout or "Success"
+    evaluation = evaluation.strip()
 
-    final_output = f"<b>EVAL</b>: <code>{cmd}</code>\n\n<b>OUTPUT</b>:\n<code>{evaluation.strip()}</code> \n"
-
+    final_output = f"<b>EVAL</b>: <code>{cmd}</code>\n\n<b>OUTPUT</b>:\n<code>{evaluation}</code>\n"
 
     if len(final_output) > MAX_MESSAGE_LENGTH:
-        with open("eval.text", "w+", encoding="utf8") as out_file:
-            out_file.write(final_output)
+        with open("eval.txt", "w", encoding="utf-8") as file:
+            file.write(final_output)
         await message.reply_document(
-            document="eval.text",
+            document="eval.txt",
             caption=cmd,
             disable_notification=True,
-            reply_to_message_id=reply_to_id,
+            reply_to_message_id=reply_to_id
         )
-        oremove("eval.text")
+        os.remove("eval.txt")
         await status_message.delete()
     else:
         await status_message.edit(final_output)
 
 
 async def aexec(code, client, message):
-    exec((
-            "async def __aexec(client, message): "
-            + "".join(f"\n {l}" for l in code.split("\n"))
-    ))
-
+    exec(f"async def __aexec(client, message):\n    {code}")
     return await locals()["__aexec"](client, message)
 
 
@@ -361,26 +345,26 @@ def up_time(time_taken):
 
 
 async def upload_log_file(client, message):
-    ## No Kanged From Anywhere, Programmed By SilentDemonSD >>>>>>>>
     logFile = await AdminCheck(client, message.chat.id, message.from_user.id)
     if logFile and opath.exists(LOG_FILE_NAME):
-        logFileRead = open(LOG_FILE_NAME, "r")
-        LOGGER.info("Generating LOG Display...")
-        logFileLines = logFileRead.read().splitlines()
-        toDisplay = 0
-        toDisplay = min(len(logFileLines), 25)
-        startLine = f'Last {toDisplay} Lines : [On Display Telegram LOG]\n\n---------------- START LOG -----------------\n\n'
-        endLine = '\n---------------- END LOG -----------------'
         try:
-            Loglines = ''.join(logFileLines[-l]+'\n\n' for l in range (toDisplay, 0, -1))
-            Loglines = Loglines.replace('"', '')
-            textLog = startLine+Loglines+endLine
-            await message.reply_text(textLog,
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.DISABLED #tg Sucks
-            )
+            LOGGER.info("Generating LOG Display...")
+            with open(LOG_FILE_NAME, "r") as logFileRead:
+                logFileLines = logFileRead.read().splitlines()
+                toDisplay = min(len(logFileLines), 25)
+                startLine = f'Last {toDisplay} Lines : [On Display Telegram LOG]\n\n---------------- START LOG -----------------\n\n'
+                endLine = '\n---------------- END LOG -----------------'
+                Loglines = ''.join(logFileLines[-l]+'\n\n' for l in range(toDisplay, 0, -1))
+                Loglines = Loglines.replace('"', '')
+                textLog = startLine + Loglines + endLine
+                await message.reply_text(
+                    textLog,
+                    disable_web_page_preview=True,
+                    parse_mode=enums.ParseMode.DISABLED
+                )
         except Exception as err:
-            LOGGER.info(f"Error Log Display : {err}")
+            LOGGER.error(f"Error Log Display: {err}")
             LOGGER.info(textLog)
+        
         h, m, s = up_time(time() - BOT_START_TIME)
         await message.reply_document(LOG_FILE_NAME, caption=f"**Full Log**\n\n**Bot Uptime:** `{h}h, {m}m, {s}s`")

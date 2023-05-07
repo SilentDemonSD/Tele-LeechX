@@ -10,8 +10,8 @@
 import asyncio
 import os
 import shutil
-from tobrot import LOGGER
-from tobrot.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
+from TeleLX import LOGGER
+from TeleLX.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
 
 
 async def yt_playlist_downg(message, i_m_sefg, client, G_DRIVE):

@@ -1,7 +1,7 @@
 from os import path as ospath, makedirs
 from psycopg2 import connect, DatabaseError
 
-from TeleLX import DOWNLOAD_LOCATION, DB_URI, LOGGER, user_specific_config, PRE_DICT, CAP_DICT, IMDB_TEMPLATE
+from TeleLX import DL_DIR, DB_URI, LOGGER, user_doc, PRE_DICT, CAP_DICT, IMDB_TEMPLATE
 
 class DatabaseManager:
     def __init__(self):
@@ -49,11 +49,11 @@ class DatabaseManager:
         if rows:
             for row in rows:
                 if row[2]:
-                    user_specific_config[row[0]] = row[2]
-                path = f"{DOWNLOAD_LOCATION}/thumbnails/{row[0]}.jpg"
+                    user_doc[row[0]] = row[2]
+                path = f"{DL_DIR}/thumbnails/{row[0]}.jpg"
                 if row[3] is not None and not ospath.exists(path):
-                    if not ospath.exists(f'{DOWNLOAD_LOCATION}/thumbnails'):
-                        makedirs(f'{DOWNLOAD_LOCATION}/thumbnails')
+                    if not ospath.exists(f'{DL_DIR}/thumbnails'):
+                        makedirs(f'{DL_DIR}/thumbnails')
                     with open(path, 'wb+') as f:
                         f.write(row[3])
                 if row[4]:

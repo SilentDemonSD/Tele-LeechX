@@ -13,7 +13,7 @@ import time
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from tobrot import LOGGER, SP_LIT_ALGO_RITH_M
+from TeleLX import LOGGER, SP_LIT_ALGO_RITH_M
 
 
 async def split_large_files(input_file, MAX_TG_SPLIT_FILE_SIZE):

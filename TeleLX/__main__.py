@@ -27,38 +27,38 @@ from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from sys import executable
 from subprocess import run as srun
 
-from tobrot import HEROKU_API_KEY, HEROKU_APP_NAME, app, __version__
-from tobrot import OWNER_ID, SUDO_USERS, AUTH_CHANNEL, DOWNLOAD_LOCATION, GET_SIZE_G, GLEECH_COMMAND, \
+from TeleLX import HEROKU_API_KEY, HEROKU_APP_NAME, app, __version__
+from TeleLX import OWNER_ID, SUDO_USERS, AUTH_CHATS, DL_DIR, GET_SIZE_G, GLEECH_COMMAND, \
                    GLEECH_UNZIP_COMMAND, GLEECH_ZIP_COMMAND, LOGGER, RENEWME_COMMAND, TELEGRAM_LEECH_UNZIP_COMMAND, \
                    TELEGRAM_LEECH_COMMAND, UPLOAD_COMMAND, GYTDL_COMMAND, GPYTDL_COMMAND, RCLONE_COMMAND, \
                    UPDATES_CHANNEL, LEECH_LOG, STRING_SESSION, SET_BOT_COMMANDS, RDM_QUOTE, INDEX_SCRAPE, TIMEZONE, \
                    AUTO_LEECH, PICS_LIST, PIXABAY_API_KEY, PIXABAY_CATEGORY, PIXABAY_SEARCH, START_BTN1, START_URL1, \
                    START_BTN2, START_URL2
 if STRING_SESSION:
-    from tobrot import userBot
-from tobrot.helper_funcs.download import down_load_media_f
-from tobrot.helper_funcs.download_aria_p_n import aria_start
-from tobrot.plugins import *
-from tobrot.plugins.anilist import get_anime_query, anilist_callbackquery
-from tobrot.plugins.index_scrape import index_scrape
-from tobrot.plugins.call_back_button_handler import button
-from tobrot.plugins.imdb import imdb_search, imdb_callback
-from tobrot.plugins.torrent_search import searchhelp, nyaa_callback, nyaa_nop, nyaa_search, nyaa_search_sukebei, TorrentSearch, \
+    from TeleLX import userBot
+from TeleLX.helper_funcs.download import down_load_media_f
+from TeleLX.helper_funcs.download_aria_p_n import aria_start
+from TeleLX.plugins import *
+from TeleLX.plugins.anilist import get_anime_query, anilist_callbackquery
+from TeleLX.plugins.index_scrape import index_scrape
+from TeleLX.plugins.call_back_button_handler import button
+from TeleLX.plugins.imdb import imdb_search, imdb_callback
+from TeleLX.plugins.torrent_search import searchhelp, nyaa_callback, nyaa_nop, nyaa_search, nyaa_search_sukebei, TorrentSearch, \
                                           RESULT_STR_1337, RESULT_STR_PIRATEBAY, RESULT_STR_TGX, RESULT_STR_YTS, RESULT_STR_EZTV, \
                                           RESULT_STR_TORLOCK, RESULT_STR_RARBG, RESULT_STR_ALL
-from tobrot.plugins.custom_utils import prefix_set, caption_set, template_set, theme_set, anilist_set, user_log_set, log_chat_id
-from tobrot.plugins.url_parser import url_parser
-from tobrot.helper_funcs.bot_commands import BotCommands
-from tobrot.database.db_func import DatabaseManager
-from tobrot.plugins.choose_rclone_config import rclone_command_f
-from tobrot.plugins.custom_thumbnail import clear_thumb_nail, save_thumb_nail
-from tobrot.plugins.incoming_message_fn import g_clonee, g_yt_playlist, incoming_message_f, incoming_purge_message_f, \
+from TeleLX.plugins.custom_utils import prefix_set, caption_set, template_set, theme_set, anilist_set, user_log_set, log_chat_id
+from TeleLX.plugins.url_parser import url_parser
+from TeleLX.helper_funcs.bot_commands import BotCommands
+from TeleLX.database.db_func import DatabaseManager
+from TeleLX.plugins.choose_rclone_config import rclone_command_f
+from TeleLX.plugins.custom_thumbnail import clear_thumb_nail, save_thumb_nail
+from TeleLX.plugins.incoming_message_fn import g_clonee, g_yt_playlist, incoming_message_f, incoming_purge_message_f, \
                                                incoming_youtube_dl_f, rename_tg_file, auto_callback
-from tobrot.plugins.help_func import help_message_f, stats, user_settings, settings_callback, picture_add, pictures, pics_callback
-from tobrot.plugins.speedtest import get_speed
-from tobrot.plugins.mediainfo import mediainfo
-from tobrot.plugins.rclone_size import check_size_g, g_clearme
-from tobrot.plugins.status_message_fn import cancel_message_f, eval_message_f, exec_message_f, status_message_f, \
+from TeleLX.plugins.help_func import help_message_f, stats, user_settings, settings_callback, picture_add, pictures, pics_callback
+from TeleLX.plugins.speedtest import get_speed
+from TeleLX.plugins.mediainfo import mediainfo
+from TeleLX.plugins.rclone_size import check_size_g, g_clearme
+from TeleLX.plugins.status_message_fn import cancel_message_f, eval_message_f, exec_message_f, status_message_f, \
                                              upload_document_f, upload_log_file, upload_as_doc, upload_as_video
 
 botcmds = [
@@ -90,15 +90,17 @@ botcmds = [
 
 if __name__ == "__main__":
     # General Download Directory, if Not Exist !!
-    if not opath.isdir(DOWNLOAD_LOCATION):
-        makedirs(DOWNLOAD_LOCATION)
+    if not opath.isdir(DL_DIR):
+        makedirs(DL_DIR)
 
     # Pixabay API >>>>>>>>
     if PIXABAY_API_KEY:
         try:
             PIXABAY_ENDPOINT = f"https://pixabay.com/api/?key={PIXABAY_API_KEY}&image_type=all&orientation=horizontal&min_width=1280&min_height=720&per_page=200&safesearch=true&editors_choice=true"
-            if PIXABAY_CATEGORY: PIXABAY_ENDPOINT += f"&category={PIXABAY_CATEGORY}"
-            if PIXABAY_SEARCH: PIXABAY_ENDPOINT += f"&q={q(PIXABAY_SEARCH)}"
+            if PIXABAY_CATEGORY: 
+                PIXABAY_ENDPOINT += f"&category={PIXABAY_CATEGORY}"
+            if PIXABAY_SEARCH: 
+                PIXABAY_ENDPOINT += f"&q={q(PIXABAY_SEARCH)}"
             resp = rget(PIXABAY_ENDPOINT)
             jdata = resp.json()
             for x in range(0, 200):
@@ -136,7 +138,7 @@ if __name__ == "__main__":
                     rst_text += f"\n\n📬 𝙌𝙪𝙤𝙩𝙚 :\n\n<b>{qText}</b>\n\n🏷 <i>By {qAuthor}</i>"
             except Exception as q:
                 LOGGER.error(f"Quotable API Error : {q}")
-        for chatx in AUTH_CHANNEL:
+        for chatx in AUTH_CHATS:
             for a in app:
                 try:
                     a.send_message(chat_id=int(chatx), text=rst_text, parse_mode=enums.ParseMode.HTML)
@@ -167,7 +169,7 @@ if __name__ == "__main__":
     for a in app:
         username = (a.get_me()).username
         if AUTO_LEECH:
-            a.add_handler(MessageHandler(incoming_message_f, filters=filters.regex(r"^(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))") & filters.chat(chats=AUTH_CHANNEL)))
+            a.add_handler(MessageHandler(incoming_message_f, filters=filters.regex(r"^(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))") & filters.chat(chats=AUTH_CHATS)))
         else:
             a.add_handler(MessageHandler(
                 incoming_message_f,
@@ -179,50 +181,50 @@ if __name__ == "__main__":
                     GLEECH_UNZIP_COMMAND, f"{GLEECH_UNZIP_COMMAND}@{username}",
                     GLEECH_ZIP_COMMAND, f"{GLEECH_ZIP_COMMAND}@{username}",
                     ])
-                & filters.chat(chats=AUTH_CHANNEL),
+                & filters.chat(chats=AUTH_CHATS),
             ))
-        a.add_handler(MessageHandler(down_load_media_f, filters=filters.command([TELEGRAM_LEECH_COMMAND, f"{TELEGRAM_LEECH_COMMAND}@{username}", TELEGRAM_LEECH_UNZIP_COMMAND, f"{TELEGRAM_LEECH_UNZIP_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(incoming_purge_message_f, filters=filters.command(["purge", f"purge@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(g_clonee, filters=filters.command([f"{BotCommands.GCloneCommand}", f"{BotCommands.GCloneCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(check_size_g, filters=filters.command([f"{GET_SIZE_G}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(g_clearme, filters=filters.command([f"{RENEWME_COMMAND}", f"{RENEWME_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(incoming_youtube_dl_f, filters=filters.command([f"{BotCommands.YtdlCommand}", f"{BotCommands.YtdlCommand}@{username}", f"{GYTDL_COMMAND}", f"{GYTDL_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(g_yt_playlist, filters=filters.command([f"{BotCommands.PytdlCommand}", f"{BotCommands.PytdlCommand}@{username}", GPYTDL_COMMAND]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(status_message_f, filters=filters.command([f"{BotCommands.StatusCommand}", f"{BotCommands.StatusCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(cancel_message_f, filters=filters.regex(r'^/cancel($|\_([a-z]|[0-9])+($|\@\S+$))') & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(exec_message_f, filters=filters.command(["exec", "exec@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(eval_message_f, filters=filters.command(["eval", "exec@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(rename_tg_file, filters=filters.command([f"{BotCommands.RenameCommand}", f"{BotCommands.RenameCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(upload_document_f, filters=filters.command([f"{UPLOAD_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(upload_log_file, filters=filters.command([f"{BotCommands.LogCommand}", f"{BotCommands.LogCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(help_message_f, filters=filters.command([f"{BotCommands.HelpCommand}", f"{BotCommands.HelpCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(save_thumb_nail, filters=filters.command([f"{BotCommands.SaveCommand}", f"{BotCommands.SaveCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(clear_thumb_nail, filters=filters.command([f"{BotCommands.ClearCommand}", f"{BotCommands.ClearCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
+        a.add_handler(MessageHandler(down_load_media_f, filters=filters.command([TELEGRAM_LEECH_COMMAND, f"{TELEGRAM_LEECH_COMMAND}@{username}", TELEGRAM_LEECH_UNZIP_COMMAND, f"{TELEGRAM_LEECH_UNZIP_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(incoming_purge_message_f, filters=filters.command(["purge", f"purge@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(g_clonee, filters=filters.command([f"{BotCommands.GCloneCommand}", f"{BotCommands.GCloneCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(check_size_g, filters=filters.command([f"{GET_SIZE_G}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(g_clearme, filters=filters.command([f"{RENEWME_COMMAND}", f"{RENEWME_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(incoming_youtube_dl_f, filters=filters.command([f"{BotCommands.YtdlCommand}", f"{BotCommands.YtdlCommand}@{username}", f"{GYTDL_COMMAND}", f"{GYTDL_COMMAND}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(g_yt_playlist, filters=filters.command([f"{BotCommands.PytdlCommand}", f"{BotCommands.PytdlCommand}@{username}", GPYTDL_COMMAND]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(status_message_f, filters=filters.command([f"{BotCommands.StatusCommand}", f"{BotCommands.StatusCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(cancel_message_f, filters=filters.regex(r'^/cancel($|\_([a-z]|[0-9])+($|\@\S+$))') & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(exec_message_f, filters=filters.command(["exec", "exec@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(eval_message_f, filters=filters.command(["eval", "exec@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(rename_tg_file, filters=filters.command([f"{BotCommands.RenameCommand}", f"{BotCommands.RenameCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(upload_document_f, filters=filters.command([f"{UPLOAD_COMMAND}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(upload_log_file, filters=filters.command([f"{BotCommands.LogCommand}", f"{BotCommands.LogCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(help_message_f, filters=filters.command([f"{BotCommands.HelpCommand}", f"{BotCommands.HelpCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(save_thumb_nail, filters=filters.command([f"{BotCommands.SaveCommand}", f"{BotCommands.SaveCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(clear_thumb_nail, filters=filters.command([f"{BotCommands.ClearCommand}", f"{BotCommands.ClearCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
         a.add_handler(MessageHandler(rclone_command_f, filters=filters.command([f"{RCLONE_COMMAND}", f"{RCLONE_COMMAND}@{username}"])))
-        a.add_handler(MessageHandler(upload_as_doc, filters=filters.command([f"{BotCommands.ToggleDocCommand}", f"{BotCommands.ToggleDocCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(upload_as_video, filters=filters.command([f"{BotCommands.ToggleVidCommand}", f"{BotCommands.ToggleVidCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(get_speed, filters=filters.command([f"{BotCommands.SpeedCommand}", f"{BotCommands.SpeedCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(searchhelp, filters=filters.command([f"{BotCommands.TsHelpCommand}", f"{BotCommands.TsHelpCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(mediainfo, filters=filters.command([f"{BotCommands.MediaInfoCommand}", f"{BotCommands.MediaInfoCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(restart, filters=filters.command(["restart", f"restart@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(stats, filters=filters.command([f"{BotCommands.StatsCommand}", f"{BotCommands.StatsCommand}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
+        a.add_handler(MessageHandler(upload_as_doc, filters=filters.command([f"{BotCommands.ToggleDocCommand}", f"{BotCommands.ToggleDocCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(upload_as_video, filters=filters.command([f"{BotCommands.ToggleVidCommand}", f"{BotCommands.ToggleVidCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(get_speed, filters=filters.command([f"{BotCommands.SpeedCommand}", f"{BotCommands.SpeedCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(searchhelp, filters=filters.command([f"{BotCommands.TsHelpCommand}", f"{BotCommands.TsHelpCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(mediainfo, filters=filters.command([f"{BotCommands.MediaInfoCommand}", f"{BotCommands.MediaInfoCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(restart, filters=filters.command(["restart", f"restart@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(stats, filters=filters.command([f"{BotCommands.StatsCommand}", f"{BotCommands.StatsCommand}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
         a.add_handler(MessageHandler(start, filters=filters.command(["start", f"start@{username}"])))
-        a.add_handler(MessageHandler(prefix_set, filters=filters.command(["setpre", f"setpre@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(caption_set, filters=filters.command(["setcap", f"setcap@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(url_parser, filters=filters.command(["parser", f"parser@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(imdb_search, filters=filters.command(["imdb", f"imdb@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(template_set, filters=filters.command(["set_template", f"set_template@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(index_scrape, filters=filters.command([f"{INDEX_SCRAPE}", f"{INDEX_SCRAPE}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(theme_set, filters=filters.command([f"choosetheme", f"choosetheme@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(user_settings, filters=filters.command([f"usersettings", f"usersettings@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(get_anime_query, filters=filters.command(["ani", f"ani@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(anilist_set, filters=filters.command(["anime_template", f"anime_template@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(nyaa_search, filters=filters.command(['nyaasi', f'nyaasi@{username}']) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(nyaa_search_sukebei, filters=filters.command(['sukebei', f'sukebei@{username}']) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(picture_add, filters=filters.command(['addpic', f'addpic@{username}']) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(pictures, filters=filters.command(['pics', f'pics@{username}']) & filters.chat(chats=AUTH_CHANNEL)))
-        #a.add_handler(MessageHandler(set_configvar, filters=filters.command(['setvar', f'setvar@{username}']) & filters.chat(chats=AUTH_CHANNEL) & filters.private))
-        a.add_handler(MessageHandler(user_log_set, filters=filters.command(['userlog', f'userlog@{username}']) & filters.chat(chats=AUTH_CHANNEL)))
+        a.add_handler(MessageHandler(prefix_set, filters=filters.command(["setpre", f"setpre@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(caption_set, filters=filters.command(["setcap", f"setcap@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(url_parser, filters=filters.command(["parser", f"parser@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(imdb_search, filters=filters.command(["imdb", f"imdb@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(template_set, filters=filters.command(["set_template", f"set_template@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(index_scrape, filters=filters.command([f"{INDEX_SCRAPE}", f"{INDEX_SCRAPE}@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(theme_set, filters=filters.command([f"choosetheme", f"choosetheme@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(user_settings, filters=filters.command([f"usersettings", f"usersettings@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(get_anime_query, filters=filters.command(["ani", f"ani@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(anilist_set, filters=filters.command(["anime_template", f"anime_template@{username}"]) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(nyaa_search, filters=filters.command(['nyaasi', f'nyaasi@{username}']) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(nyaa_search_sukebei, filters=filters.command(['sukebei', f'sukebei@{username}']) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(picture_add, filters=filters.command(['addpic', f'addpic@{username}']) & filters.chat(chats=AUTH_CHATS)))
+        a.add_handler(MessageHandler(pictures, filters=filters.command(['pics', f'pics@{username}']) & filters.chat(chats=AUTH_CHATS)))
+        #a.add_handler(MessageHandler(set_configvar, filters=filters.command(['setvar', f'setvar@{username}']) & filters.chat(chats=AUTH_CHATS) & filters.private))
+        a.add_handler(MessageHandler(user_log_set, filters=filters.command(['userlog', f'userlog@{username}']) & filters.chat(chats=AUTH_CHATS)))
         a.add_handler(MessageHandler(log_chat_id, filters=filters.command(['id', f'id@{username}']) & filters.channel))
         for tcom, value in torrents_dict.items():
             a.add_handler(MessageHandler(TorrentSearch(tcom, value['source'], value['result_str']).find, filters.command([tcom, f'{tcom}@{username}'])))

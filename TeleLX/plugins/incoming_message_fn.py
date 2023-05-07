@@ -17,22 +17,22 @@ from urllib.parse import unquote, quote
 from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery
 
-from tobrot import DOWNLOAD_LOCATION, CLONE_COMMAND_G, GLEECH_COMMAND, GLEECH_UNZIP_COMMAND, GLEECH_ZIP_COMMAND, \
+from TeleLX import DL_DIR, CLONE_COMMAND_G, GLEECH_COMMAND, GLEECH_UNZIP_COMMAND, GLEECH_ZIP_COMMAND, \
                    LOGGER, GPYTDL_COMMAND, STATUS_COMMAND, UPDATES_CHANNEL, LEECH_LOG, BOT_PM, EXCEP_CHATS, app, \
                    FSUB_CHANNEL, USER_DTS, AUTO_LEECH, RCLONE_CONF_URL, EDIT_SLEEP_TIME_OUT, AUTO_USERS
-from tobrot.helper_funcs.display_progress import humanbytes, TimeFormatter
-from tobrot.helper_funcs.bot_commands import BotCommands
-from tobrot.helper_funcs.admin_check import AdminCheck
-from tobrot.helper_funcs.cloneHelper import CloneHelper
-from tobrot.helper_funcs.download import download_tg
-from tobrot.helper_funcs.download_aria_p_n import aria_start, call_apropriate_function, __sendSpecificLogMsg
-from tobrot.helper_funcs.extract_link_from_message import extract_link
-from tobrot.helper_funcs.upload_to_tg import upload_to_tg
-from tobrot.helper_funcs.youtube_dl_extractor import extract_youtube_dl_formats
-from tobrot.helper_funcs.ytplaylist import yt_playlist_downg
-from tobrot.plugins import getDetails, getUserOrChaDetails, getUserName
-from tobrot.plugins.force_sub_handler import handle_force_sub
-from tobrot.bot_theme.themes import BotTheme
+from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.helper_funcs.bot_commands import BotCommands
+from TeleLX.helper_funcs.admin_check import AdminCheck
+from TeleLX.helper_funcs.cloneHelper import CloneHelper
+from TeleLX.helper_funcs.download import download_tg
+from TeleLX.helper_funcs.download_aria_p_n import aria_start, call_apropriate_function, __sendSpecificLogMsg
+from TeleLX.helper_funcs.extract_link_from_message import extract_link
+from TeleLX.helper_funcs.upload_to_tg import upload_to_tg
+from TeleLX.helper_funcs.youtube_dl_extractor import extract_youtube_dl_formats
+from TeleLX.helper_funcs.ytplaylist import yt_playlist_downg
+from TeleLX.plugins import getDetails, getUserOrChaDetails, getUserName
+from TeleLX.plugins.force_sub_handler import handle_force_sub
+from TeleLX.core.bot_themes.themes import BotTheme
 
 async def incoming_purge_message_f(client: Client, message: Message):
     msg = await message.reply_text("Purging...", quote=True)
@@ -183,11 +183,11 @@ async def incoming_message_f(client: Client, message: Message, auto_cmd=None):
         await i_m_sefg.edit((BotTheme(g_id)).WRONG_DEF_COMMAND)
         return
     if dl_url is not None:
-        new_download_location = opath.join(
-            DOWNLOAD_LOCATION, str(g_id), str(time())
+        new_DL_DIR = opath.join(
+            DL_DIR, str(g_id), str(time())
         )
-        if not opath.isdir(new_download_location):
-            makedirs(new_download_location)
+        if not opath.isdir(new_DL_DIR):
+            makedirs(new_DL_DIR)
         aria_i_p = ''
         if not is_file:
             await i_m_sefg.edit_text("<code>Extracting Links . . . 🔀</code>")
@@ -225,7 +225,7 @@ async def incoming_message_f(client: Client, message: Message, auto_cmd=None):
         sagtus, err_message = await call_apropriate_function(
             aria_i_p,
             dl_url,
-            new_download_location,
+            new_DL_DIR,
             i_m_sefg,
             is_zip,
             cf_name,
@@ -266,7 +266,7 @@ async def incoming_youtube_dl_f(client, message):
         return
     if dl_url is not None:
         await i_m_sefg.edit_text("<code>Extracting Links . . . 🔀</code>")
-        user_working_dir = opath.join(DOWNLOAD_LOCATION, str(current_user_id))
+        user_working_dir = opath.join(DL_DIR, str(current_user_id))
         if not opath.isdir(user_working_dir):
             makedirs(user_working_dir)
         thumb_image, text_message, reply_markup = await extract_youtube_dl_formats(

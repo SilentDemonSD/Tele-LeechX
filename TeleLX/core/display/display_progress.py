@@ -11,7 +11,7 @@ from math import floor
 from time import time, sleep as tsleep
 
 from pyrogram.errors.exceptions import FloodWait
-from tobrot import (
+from TeleLX import (
     EDIT_SLEEP_TIME_OUT,
     FINISHED_PROGRESS_STR,
     UN_FINISHED_PROGRESS_STR,
@@ -20,7 +20,7 @@ from tobrot import (
     UPDATES_CHANNEL,
     HALF_FINISHED
 )
-from tobrot.bot_theme.themes import BotTheme
+from TeleLX.core.bot_themes.themes import BotTheme
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 class Progress:

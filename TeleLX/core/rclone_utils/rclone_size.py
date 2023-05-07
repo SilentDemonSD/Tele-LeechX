@@ -12,8 +12,8 @@ from os import path as opath
 from re import findall
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from tobrot import DESTINATION_FOLDER, LOGGER, UPDATES_CHANNEL 
-from tobrot.plugins import getUserOrChaDetails
+from TeleLX import DESTINATION_FOLDER, LOGGER, UPDATES_CHANNEL 
+from TeleLX.plugins import getUserOrChaDetails
 
 async def check_size_g(client, message):
     user_id, u_men = getUserOrChaDetails(message)

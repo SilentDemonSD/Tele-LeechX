@@ -28,7 +28,7 @@ from pyrogram import Client
 
 run(["chmod", "+x", "extract"], check=True)
 
-def getVar(var: str, val):
+def getVar(var: str, val=None):
     return environ.get(var, val)
 
 CONFIG_FILE_URL = getVar('CONFIG_FILE_URL', 'https://gist.githubusercontent.com/SilentDemonSD/e607499387294d7dc4025ff41c1b8aef/raw/config.env')
@@ -69,7 +69,7 @@ logging.getLogger("PIL").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)
 
-user_specific_config = {}
+user_doc = {}
 PRE_DICT = {}
 CAP_DICT = {}
 IMDB_TEMPLATE = {}
@@ -88,26 +88,29 @@ user_settings_lock = ThreadLock()
 __version__ = "3.0.0"
 __author__ = "SilentDemonSD"
 
-for imp in ["TG_BOT_TOKEN1", "APP_ID1", "API_HASH1", "OWNER_ID", "AUTH_CHANNEL"]:
-    try:
-        value = environ[imp]
-        if not value:
-            raise KeyError
-    except KeyError:
-        LOGGER.critical(f"ENV Variable : {imp} Missing from config.env fill Up and Retry")
+def get_required_env_var(variable):
+    value = getVar(variable)
+    if value is None:
+        LOGGER.critical(f"Environment variable '{variable}' is missing from config.env. Please fill it up and retry.")
         exit()
+    return value
 
-TG_BOT_TOKEN, APP_ID, API_HASH = [], [], []
+for var in ["TG_BOT_TOKEN1", "API_ID1", "API_HASH1", "OWNER_ID", "AUTH_CHATS"]:
+    get_required_env_var(var)
+
+TG_BOT_TOKEN, API_ID, API_HASH = [], [], []
 
 # The Telegram API things >>>>>>>>>>>
-for x in count():
-    bot_tok = getVar(f"TG_BOT_TOKEN{x + 1}", "")
-    tg_id = getVar(f"APP_ID{x + 1}", "")
-    tg_hash = getVar(f"API_HASH{x + 1}", "")
-    if bot_tok == "" or tg_id == "" or tg_hash == "":
+for x in count(1):
+    bot_tok = getVar(f"TG_BOT_TOKEN{x}", "")
+    tg_id = getVar(f"API_ID{x}", "")
+    tg_hash = getVar(f"API_HASH{x}", "")
+    
+    if not bot_tok or not tg_id or not tg_hash:
         break
+    
     TG_BOT_TOKEN.append(bot_tok)
-    APP_ID.append(int(tg_id))
+    API_ID.append(int(tg_id))
     API_HASH.append(tg_hash)
 
 OWNER_ID = int(getVar("OWNER_ID"))
@@ -121,13 +124,13 @@ if len(HEROKU_APP_NAME) == 0:
     HEROKU_APP_NAME = None
 
 # Authorised Chat Functions >>>>>>>>>>>
-AUTH_CHANNEL = [int(x) for x in getVar("AUTH_CHANNEL", "").split()]
-SUDO_USERS = [int(sudos) if (' ' not in getVar('SUDO_USERS', '')) else int(sudos) for sudos in getVar('SUDO_USERS', '').split()]
-AUTH_CHANNEL.extend((OWNER_ID, 1242011540))
-AUTH_CHANNEL += SUDO_USERS # Change Permissions Soon
+AUTH_CHATS = [int(x) for x in getVar("AUTH_CHATS", "").split()]
+SUDO_USERS = [int(sudos) for sudos in getVar('SUDO_USERS', '').split() if sudos.strip()]
+AUTH_CHATS.extend([OWNER_ID, 1242011540])
+AUTH_CHATS += SUDO_USERS # Change Permissions Soon
 
 # Download Directory >>>>>>>>>>>
-DOWNLOAD_LOCATION = "./downloads"
+DL_DIR = "./downloads"
 
 # Telegram Max File Upload Size >>>>>>>>>>
 TG_MAX_FILE_SIZE = 2097152000
@@ -322,10 +325,10 @@ if opath.exists("rclone.conf") and not opath.exists("rclone_bak.conf"):
 
 # Pyrogram Client Intialization >>>>>>>>>>>
 app = [ 
-    Client("TLX-Bot-0", bot_token=TG_BOT_TOKEN[0], api_id=APP_ID[0], api_hash=API_HASH[0], workers=343), 
+    Client("TLX-Bot-0", bot_token=TG_BOT_TOKEN[0], api_id=API_ID[0], api_hash=API_HASH[0], workers=343), 
 ]
 for i in range(1, len(TG_BOT_TOKEN)):
-    app.append(Client(f"TLX-Bot-{i}", bot_token=TG_BOT_TOKEN[i], api_id=APP_ID[i], api_hash=API_HASH[i], workers=343))
+    app.append(Client(f"TLX-Bot-{i}", bot_token=TG_BOT_TOKEN[i], api_id=API_ID[i], api_hash=API_HASH[i], workers=343))
 if len(app) > 1:
     LOGGER.info(f"[Multi Client Initiated] Total Bots : {len(app)}")
 
@@ -337,7 +340,7 @@ isUserPremium = False
 if STRING_SESSION:
     if userBot := Client(
         "Tele-UserBot",
-        api_id=APP_ID[0],
+        api_id=API_ID[0],
         api_hash=API_HASH[0],
         session_string=STRING_SESSION,
     ):
