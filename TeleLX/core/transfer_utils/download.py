@@ -14,7 +14,7 @@ from pathlib import Path
 from pyrogram import enums
 
 from TeleLX import DL_DIR, LOGGER, TELEGRAM_LEECH_UNZIP_COMMAND
-from TeleLX.helper_funcs.create_compressed_archive import extract_archive, get_base_name
+from TeleLX.helper_funcs.archive_utils import extract_archive, get_base_name
 from TeleLX.helper_funcs.display_progress import Progress, TimeFormatter, humanbytes
 from TeleLX.helper_funcs.upload_to_tg import upload_to_gdrive
 from TeleLX.plugins import getDetails, getUserOrChaDetails

@@ -12,18 +12,12 @@ from os import path as opath
 from re import findall, escape, search
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from requests import utils
-from TeleLX import (
-    DESTINATION_FOLDER,
-    EDIT_SLEEP_TIME_OUT,
-    INDEX_LINK,
-    LOGGER,
-    VIEW_LINK,
-    USER_DTS
-)
-from TeleLX.plugins import is_appdrive_link, is_gdtot_link
-from TeleLX.helper_funcs.direct_link_generator import gdtot, appdrive_dl, url_link_generate
 from re import search
 from urllib.parse import parse_qs, urlparse
+
+from TeleLX import DESTINATION_FOLDER, EDIT_SLEEP_TIME_OUT, INDEX_LINK, LOGGER, VIEW_LINK, USER_DTS
+from TeleLX.plugins import is_appdrive_link, is_gdtot_link
+from TeleLX.core.utils.direct_link_generator import gdtot, appdrive_dl, url_link_generate
 
 class CloneHelper:
     def __init__(self, mess):

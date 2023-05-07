@@ -22,7 +22,7 @@ from pyrogram.errors import FloodWait, MessageNotModified
 from TeleLX import ARIA_TWO_STARTED_PORT, CUSTOM_PREFIX, CUSTOM_SUFFIX, EDIT_SLEEP_TIME_OUT, LOGGER, UPDATES_CHANNEL, \
                    MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START, CLONE_COMMAND_G, user_settings_lock, user_settings, LEECH_LOG, \
                    BOT_PM, LEECH_INVITE, EXCEP_CHATS
-from TeleLX.helper_funcs.create_compressed_archive import create_archive, get_base_name, extract_archive
+from TeleLX.helper_funcs.archive_utils import create_archive, get_base_name, extract_archive
 from TeleLX.helper_funcs.upload_to_tg import upload_to_gdrive, upload_to_tg
 from TeleLX.helper_funcs.download import download_tg
 from TeleLX.core.bot_themes.themes import BotTheme
@@ -37,8 +37,7 @@ sys.setrecursionlimit(10 ** 4)
 
 async def aria_start():
     TRACKERS = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
-    aria2_daemon_start_cmd = ["chrome", "--conf-path=/app/TeleLX/aria2/aria2.conf", f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}", f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}", f"--bt-tracker=[{TRACKERS}]"]
-    #f"--dir={DL_DIR}", "--disk-cache=0", "--seed-ratio=0.01"
+    aria2_daemon_start_cmd = ["chrome", "--conf-path=/app/TeleLX/core/aria2/aria2.conf", f"--rpc-listen-port={ARIA_TWO_STARTED_PORT}", f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}", f"--bt-tracker=[{TRACKERS}]"]
     LOGGER.info("[ARIA2C] Daemon Initiated ")
 
     process = await create_subprocess_exec(
@@ -58,8 +57,10 @@ def __changeFileName(to_upload_file, u_id):
     global CUSTOM_PREFIX, CUSTOM_SUFFIX
     preDicData = PRE_DICT.get(u_id, ["", "", "", 0, ""])
     prefix, filename_, suffix, no, filter = preDicData[0], preDicData[1], preDicData[2], preDicData[3], preDicData[4]
-    if CUSTOM_PREFIX: prefix = CUSTOM_PREFIX
-    if CUSTOM_SUFFIX: suffix = CUSTOM_SUFFIX
+    if CUSTOM_PREFIX: 
+        prefix = CUSTOM_PREFIX
+    if CUSTOM_SUFFIX: 
+        suffix = CUSTOM_SUFFIX
     if filter:
         if not filter.startswith("|"):
             filter = f"|{filter}"

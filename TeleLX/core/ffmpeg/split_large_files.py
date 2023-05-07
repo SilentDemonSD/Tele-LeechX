@@ -44,7 +44,7 @@ async def split_large_files(input_file, MAX_TG_SPLIT_FILE_SIZE):
         flag = False
 
         while end_time <= total_duration:
-            parted_file_name = f"{base_name}_part{str(i).zfill(5)}.{input_extension}"
+            parted_file_name = f"{base_name}_part{str(i).zfill(3)}.{input_extension}"
             output_file = os.path.join(new_working_directory, parted_file_name)
             LOGGER.info(output_file)
             LOGGER.info(

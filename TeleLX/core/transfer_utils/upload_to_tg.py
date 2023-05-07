@@ -33,9 +33,8 @@ from TeleLX import DESTINATION_FOLDER, DL_DIR, EDIT_SLEEP_TIME_OUT, INDEX_LINK, 
 if isUserPremium:
     from TeleLX import userBot
 from TeleLX.core.bot_themes.themes import BotTheme
-from TeleLX.helper_funcs.help_Nekmo_ffmpeg import copy_file
+from TeleLX.core.ffmpeg.ffmpeg_extract import copy_file, take_screen_shot
 from TeleLX.helper_funcs.display_progress import humanbytes, Progress
-from TeleLX.helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 from TeleLX.helper_funcs.split_large_files import split_large_files
 from TeleLX.plugins.custom_utils import *
 
