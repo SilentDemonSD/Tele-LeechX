@@ -34,7 +34,7 @@ if isUserPremium:
     from TeleLX import userBot
 from TeleLX.core.bot_themes.themes import BotTheme
 from TeleLX.core.ffmpeg.ffmpeg_extract import copy_file, take_screen_shot
-from TeleLX.helper_funcs.display_progress import humanbytes, Progress
+from TeleLX.helper_funcs.display_progress import format_bytes, Progress
 from TeleLX.helper_funcs.split_large_files import split_large_files
 from TeleLX.plugins.custom_utils import *
 
@@ -59,7 +59,7 @@ async def upload_to_tg(message, local_file_name, from_user, dict_contatining_upl
         CAP_ = slit[0]
         caption_str = CAP_.format(
             filename = base_file_name,
-            size = humanbytes(file_size)
+            size = format_bytes(file_size)
         )
         if len(slit) > 1:
             for rep in range(1, len(slit)):
@@ -118,7 +118,7 @@ async def upload_to_tg(message, local_file_name, from_user, dict_contatining_upl
             LOGGER.info(f"User Type : Non Premium ({from_user})")
             i_m_s_g = await message.reply_text(
                 "<b><i>📑 Telegram doesn't Support Uploading this File.</i></b>\n"
-                f"<b><i>🎯 File Size :</i></b> {humanbytes(opath.getsize(local_file_name))}\n"
+                f"<b><i>🎯 File Size :</i></b> {format_bytes(opath.getsize(local_file_name))}\n"
                 "\n<code>🗃 Trying to Split the files ...</code>"
             )
             splitted_dir = await split_large_files(local_file_name, int(SPLIT_SIZE))
@@ -129,7 +129,7 @@ async def upload_to_tg(message, local_file_name, from_user, dict_contatining_upl
             ba_se_file_name = opath.basename(local_file_name)
             await i_m_s_g.edit_text(
                 f"📬 <b>FileName : </b> <code>{ba_se_file_name}</code>\n\n"
-                f"🎯 <b>File Size :</b> <code>{humanbytes(sizze)}</code>\n"
+                f"🎯 <b>File Size :</b> <code>{format_bytes(sizze)}</code>\n"
                 f"🗂 <b>Total Splitted Parts :</b> {number_of_files}"
             )
             for le_file in totlaa_sleif:

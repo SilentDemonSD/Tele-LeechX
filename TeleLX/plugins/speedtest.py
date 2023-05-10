@@ -14,7 +14,7 @@ from pyrogram import enums
 from TeleLX import LOGGER
 from TeleLX.core.bot_themes.themes import BotTheme
 from TeleLX.plugins import getUserOrChaDetails
-from TeleLX.helper_funcs.display_progress import humanbytes
+from TeleLX.helper_funcs.display_progress import format_bytes
 
 async def get_speed(self, message):
     imspd = await message.reply("`Running Speed Test...`")
@@ -27,12 +27,12 @@ async def get_speed(self, message):
     result = test.results.dict()
     path = (result['share'])
     string_speed = ((BotTheme(user_id)).SPEEDTEST_MSG).format(
-        upload = humanbytes(result['upload'] / 8),
-        download = humanbytes(result['download'] / 8),
+        upload = format_bytes(result['upload'] / 8),
+        download = format_bytes(result['download'] / 8),
         ping = result['ping'],
         timestamp = result['timestamp'],
-        bytes_sent = humanbytes(result['bytes_sent']),
-        bytes_received = humanbytes(result['bytes_received']),
+        bytes_sent = format_bytes(result['bytes_sent']),
+        bytes_received = format_bytes(result['bytes_received']),
         name = result['server']['name'],
         country = result['server']['country'],
         cc = result['server']['cc'],
@@ -52,4 +52,4 @@ async def get_speed(self, message):
         await message.reply_photo(path, caption=string_speed, parse_mode=enums.ParseMode.HTML)
     except:
         await message.reply(string_speed, parse_mode=enums.ParseMode.HTML)
-    LOGGER.info(f'Server Speed result:-\nDL: {humanbytes(result["download"] / 8)}/s UL: {humanbytes(result["upload"] / 8)}/s')
+    LOGGER.info(f'Server Speed result:-\nDL: {format_bytes(result["download"] / 8)}/s UL: {format_bytes(result["upload"] / 8)}/s')

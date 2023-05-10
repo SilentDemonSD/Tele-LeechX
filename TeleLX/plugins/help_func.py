@@ -17,7 +17,7 @@ from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, Message
 
 from TeleLX import *
-from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.helper_funcs.display_progress import format_bytes, format_time
 from TeleLX.core.bot_themes.themes import BotTheme
 from TeleLX.helper_funcs.bot_commands import BotCommands
 from TeleLX.plugins import getUserOrChaDetails, progressBar
@@ -36,15 +36,15 @@ async def stats(client: Client, message: Message):
         stats += ((BotTheme(user_id)).STATS_MSG_2).format(
         lc = last_commit
     )
-    currentTime = TimeFormatter((time() - BOT_START_TIME)*1000)
-    osUptime = TimeFormatter((time() - boot_time())*1000)
+    currentTime = format_time((time() - BOT_START_TIME)*1000)
+    osUptime = format_time((time() - boot_time())*1000)
     total, used, free, disk= disk_usage('/')
     disk_prog = progressBar(disk)
-    total = humanbytes(total)
-    used = humanbytes(used)
-    free = humanbytes(free)
-    sent = humanbytes(net_io_counters().bytes_sent)
-    recv = humanbytes(net_io_counters().bytes_recv)
+    total = format_bytes(total)
+    used = format_bytes(used)
+    free = format_bytes(free)
+    sent = format_bytes(net_io_counters().bytes_sent)
+    recv = format_bytes(net_io_counters().bytes_recv)
     cpuUsage = cpu_percent(interval=0.5)
     cpu_prog = progressBar(cpuUsage)
     p_core = cpu_count(logical=False)
@@ -54,15 +54,15 @@ async def stats(client: Client, message: Message):
     swap = swap_memory()
     swap_p = swap.percent
     swap_prog = progressBar(swap_p)
-    swap_t = humanbytes(swap.total)
-    swap_u = humanbytes(swap.used)
-    swap_f = humanbytes(swap.free)
+    swap_t = format_bytes(swap.total)
+    swap_u = format_bytes(swap.used)
+    swap_f = format_bytes(swap.free)
     memory = virtual_memory()
     mem_p = memory.percent
     mem_prog = progressBar(mem_p)
-    mem_t = humanbytes(memory.total)
-    mem_a = humanbytes(memory.available)
-    mem_u = humanbytes(memory.used)
+    mem_t = format_bytes(memory.total)
+    mem_a = format_bytes(memory.available)
+    mem_u = format_bytes(memory.used)
     UP_CHANNEL = UPDATES_CHANNEL
     stats += ((BotTheme(user_id)).STATS_MSG_3).format(**locals())
     await message.reply_text(text = stats,

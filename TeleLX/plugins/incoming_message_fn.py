@@ -20,7 +20,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, 
 from TeleLX import DL_DIR, CLONE_COMMAND_G, GLEECH_COMMAND, GLEECH_UNZIP_COMMAND, GLEECH_ZIP_COMMAND, \
                    LOGGER, GPYTDL_COMMAND, STATUS_COMMAND, UPDATES_CHANNEL, LEECH_LOG, BOT_PM, EXCEP_CHATS, app, \
                    FSUB_CHANNEL, USER_DTS, AUTO_LEECH, RCLONE_CONF_URL, EDIT_SLEEP_TIME_OUT, AUTO_USERS
-from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.helper_funcs.display_progress import format_bytes, format_time
 from TeleLX.helper_funcs.bot_commands import BotCommands
 from TeleLX.helper_funcs.admin_check import AdminCheck
 from TeleLX.helper_funcs.cloneHelper import CloneHelper
@@ -408,7 +408,7 @@ async def rename_tg_file(client: Client, message: Message):
         if not final_response:
             return
         try:
-            timeuti = TimeFormatter((end_upload - start_upload) * 1000)
+            timeuti = format_time((end_upload - start_upload) * 1000)
             mention_req_user = ((BotTheme(usr_id)).TOP_LIST_FILES_MSG).format(
                 user_id = usr_id,
                 u_men = tag_me,

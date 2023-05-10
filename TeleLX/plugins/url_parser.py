@@ -173,7 +173,7 @@ async def bypass_link(text_url: str):
         try:
             info_parsed = url_link_generate(text_url)
             men_user = 'tg://user?id={info_parsed["from"]}'
-            url_string = f"📨 **Name** : `{info_parsed['filename']}` \n📁 **File Size** : `{humanbytes(info_parsed['size'])}` \n🎞 **Duration** : `{TimeFormatter(info_parsed['duration']*1000)}` \n💾 **Resolution** : `{info_parsed['width']} × {info_parsed['height']}` \n📆 **Upload On** : `{datetime.datetime.utcfromtimestamp(info_parsed['ts']/1000).strftime('%I:%M:%S %p %d %B, %Y')}` \n💳 **File Uploader** : <a href='{men_user}'>{info_parsed['display_name']}</a> ( `{info_parsed['from']}` ) \n📎 **Download URL** : `{info_parsed['download']}`"
+            url_string = f"📨 **Name** : `{info_parsed['filename']}` \n📁 **File Size** : `{format_bytes(info_parsed['size'])}` \n🎞 **Duration** : `{format_time(info_parsed['duration']*1000)}` \n💾 **Resolution** : `{info_parsed['width']} × {info_parsed['height']}` \n📆 **Upload On** : `{datetime.datetime.utcfromtimestamp(info_parsed['ts']/1000).strftime('%I:%M:%S %p %d %B, %Y')}` \n💳 **File Uploader** : <a href='{men_user}'>{info_parsed['display_name']}</a> ( `{info_parsed['from']}` ) \n📎 **Download URL** : `{info_parsed['download']}`"
             return False, url_string
         except DirectDownloadLinkException as er:
             LOGGER.info(f'{text_url}: {er}')

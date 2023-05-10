@@ -29,7 +29,7 @@ from TeleLX.helper_funcs.admin_check import AdminCheck
 from TeleLX import AUTH_CHATS, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_doc, \
                    gid_dict, _lock, EDIT_SLEEP_TIME_OUT, FINISHED_PROGRESS_STR, UN_FINISHED_PROGRESS_STR, \
                    UPDATES_CHANNEL, LOG_FILE_NAME, DB_URI, user_settings, HALF_FINISHED, PICS_LIST
-from TeleLX.helper_funcs.display_progress import humanbytes, TimeFormatter
+from TeleLX.helper_funcs.display_progress import format_bytes, format_time
 from TeleLX.helper_funcs.download_aria_p_n import aria_start
 from TeleLX.helper_funcs.upload_to_tg import upload_to_tg
 from TeleLX.database.db_func import DatabaseManager
@@ -64,11 +64,11 @@ def bot_button_stats():
     total, used, free, disk = disk_usage("/")
     ram = virtual_memory().percent
     cpu = cpu_percent()
-    total = humanbytes(total)
-    used = humanbytes(used)
-    free = humanbytes(free)
-    sent = humanbytes(net_io_counters().bytes_sent)
-    recv = humanbytes(net_io_counters().bytes_recv)
+    total = format_bytes(total)
+    used = format_bytes(used)
+    free = format_bytes(free)
+    sent = format_bytes(net_io_counters().bytes_sent)
+    recv = format_bytes(net_io_counters().bytes_recv)
     return f'''
 ┏━━━━ 𝗕𝗼𝘁 𝗦𝘁𝗮𝘁𝘀 ━━━━━╻
 ┃ ᑕᑭᑌ: {progressBar(cpu)} {cpu}% 
@@ -129,7 +129,7 @@ async def status_message_f(client: Client, message: Message):
                 try:
                     inTime = datetime.timestamp(datetime.strptime(str(umess.date),"%Y-%m-%d %H:%M:%S"))
                     msg += ((BotTheme(u_id_)).STATUS_MSG_2).format(
-                        etime = TimeFormatter((curTime - inTime) * 1000)
+                        etime = format_time((curTime - inTime) * 1000)
                     )
                 except: pass
                 usr_id, tag_me = getUserOrChaDetails(umess)

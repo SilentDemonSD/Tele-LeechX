@@ -31,7 +31,7 @@ from TeleLX.helper_funcs.exceptions import DirectDownloadLinkException
 from TeleLX.plugins import getUserOrChaDetails
 from TeleLX.plugins.custom_utils import *
 from TeleLX.plugins import is_appdrive_link, is_gdtot_link, is_hubdrive_link 
-from TeleLX.helper_funcs.display_progress import TimeFormatter
+from TeleLX.helper_funcs.display_progress import format_time
 
 sys.setrecursionlimit(10 ** 4)
 
@@ -332,7 +332,7 @@ async def call_apropriate_function(
             if not final_response:
                 return True, None
             try:
-                timeuti = TimeFormatter((end_upload - start_upload) * 1000)
+                timeuti = format_time((end_upload - start_upload) * 1000)
                 message_to_send = ""
                 mention_req_user = ((BotTheme(u_id)).TOP_LIST_FILES_MSG).format(
                     user_id = u_id,

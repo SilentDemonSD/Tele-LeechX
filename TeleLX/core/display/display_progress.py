@@ -11,6 +11,8 @@ from math import floor
 from time import time, sleep as tsleep
 
 from pyrogram.errors.exceptions import FloodWait
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+
 from TeleLX import (
     EDIT_SLEEP_TIME_OUT,
     FINISHED_PROGRESS_STR,
@@ -20,8 +22,8 @@ from TeleLX import (
     UPDATES_CHANNEL,
     HALF_FINISHED
 )
-from TeleLX.core.bot_themes.themes import BotTheme
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from TeleLX.core.bot_themes import BotTheme
+
 
 class Progress:
     def __init__(self, from_user, client, mess: Message):
@@ -52,7 +54,7 @@ class Progress:
         if self.is_cancelled:
             LOGGER.info("Stopping Process !!")
             await self._mess.edit(
-                f"⛔ **Cancelled / Error** ⛔ \n\n `{ud_type}` ({humanbytes(total)})"
+                f"⛔ **Cancelled / Error** ⛔ \n\n `{ud_type}` ({format_bytes(total)})"
             )
             await self._client.stop_transmission()
 
@@ -61,8 +63,8 @@ class Progress:
             percentage = current * 100 / total
             digits = [int(x) for x in str(("{}").format("%.2d" % percentage))]
             speed = current / diff
-            elapsed_time = TimeFormatter(round(diff) * 1000)
-            estimated_total_time = TimeFormatter(round((total - current) / speed) * 1000)
+            elapsed_time = format_time(round(diff) * 1000)
+            estimated_total_time = format_time(round((total - current) / speed) * 1000)
 
             tmp = ((BotTheme(self._from_user)).PROG_MSG).format(
                 ''.join([FINISHED_PROGRESS_STR for _ in range(floor(percentage / 5))]),
@@ -72,9 +74,9 @@ class Progress:
             )
 
             tmp += ((BotTheme(self._from_user)).DOWN_PROG_MSG).format(
-                d = humanbytes(current),
-                t = humanbytes(total),
-                s = humanbytes(speed),
+                d = format_bytes(current),
+                t = format_bytes(total),
+                s = format_bytes(speed),
                 eta = estimated_total_time if estimated_total_time != '' else "0s",
                 UPDATES_CHANNEL = UPDATES_CHANNEL
             )
@@ -93,46 +95,4 @@ class Progress:
                 tsleep(fd.value)
             except Exception as err:
                 LOGGER.info(err)
-
-def humanbytes(size) -> str:
-    if not size:
-        return ""
-    power = 2 ** 10
-    ind = 0
-    SIZE_UNITS = {0: "", 1: "K", 2: "M", 3: "G", 4: "T", 5: "P", 6: "E", 7: "Z", 8: "Y"}
-    while size > power:
-        size /= power
-        ind += 1
-    try:
-        return f"{str(round(size, 2))} {SIZE_UNITS[ind]}B"
-    except IndexError:
-        return 'File too large'
-
-def humanbytes_int(size_str) -> str:
-    size = int(size_str)
-    if not size:
-        return ""
-    power = 2 ** 10
-    ind = 0
-    SIZE_UNITS = {0: "", 1: "K", 2: "M", 3: "G", 4: "T", 5: "P", 6: "E", 7: "Z", 8: "Y"}
-    while size > power:
-        size /= power
-        ind += 1
-    try:
-        return f"{str(round(size, 2))} {SIZE_UNITS[ind]}B"
-    except IndexError:
-        return 'File too large'
-
-def TimeFormatter(milliseconds: int) -> str:
-    seconds, milliseconds = divmod(milliseconds, 1000)
-    minutes, seconds = divmod(seconds, 60)
-    hours, minutes = divmod(minutes, 60)
-    days, hours = divmod(hours, 24)
-    tmp = (
-        (f"{int(days)}d, " if days else "")
-        + (f"{int(hours)}h, " if hours else "")
-        + (f"{int(minutes)}m, " if minutes else "")
-        + (f"{int(seconds)}s, " if seconds else "")
-        + (f"{int(milliseconds)}ms, " if milliseconds else "")
-    )
-    return tmp[:-2]
+                

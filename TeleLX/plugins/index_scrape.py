@@ -7,7 +7,7 @@ from asyncio import sleep as asleep
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from TeleLX import LOGGER, UPDATES_CHANNEL
-from TeleLX.helper_funcs.display_progress import humanbytes_int
+from TeleLX.helper_funcs.display_progress import format_bytes
 from TeleLX.plugins import getUserOrChaDetails
 from TeleLX.plugins.mediainfo import post_to_telegraph
 from TeleLX.core.bot_themes.themes import BotTheme
@@ -77,7 +77,7 @@ async def scrapeURL(payload_input, url, username, password):
             scpText += f"📄 <strong>{no}. {files_name}</strong> : <br><br><pre>🔖 Index Link :<a href='{direct_download_link}'> Index Link </a> <br>"
             try:
                 files_size = deResp["data"]["files"][i]["size"]
-                scpText += f"<br>📂 Size : {humanbytes_int(files_size)} | 📋 Type : {files_type} "
+                scpText += f"<br>📂 Size : {format_bytes(int(files_size))} | 📋 Type : {files_type} "
             except:
                 pass
         try:

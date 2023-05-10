@@ -15,7 +15,7 @@ from pyrogram import enums
 
 from TeleLX import DL_DIR, LOGGER, TELEGRAM_LEECH_UNZIP_COMMAND
 from TeleLX.helper_funcs.archive_utils import extract_archive, get_base_name
-from TeleLX.helper_funcs.display_progress import Progress, TimeFormatter, humanbytes
+from TeleLX.helper_funcs.display_progress import Progress, format_time, format_bytes
 from TeleLX.helper_funcs.upload_to_tg import upload_to_gdrive
 from TeleLX.plugins import getDetails, getUserOrChaDetails
 from TeleLX.core.bot_themes.themes import BotTheme
@@ -91,8 +91,8 @@ async def download_tg(client, message):
             try:
                 await mess_age.edit_text(((BotTheme(user_id)).DOWN_RE_COM_MSG).format(
                     base_file_name = opath.basename(the_real_DL_DIR),
-                    file_size = humanbytes(opath.getsize(the_real_DL_DIR)),
-                    tt = TimeFormatter(ms * 1000)
+                    file_size = format_bytes(opath.getsize(the_real_DL_DIR)),
+                    tt = format_time(ms * 1000)
                 ))
             except MessageNotModified:
                 pass

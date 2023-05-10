@@ -109,7 +109,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
         'kind': movie.get("kind"),
         "imdb_id": f"tt{movie.get('imdbID')}",
         "cast": list_to_str(movie.get("cast")),
-        "runtime": list_to_str([TimeFormatter(int(run) * 60 * 1000) for run in movie.get("runtimes", "0")]),
+        "runtime": list_to_str([format_time(int(run) * 60 * 1000) for run in movie.get("runtimes", "0")]),
         "countries": list_to_hash(movie.get("countries"), True),
         "certificates": list_to_str(movie.get("certificates")),
         "languages": list_to_hash(movie.get("languages")),

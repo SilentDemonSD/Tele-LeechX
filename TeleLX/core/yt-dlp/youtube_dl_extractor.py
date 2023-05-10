@@ -12,7 +12,7 @@ import json
 
 import pyrogram.types as pyrogram
 from TeleLX import DEF_THUMB_NAIL_VID_S, LOGGER
-from TeleLX.helper_funcs.display_progress import humanbytes
+from TeleLX.helper_funcs.display_progress import format_bytes
 
 
 async def extract_youtube_dl_formats(url, cf_name, yt_dl_user_name, yt_dl_pass_word, user_working_dir):
@@ -91,7 +91,7 @@ async def extract_youtube_dl_formats(url, cf_name, yt_dl_user_name, yt_dl_pass_w
                     format_ext = formats.get("ext")
                     approx_file_size = ""
                     if "filesize" in formats:
-                        approx_file_size = humanbytes(formats["filesize"])
+                        approx_file_size = format_bytes(formats["filesize"])
                     dipslay_str_uon = (
                         " "
                         + format_string

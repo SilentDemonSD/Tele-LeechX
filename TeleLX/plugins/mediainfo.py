@@ -20,7 +20,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from TeleLX import UPDATES_CHANNEL, TGH_AUTHOR, TGH_AUTHOR_URL, LOGGER
 from TeleLX.plugins import runcmd, getUserOrChaDetails
-from TeleLX.helper_funcs.display_progress import humanbytes
+from TeleLX.helper_funcs.display_progress import format_bytes
 from TeleLX.core.bot_themes.themes import BotTheme
 
 def post_to_telegraph_html(a_title: str, content: str) -> str:
@@ -128,7 +128,7 @@ async def mediainfo(client, message):
         textup = ((BotTheme(u_id_)).MEDIAINFO_MEDIA_MSG).format(
             filename = x_media.file_name,
             mimetype = x_media.mime_type,
-            filesize = humanbytes(x_media.file_size),
+            filesize = format_bytes(x_media.file_size),
             date = x_media.date,
             fileid = x_media.file_id,
             txt = text_,
