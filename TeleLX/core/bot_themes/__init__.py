@@ -16,7 +16,7 @@ from random import choice
 from TeleLX import BOT_THEME, USER_THEMES, LOGGER
 from TeleLX.core.bot_themes import fx_optimised, fx_minimal
 
-AVAILABLE_THEMES = {'fx-optimised-theme': fx_optimised, 'fx-minimal-theme': fx_minimal}
+AVAILABLE_THEMES = {'fx-optimised-theme': fx_optimised, 'fx-minimal-theme': fx_minimal} # use listdir()
 
 def BotTheme(user_id_):
     theme = USER_THEMES.get(str(user_id_), BOT_THEME)

@@ -11,6 +11,9 @@ extra leeching utilities. Its purpose is to allow users to easily download and s
 in Telegram chats and channels.
 """
 
+from uvloop import install
+install()
+
 import logging
 from itertools import count
 from time import time

@@ -45,6 +45,40 @@ async def incoming_purge_message_f(client: Client, message: Message):
     await asleep(EDIT_SLEEP_TIME_OUT)
     await msg.delete()
 
+async def start(client, message):
+    """/start command""" #add iterator
+    buttons = [
+            [InlineKeyboardButton(START_BTN1, url=START_URL1),
+            InlineKeyboardButton(START_BTN2, url=START_URL2)]
+            ]
+    reply_markup=InlineKeyboardMarkup(buttons)
+    u_men = message.from_user.mention
+    start_log_string = f'''
+┏ <i>Dear {u_men}</i>,
+┃
+┃ <i>If You Want To Use Me, You Have To Join {UPDATES_CHANNEL}</i>
+┃
+┣ <b>NOTE:</b> <code>All The Uploaded Leeched Contents By You Will Be Sent Here In Your Private Chat From Now.</code>
+┃
+┗━♦️ℙ𝕠𝕨𝕖𝕣𝕖𝕕 𝔹𝕪 {UPDATES_CHANNEL}♦️
+'''
+
+    if message.chat.type == enums.ChatType.PRIVATE:
+        if LEECH_LOG:
+            await message.reply_text(
+                start_log_string,
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML,
+                quote=True
+            )
+        else:
+            await message.delete()
+    else:
+        await message.reply_text(
+            "**I Am Alive and Working, Send /help to Know How to Use Me !** ✨",
+            parse_mode=enums.ParseMode.MARKDOWN,
+        )
+
 async def check_bot_pm(client: Client, message: Message):
     if message.chat.type != enums.ChatType.PRIVATE and message.chat.id not in EXCEP_CHATS:
         LOGGER.info("[BOT PM] Initiated")

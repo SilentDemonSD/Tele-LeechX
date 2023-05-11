@@ -95,4 +95,10 @@ class Progress:
                 tsleep(fd.value)
             except Exception as err:
                 LOGGER.info(err)
-                
+
+
+def progressBar(percentage):
+    p_used, p_total = '▰', '▱'
+    try: percentage=int(percentage)
+    except: percentage = 0
+    return ''.join(p_used if i <= percentage // 10 else p_total for i in range(10))

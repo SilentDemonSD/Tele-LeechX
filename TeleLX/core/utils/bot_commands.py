@@ -20,5 +20,6 @@ class _BotCommands:
         self.TsHelpCommand = f'{TSEARCH_COMMAND}{BOT_NO}'
         self.GCloneCommand = f'{CLONE_COMMAND_G}{BOT_NO}'
         self.StatsCommand = f'{STATS_COMMAND}{BOT_NO}'
+        #add all
 
 BotCommands = _BotCommands()

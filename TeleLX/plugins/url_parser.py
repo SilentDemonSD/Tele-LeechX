@@ -47,74 +47,13 @@ async def url_parser(client, message):
 
 async def bypass_link(text_url: str):
 
-    if "zippyshare.com" in text_url \
-        or "osdn.net" in text_url \
-        or "mediafire.com" in text_url \
-        or "https://uptobox.com" in text_url \
-        or "cloud.mail.ru" in text_url \
-        or "github.com" in text_url \
-        or "yadi.sk" in text_url  \
-        or "hxfile.co" in text_url  \
-        or "https://anonfiles.com" in text_url  \
-        or "letsupload.io" in text_url  \
-        or "fembed.net" in text_url  \
-        or "fembed.com" in text_url  \
-        or "femax20.com" in text_url  \
-        or "fcdn.stream" in text_url  \
-        or "feurl.com" in text_url  \
-        or "naniplay.nanime.in" in text_url  \
-        or "naniplay.nanime.biz" in text_url  \
-        or "naniplay.com" in text_url  \
-        or "layarkacaxxi.icu" in text_url  \
-        or "sbembed.com" in text_url  \
-        or "streamsb.net" in text_url  \
-        or "sbplay.org" in text_url  \
-        or "1drv.ms" in text_url  \
-        or "pixeldrain.com" in text_url  \
-        or "antfiles.com" in text_url  \
-        or "streamtape.com" in text_url  \
-        or "https://bayfiles.com" in text_url  \
-        or "1fichier.com" in text_url  \
-        or "solidfiles.com" in text_url  \
-        or "krakenfiles.com" in text_url  \
-        or "gplinks.co" in text_url  \
-        or "katdrive.net" in text_url  \
-        or "drivefire.co" in text_url  \
-        or "drivebuzz.icu" in text_url  \
-        or "gadrive.vip" in text_url  \
-        or "linkvertise.com" in text_url  \
-        or "droplink.co" in text_url  \
-        or "gofile.io" in text_url  \
-        or "ouo.io" in text_url  \
-        or "ouo.press" in text_url  \
-        or "upindia.mobi" in text_url  \
-        or "uploadfile.cc" in text_url  \
-        or "adf.ly" in text_url  \
-        or "https://sourceforge.net" in text_url  \
-        or "https://master.dl.sourceforge.net" in text_url  \
-        or "androiddatahost.com" in text_url  \
-        or "androidfilehost.com" in text_url  \
-        or "sfile.mobi" in text_url  \
-        or "wetransfer.com" in text_url  \
-        or "we.tl" in text_url  \
-        or "corneey.com" in text_url \
-        or "sh.st" in text_url \
-        or "racaty.net" in text_url \
-        or "psa.pm" in text_url \
-        or "upload.ee" in text_url \
-        or "dropbox.com" in text_url \
-        or "megaup.net" in text_url \
-        or "mediafire.com" in text_url \
-        or "filecrypt.ws" in text_url \
-        or "shareus.io" in text_url \
-        or "shortlingly.in" in text_url \
-        or "gyanilinks.com" in text_url \
-        or "pixl" in text_url \
-        or "safeurl.sirigan.my.id" in text_url \
-        or "sharer.pw" in text_url \
-        or any(x in text_url for x in bypass_vip_list) \
-        or "rocklinks.net" in text_url \
-        or "olamovies.ink" in text_url:
+    url_list = ["zippyshare.com", "osdn.net", "mediafire.com", "https://uptobox.com", "cloud.mail.ru", "github.com", "yadi.sk", "hxfile.co", "https://anonfiles.com", "letsupload.io", "fembed.net", "fembed.com", "femax20.com", "fcdn.stream", "feurl.com", "naniplay.nanime.in", 
+                "naniplay.nanime.biz", "naniplay.com", "layarkacaxxi.icu", "sbembed.com", "streamsb.net", "sbplay.org", "1drv.ms", "pixeldrain.com", "antfiles.com", "streamtape.com", "https://bayfiles.com", "1fichier.com", "solidfiles.com", "krakenfiles.com", "gplinks.co",
+                "katdrive.net", "drivefire.co", "drivebuzz.icu", "gadrive.vip", "linkvertise.com", "droplink.co", "gofile.io", "ouo.io", "ouo.press", "upindia.mobi", "uploadfile.cc", "adf.ly", "https://sourceforge.net", "https://master.dl.sourceforge.net", "androiddatahost.com",
+                "androidfilehost.com", "sfile.mobi", "wetransfer.com", "we.tl", "corneey.com", "sh.st", "racaty.net", "psa.pm", "upload.ee", "dropbox.com", "megaup.net", "mediafire.com", "filecrypt.ws", "shareus.io", "shortlingly.in", "gyanilinks.com", "pixl", "safeurl.sirigan.my.id", 
+                "sharer.pw", "rocklinks.net", "olamovies.ink"]
+
+    if any(url in text_url for url in url_list) or any(x in text_url for x in bypass_vip_list):
         try:
             url_string = url_link_generate(text_url)
             return False, q(url_string, safe=':/')

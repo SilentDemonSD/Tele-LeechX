@@ -5,3 +5,7 @@ class DirectDownloadLinkException(Exception):
 class NotSupportedExtractionArchive(Exception):
     """The archive format use is trying to extract is not supported"""
     pass
+
+class TeleLogDisplayError(Exception):
+    """Telegram Log Display is not working upto mark"""
+    pass

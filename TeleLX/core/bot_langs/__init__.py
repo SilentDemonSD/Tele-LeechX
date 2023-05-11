@@ -17,7 +17,7 @@ from TeleLX.core.bot_langs import en, bn
 AVAILABLE_LANG = {'english': en, 'bengali': bn}
 BOT_LANG = "English"
 
-def BotLang():
+def BotLang(): # add this dynamically in user settings
 
     if BOT_LANG.lower() in AVAILABLE_LANG.keys():
         return (AVAILABLE_LANG.get(BOT_LANG)).TXLanguage()

@@ -29,4 +29,5 @@ speedtest-cli
 telegraph
 tgcrypto
 urllib3
+uvloop
 yt-dlp

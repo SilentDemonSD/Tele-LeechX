@@ -17,23 +17,37 @@ from shutil import rmtree
 from typing import Tuple
 from re import match as rmatch
 from urllib.parse import unquote, quote
+from pyrogram import enums
 
-from TeleLX import DL_DIR, LOGGER, app, AUTO_LEECH
+from TeleLX import DL_DIR, LOGGER, app, AUTO_LEECH, AUTH_CHATS
 from TeleLX.core.display.display_utils import format_bytes
 
 async def getUserName():
     return [(await a.get_me()).username for a in app]
 
-async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
-    """Run a command in terminal and return stdout, stderr, return code, and process id."""
+async def runcmd(cmd: str, capture_output: bool = True) -> Tuple[str, str, int, int]:
+    """
+    Run a command in the terminal and return stdout, stderr, return code, and process id.
+
+    Args:
+        cmd (str): The command to be executed.
+        capture_output (bool): Indicates whether to capture stdout and stderr (default: True).
+
+    Returns:
+        Tuple[str, str, int, int]: A tuple containing stdout, stderr, return code, and process ID.
+    """
     args = ssplit(cmd)
-    process = await create_subprocess_exec(
-        *args, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    stdout_arg = subprocess.PIPE if capture_output else None
+    stderr_arg = subprocess.PIPE if capture_output else None
+
+    process = await asyncio.create_subprocess_exec(
+        *args, stdout=stdout_arg, stderr=stderr_arg
     )
     stdout, stderr = await process.communicate()
+
     return (
-        stdout.decode("utf-8", "replace").strip(),
-        stderr.decode("utf-8", "replace").strip(),
+        stdout.decode("utf-8", "replace").strip() if capture_output else "",
+        stderr.decode("utf-8", "replace").strip() if capture_output else "",
         process.returncode,
         process.pid,
     )
@@ -41,6 +55,14 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 def start_cleanup():
     try:
         rmtree(DL_DIR)
+    except FileNotFoundError:
+        pass
+    
+async def clean_all():
+    aria2 = await aria_start()
+    aria2.remove_all(True)
+    try:
+        rmtree(DOWNLOAD_LOCATION)
     except FileNotFoundError:
         pass
 
@@ -57,6 +79,16 @@ def is_hubdrive_link(url: str):
 def is_appdrive_link(url: str): 
     url = rmatch(r'https?://appdrive\.\S+', url) 
     return bool(url)
+
+async def AdminCheck(client, chat_id, user_id):
+    chat = await client.get_chat(chat_id)
+    if chat.type == enums.ChatType.PRIVATE and chat_id in AUTH_CHATS:
+        return True
+    SELF = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
+    if SELF.status not in (enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
+        return False
+    return True
+
 
 def magnet_parse(mag_link):
     link = unquote(mag_link)
@@ -138,8 +170,3 @@ def getUserOrChaDetails(mess):
         u_tag = (mess.chat.title if mess.author_signature is None else mess.author_signature)
     return uid, u_tag
 
-def progressBar(percentage):
-    p_used, p_total = '▰', '▱'
-    try: percentage=int(percentage)
-    except: percentage = 0
-    return ''.join(p_used if i <= percentage // 10 else p_total for i in range(10))

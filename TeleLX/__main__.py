@@ -61,6 +61,7 @@ from TeleLX.plugins.rclone_size import check_size_g, g_clearme
 from TeleLX.plugins.status_message_fn import cancel_message_f, eval_message_f, exec_message_f, status_message_f, \
                                              upload_document_f, upload_log_file, upload_as_doc, upload_as_video
 
+# add multi concept bot cmds
 botcmds = [
         BotCommand(f'{BotCommands.LeechCommand}', '📨 [Reply] Leech any Torrent/ Magnet/ Direct Link '),
         BotCommand(f'{BotCommands.ExtractCommand}', '🔐 Unarchive items . .'),
@@ -88,12 +89,55 @@ botcmds = [
         BotCommand(f'{BotCommands.TsHelpCommand}', '🌐 Get help for Torrent Search Module')
     ]
 
+async def restart(client: Client, message: Message):
+    if message.from_user.id != OWNER_ID and message.from_user.id not in SUDO_USERS:
+        return
+    cmd = message.text.split(' ', 1)
+    dynoRestart = False
+    dynoKill = False
+    if len(cmd) == 2:
+        dynoRestart = (cmd[1].lower()).startswith('d')
+        dynoKill = (cmd[1].lower()).startswith('k')
+    if (not HEROKU_API_KEY) or (not HEROKU_APP_NAME):
+        LOGGER.info("[ATTENTION] Fill HEROKU_API_KEY & HEROKU_APP_NAME for Using this Feature.")
+        dynoRestart = False
+        dynoKill = False
+    if dynoRestart:
+        LOGGER.info("[HEROKU] Dyno Restarting...")
+        restart_message = await message.reply_text("__Dyno Restarting...__")
+        await app.stop()
+        if STRING_SESSION: await userBot.stop()
+        heroku_conn = from_apikey(HEROKU_API_KEY)
+        appx = heroku_conn.app(HEROKU_APP_NAME)
+        appx.restart()
+    elif dynoKill:
+        LOGGER.info("[HEROKU] Killing Dyno...")
+        await message.reply_text("__Killed Dyno__")
+        heroku_conn = from_apikey(HEROKU_API_KEY)
+        appx = heroku_conn.app(HEROKU_APP_NAME)
+        proclist = appx.process_formation()
+        for po in proclist:
+            appx.process_formation()[po.type].scale(0)
+    else:
+        LOGGER.info("[HEROKU] Normally Restarting...")
+        restart_message = await message.reply_text("__Restarting...__")
+        try:
+            await clean_all()
+        except Exception as err:
+            LOGGER.info(f"Restart Clean Error : {err}")
+        srun(["pkill", "-f", "extra-api|new-api"], check=True)
+        srun(["python3", "update.py"], check=True)
+        with open(".restartmsg", "w") as f:
+            f.truncate(0)
+            f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
+        execl(executable, executable, "-m", "tobrot")
+
 if __name__ == "__main__":
     # General Download Directory, if Not Exist !!
     if not opath.isdir(DL_DIR):
         makedirs(DL_DIR)
 
-    # Pixabay API >>>>>>>>
+    # Pixabay API >>>>>>>> #add more dynamically
     if PIXABAY_API_KEY:
         try:
             PIXABAY_ENDPOINT = f"https://pixabay.com/api/?key={PIXABAY_API_KEY}&image_type=all&orientation=horizontal&min_width=1280&min_height=720&per_page=200&safesearch=true&editors_choice=true"
@@ -251,7 +295,7 @@ if __name__ == "__main__":
     if STRING_SESSION:
             logging.info(f"User : {(userBot.get_me()).first_name} has Started Revolving...♾️⚡️")
 
-    idle()
+    idle() # use compose() and remodel whole thing
 
     for a in app:
         a.stop()

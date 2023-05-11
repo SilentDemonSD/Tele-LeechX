@@ -31,13 +31,13 @@ async def create_archive(input_directory, archive_format='zip'):
         if len(base_dir_name) > (64 - suffix_extension_length):
             compressed_file_name = f"{base_dir_name[:64-suffix_extension_length]}{archive_format}"
 
-        if archive_format == ".zip":
+        if archive_format == "zip":
             file_generator_command = ["zip", "-r", compressed_file_name, input_directory]
-        elif archive_format == ".tar":
+        elif archive_format == "tar":
             file_generator_command = ["tar", "-zcvf", compressed_file_name, input_directory]
-        elif archive_format == ".rar":
+        elif archive_format == "rar":
             file_generator_command = ["rar", "a", "-r", compressed_file_name, input_directory]
-        elif archive_format == ".7z":
+        elif archive_format == "7z":
             file_generator_command = ["7z", "a", "-r", compressed_file_name, input_directory]
 
         process = await asyncio.create_subprocess_exec(
@@ -46,7 +46,7 @@ async def create_archive(input_directory, archive_format='zip'):
             stderr=asyncio.subprocess.PIPE,
         )
         stdout, stderr = await process.communicate()
-        LOGGER.error(stderr.decode().strip())
+        LOGGER.info(stderr.decode().strip())
         if os.path.exists(compressed_file_name):
             try:
                 shutil.rmtree(input_directory)
@@ -67,7 +67,6 @@ async def extract_archive(input_directory):
             *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
         stdout, stderr = await process.communicate()
-        LOGGER.info(f"{stdout}") #More Good
         if os.path.exists(uncompressed_file_name):
             try:
                 os.remove(input_directory)
