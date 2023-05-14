@@ -29,5 +29,5 @@ requests
 speetest-cli
 telegraph
 tgcrypto
-urllib3
+urllib3==1.26.15
 yt-dlp
