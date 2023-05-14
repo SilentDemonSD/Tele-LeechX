@@ -1,4 +1,4 @@
-FROM 412314/mltb:heroku
+FROM codewithweeb/weebzone:stable
 
 RUN mkdir ./app
 RUN chmod 777 ./app
@@ -7,25 +7,16 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Kolkata
 
-RUN apt -qq update --fix-missing && \
-    apt -qq install -y \
-    git \
-    wget \
-    curl \
-    busybox \
-    unzip \
-    unrar \
-    tar \
-    python3 \
-    python3-pip \
-    p7zip-full \
-    p7zip-rar \
-    pv \
-    jq \
-    python3-dev \
-    mediainfo
+# Install Packages
+RUN apt-get -qq update --fix-missing && apt-get -qq upgrade -y && \
+    apt-get -q install -y \
+    git wget curl busybox unzip \
+    unrar tar python3 python3-pip \
+    p7zip-full p7zip-rar pv jq \
+    python3-dev mediainfo mkvtoolnix
 
-RUN wget https://rclone.org/install.sh
+# Install RClone
+RUN wget -q https://rclone.org/install.sh
 RUN bash install.sh
 
 RUN mkdir /app/gautam
