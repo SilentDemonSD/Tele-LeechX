@@ -219,7 +219,7 @@ async def settings_callback(client, query: CallbackQuery):
         elif getData[2] == 'True':
             AUTO_USERS.pop(usid)
             await query.answer(text="✅️ Your Leech Buttons Successfully Enabled ✅️ \n\n⛔️ Bulk Leech Disabled ⛔️", show_alert=True)
-            _text = f'''• ᑌՏᗴᖇ ᗩᑌTO ᒪᗴᗴᑕᕼ ՏᗴTTIᑎᘜՏ :
+            _text = '''• ᑌՏᗴᖇ ᗩᑌTO ᒪᗴᗴᑕᕼ ՏᗴTTIᑎᘜՏ :
 ┃
 ┣ <b>Auto Usage :</b> <i>♻️ Enabled ♻️</i>
 ┃
@@ -300,9 +300,6 @@ async def picture_add(client: Client, message: Message):
             pic_add = msg_text.strip()
             await editable.edit("Adding your Link ...")
     elif resm.photo:
-        if not resm.photo and resm.photo.file_size <= TGH_LIMIT:
-            await editable.edit("This Media is Not Supported! Only Send Photos !!")
-            return
         await editable.edit("Uploading to te.legra.ph Server ...")
         df = await client.download_media(
             message=resm,
@@ -330,9 +327,15 @@ async def pictures(client: Client, message: Message):
     else:
         to_edit = await message.reply_text("Generating Grid of your Images...")
         btn = [
-            [InlineKeyboardButton("<<", callback_data=f"pic -1"),
-            InlineKeyboardButton(">>", callback_data="pic 1")],
-            [InlineKeyboardButton("Remove Photo", callback_data="picsremove 0")]
+            [
+                InlineKeyboardButton("<<", callback_data="pic -1"),
+                InlineKeyboardButton(">>", callback_data="pic 1"),
+            ],
+            [
+                InlineKeyboardButton(
+                    "Remove Photo", callback_data="picsremove 0"
+                )
+            ],
         ]
         await to_edit.delete()
         await message.reply_photo(photo=PICS_LIST[0], caption=f'• Picture No. : 1 / {len(PICS_LIST)}', reply_markup=InlineKeyboardMarkup(btn))

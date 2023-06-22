@@ -140,15 +140,11 @@ async def anilist_set(client, message):
         txt = ""
     ani_template_ = txt
     ANILIST_TEMPLATE[user_id_] = ani_template_
-    #if DB_URI:
-    #    DatabaseManager().user_anilist(user_id_, ani_template_)
-    #    LOGGER.info(f"[DB] User : {user_id_} AniList Anime Template Saved to Database")
-    await lm.edit_text(((BotTheme(user_id_)).IMDB_MSG).format(
-            u_men = u_men,
-            uid = user_id_,
-            t = txt
+    await lm.edit_text(
+        ((BotTheme(user_id_)).IMDB_MSG).format(
+            u_men=u_men, uid=user_id_, t=ani_template_
         ),
-        parse_mode=enums.ParseMode.HTML
+        parse_mode=enums.ParseMode.HTML,
     )
 
 async def theme_set(client, message):

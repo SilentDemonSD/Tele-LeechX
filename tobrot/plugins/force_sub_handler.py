@@ -9,8 +9,12 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 async def get_invite_link(client, chat_id):
     try:
-        invite_link = await client.create_chat_invite_link(chat_id=chat_id, name="Updates Invite Link", member_limit=1, expire_date=datetime.now() + timedelta(days=1))
-        return invite_link
+        return await client.create_chat_invite_link(
+            chat_id=chat_id,
+            name="Updates Invite Link",
+            member_limit=1,
+            expire_date=datetime.now() + timedelta(days=1),
+        )
     except FloodWait as e:
         LOGGER.info(f"FloodWait : Sleeping {e.value}s")
         await asyncio.sleep(e.value)

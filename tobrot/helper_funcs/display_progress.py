@@ -59,7 +59,7 @@ class Progress:
         if round(diff % float(EDIT_SLEEP_TIME_OUT)) == 0 or current == total:
             # if round(current / total * 100, 0) % 5 == 0:
             percentage = current * 100 / total
-            digits = [int(x) for x in str(("{}").format("%.2d" % percentage))]
+            digits = [int(x) for x in f'{"%.2d" % percentage}']
             speed = current / diff
             elapsed_time = TimeFormatter(round(diff) * 1000)
             estimated_total_time = TimeFormatter(round((total - current) / speed) * 1000)

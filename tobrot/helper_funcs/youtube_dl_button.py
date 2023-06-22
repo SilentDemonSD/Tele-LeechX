@@ -50,7 +50,7 @@ async def youtube_dl_call_back(bot, update):
             revoke=True,
         )
         return
-    save_ytdl_json_path = user_working_dir + "/" + str("ytdleech") + ".json"
+    save_ytdl_json_path = f"{user_working_dir}/ytdleech.json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -126,14 +126,10 @@ async def youtube_dl_call_back(bot, update):
             "-o",
             download_directory,
         ]
-    #
-    command_to_exec.append("--no-warnings")
-    # command_to_exec.append("--quiet")
-    command_to_exec.append("--restrict-filenames")
+    command_to_exec.extend(("--no-warnings", "--restrict-filenames"))
     #
     if "hotstar" in youtube_dl_url:
-        command_to_exec.append("--geo-bypass-country")
-        command_to_exec.append("IN")
+        command_to_exec.extend(("--geo-bypass-country", "IN"))
     LOGGER.info(command_to_exec)
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
@@ -168,12 +164,10 @@ async def youtube_dl_call_back(bot, update):
                     os.rename(e, fi_le)
                     gaut_am = os.path.basename(fi_le)
 
-        is_cloud = False
         comd = update.message.reply_to_message.text
         LOGGER.info(comd)
         user_command = comd.split()[0]
-        if user_command == "/" + GYTDL_COMMAND:
-            is_cloud = True
+        is_cloud = user_command == f"/{GYTDL_COMMAND}"
         if is_cloud:
             shutil.move(fi_le, "./")
             final_response = await upload_to_gdrive(

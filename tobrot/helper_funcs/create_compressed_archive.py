@@ -21,7 +21,7 @@ async def create_archive(input_directory):
         compressed_file_name = f"{base_dir_name}.tar.gz"
         suffix_extention_length = 1 + 3 + 1 + 2
         if len(base_dir_name) > (64 - suffix_extention_length):
-            compressed_file_name = base_dir_name[0 : (64 - suffix_extention_length)]
+            compressed_file_name = base_dir_name[:64 - suffix_extention_length]
             compressed_file_name += ".tar.gz"
         file_genertor_command = [
             "tar",
