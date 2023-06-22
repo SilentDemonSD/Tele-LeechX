@@ -112,7 +112,7 @@ async def button(bot, update: CallbackQuery):
             LOGGER.info(g_list)
             g_del_list = list(set(g_list) - set(g_d_list))
             LOGGER.info(g_del_list)
-            if len(g_del_list) != 0:
+            if g_del_list:
                 for f in g_del_list:
                     if os.path.isfile(f):
                         os.remove(f)
@@ -122,7 +122,7 @@ async def button(bot, update: CallbackQuery):
             else:
                 await update.message.edit_text("<i>⛔ Nothing to clear ⛔ \nAs Per I Get to Know !! </i>")
         else:
-            await update.answer(text="⚠️ Opps ⚠️ \n I Got a False Visitor 🚸 !! \n\n 📛 Stay At Your Limits !!📛", show_alert=True)    
+            await update.answer(text="⚠️ Opps ⚠️ \n I Got a False Visitor 🚸 !! \n\n 📛 Stay At Your Limits !!📛", show_alert=True)
     elif cb_data == "fuckoff":
         await update.answer(text="Going to Cancel . . . 🔃", show_alert=False)
         await update.message.edit_text("<i>☢ Okay! ☢ \n\n ⌧ Don't Disturb Me !! </i>")
@@ -188,26 +188,24 @@ async def button(bot, update: CallbackQuery):
         button_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"/{MEDIAINFO_CMD}", callback_data = "mediainfo"),
-                    InlineKeyboardButton(f"/{TSEARCH_COMMAND}", callback_data = "tshelp")
+                    InlineKeyboardButton(
+                        f"/{MEDIAINFO_CMD}", callback_data="mediainfo"
+                    ),
+                    InlineKeyboardButton(
+                        f"/{TSEARCH_COMMAND}", callback_data="tshelp"
+                    ),
                 ],
                 [
-                    InlineKeyboardButton(f"/setpre", callback_data = "setpre"),
-                    InlineKeyboardButton(f"/setcap", callback_data = "setcap")
+                    InlineKeyboardButton("/setpre", callback_data="setpre"),
+                    InlineKeyboardButton("/setcap", callback_data="setcap"),
                 ],
+                [InlineKeyboardButton("/parser", callback_data="parser")],
+                [InlineKeyboardButton("More Features", callback_data="fea")],
                 [
-                    InlineKeyboardButton(f"/parser", callback_data = "parser")
+                    InlineKeyboardButton("⏪••", callback_data="nex_1"),
+                    InlineKeyboardButton("••⏩", callback_data="openHelp_pg1"),
                 ],
-                [
-                    InlineKeyboardButton(f"More Features", callback_data = "fea")
-                ],
-                [
-                    InlineKeyboardButton("⏪••", callback_data = "nex_1"),
-                    InlineKeyboardButton("••⏩", callback_data = "openHelp_pg1")
-                ],
-                [
-                    InlineKeyboardButton("Close 🔐", callback_data = "close")
-                ]
+                [InlineKeyboardButton("Close 🔐", callback_data="close")],
             ]
         )
         await update.message.edit_text(

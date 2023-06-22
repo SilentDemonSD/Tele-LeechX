@@ -55,7 +55,7 @@ async def split_large_files(input_file, MAX_TG_SPLIT_FILE_SIZE):
             LOGGER.info(f"Start time {start_time}, End time {end_time}, Itr {i}")
 
             start_time = end_time - 3
-            end_time = end_time + minimum_duration
+            end_time += minimum_duration
             i = i + 1
 
             if (end_time > total_duration) and not flag:
@@ -66,7 +66,7 @@ async def split_large_files(input_file, MAX_TG_SPLIT_FILE_SIZE):
 
     elif SP_LIT_ALGO_RITH_M.lower() == "hjs":
         o_d_t = os.path.join(new_working_directory, os.path.basename(input_file))
-        o_d_t = o_d_t + "."
+        o_d_t = f"{o_d_t}."
         file_genertor_command = [
             "split",
             "--numeric-suffixes=1",

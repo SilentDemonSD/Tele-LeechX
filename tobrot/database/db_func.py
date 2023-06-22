@@ -17,7 +17,7 @@ class DatabaseManager:
                 LOGGER.error(f"Error in PostgreSQL DB : {error}")
                 self.err = True
         else: 
-            LOGGER.info(f'[DB] DATABASE_URL not Provided')
+            LOGGER.info('[DB] DATABASE_URL not Provided')
             self.err = True
 
     def disconnect(self):
@@ -45,8 +45,7 @@ class DatabaseManager:
     def db_load(self):
         # User Data
         self.cur.execute("SELECT * FROM users")
-        rows = self.cur.fetchall()  # return a list ==> [(uid-0, vid-1, doc-2, thumb-3, pre-4, cap-5, imdb-6), ..]
-        if rows:
+        if rows := self.cur.fetchall():
             for row in rows:
                 if row[2]:
                     user_specific_config[row[0]] = row[2]
@@ -82,7 +81,7 @@ class DatabaseManager:
         if self.err:
             return
         if self.user_check(user_id):
-            sql = 'UPDATE users SET thumb = NULL WHERE uid = {}'.format(user_id)
+            sql = f'UPDATE users SET thumb = NULL WHERE uid = {user_id}'
         self.cur.execute(sql)
         self.conn.commit()
         self.disconnect()
@@ -91,9 +90,9 @@ class DatabaseManager:
         if self.err:
             return
         if not self.user_check(user_id):
-            sql = 'INSERT INTO users (uid, vid) VALUES ({}, TRUE)'.format(user_id)
+            sql = f'INSERT INTO users (uid, vid) VALUES ({user_id}, TRUE)'
         else:
-            sql = 'UPDATE users SET vid = TRUE, doc = FALSE WHERE uid = {}'.format(user_id)
+            sql = f'UPDATE users SET vid = TRUE, doc = FALSE WHERE uid = {user_id}'
         self.cur.execute(sql)
         self.conn.commit()
         self.disconnect()
@@ -102,9 +101,9 @@ class DatabaseManager:
         if self.err:
             return
         if not self.user_check(user_id):
-            sql = 'INSERT INTO users (uid, doc) VALUES ({}, TRUE)'.format(user_id)
+            sql = f'INSERT INTO users (uid, doc) VALUES ({user_id}, TRUE)'
         else:
-            sql = 'UPDATE users SET vid = FALSE, doc = TRUE WHERE uid = {}'.format(user_id)
+            sql = f'UPDATE users SET vid = FALSE, doc = TRUE WHERE uid = {user_id}'
         self.cur.execute(sql)
         self.conn.commit()
         self.disconnect()
@@ -143,9 +142,8 @@ class DatabaseManager:
         self.disconnect()
 
     def user_check(self, uid: int):
-        self.cur.execute("SELECT * FROM users WHERE uid = {}".format(uid))
-        res = self.cur.fetchone()
-        return res
+        self.cur.execute(f"SELECT * FROM users WHERE uid = {uid}")
+        return self.cur.fetchone()
 
 if DB_URI is not None:
     DatabaseManager().db_init()

@@ -22,7 +22,7 @@ async def fetch(session, url, data):
 
 async def extract_it(restricted_link, custom_file_name):
     async with aiohttp.ClientSession() as session:
-        url_to_send = BASE_URL + "/unrestrict/link?auth_token=" + REAL_DEBRID_KEY
+        url_to_send = f"{BASE_URL}/unrestrict/link?auth_token={REAL_DEBRID_KEY}"
         to_send_data = {"link": restricted_link}
         html = await fetch(session, url_to_send, to_send_data)
         LOGGER.info(html)
