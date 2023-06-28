@@ -320,8 +320,16 @@ if opath.exists("rclone.conf") and not opath.exists("rclone_bak.conf"):
 app = [ 
     Client("LeechBot", bot_token=TG_BOT_TOKEN[0], api_id=APP_ID[0], api_hash=API_HASH[0], workers=343), 
 ]
-for i in range(1, len(TG_BOT_TOKEN)):
-    app.append(Client(f"LeechBot-{i}", bot_token=TG_BOT_TOKEN[i], api_id=APP_ID[i], api_hash=API_HASH[i], workers=343))
+app.extend(
+    Client(
+        f"LeechBot-{i}",
+        bot_token=TG_BOT_TOKEN[i],
+        api_id=APP_ID[i],
+        api_hash=API_HASH[i],
+        workers=343,
+    )
+    for i in range(1, len(TG_BOT_TOKEN))
+)
 if len(app) > 1:
     LOGGER.info(f"[Multi Client Initiated] Total Bots : {len(app)}")
 

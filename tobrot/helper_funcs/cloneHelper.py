@@ -48,10 +48,7 @@ class CloneHelper:
         mes = self.mess
         reply_to = mes.reply_to_message
         mystery = mes.text.split(" ", maxsplit=1)
-        if len(mystery) > 1:
-            txt = mystery[1]
-        else:
-            txt = reply_to.text 
+        txt = mystery[1] if len(mystery) > 1 else reply_to.text
         mess = txt.split("|", maxsplit=1)
         LOGGER.info(txt)
         def_text = f"__⚡️Clone Initiated⚡️__\n\n👤 **User** : {self.u_men} ( #ID{self.u_id} )\n"
@@ -125,99 +122,95 @@ class CloneHelper:
             res = search(regex,link)
             if res is None:
                 LOGGER.info("G-Drive ID not found.")
-            return res.group(3)
+            return res[3]
         parsed = urlparse(link)
         return parse_qs(parsed.query)['id'][0]
 
     async def link_gen_size(self):
-        if self.name is not None:
-            _drive = ""
-            if self.name == self.filee:
-                _flag = "--files-only"
-                _up = "File"
-                _ui = ""
-            else:
-                _flag = "--dirs-only"
-                _up = "Folder"
-                _drive = "folderba"
-                _ui = "/"
-            g_name = escape(self.name)
-            LOGGER.info(g_name)
-            destination = f"{DESTINATION_FOLDER}"
+        if self.name is None:
+            return
+        _drive = ""
+        if self.name == self.filee:
+            _flag = "--files-only"
+            _up = "File"
+            _ui = ""
+        else:
+            _flag = "--dirs-only"
+            _up = "Folder"
+            _drive = "folderba"
+            _ui = "/"
+        g_name = escape(self.name)
+        LOGGER.info(g_name)
+        destination = f"{DESTINATION_FOLDER}"
 
-            with open("filter1.txt", "w+", encoding="utf-8") as filter1:
-                print(f"+ {g_name}{_ui}\n- *", file=filter1)
+        with open("filter1.txt", "w+", encoding="utf-8") as filter1:
+            print(f"+ {g_name}{_ui}\n- *", file=filter1)
 
-            g_a_u = ["rclone","lsf","--config=./rclone.conf", "-F", "i", "--filter-from=./filter1.txt", f"{_flag}", f"{self.dname}:{destination}"]
-            LOGGER.info(g_a_u)
-            gau_tam = await create_subprocess_exec(
-                *g_a_u, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-            )
-            gau, tam = await gau_tam.communicate()
-            LOGGER.info(gau)
-            gautam = gau.decode("utf-8")
-            LOGGER.info(gautam)
-            LOGGER.info(tam.decode("utf-8"))
+        g_a_u = ["rclone","lsf","--config=./rclone.conf", "-F", "i", "--filter-from=./filter1.txt", f"{_flag}", f"{self.dname}:{destination}"]
+        LOGGER.info(g_a_u)
+        gau_tam = await create_subprocess_exec(
+            *g_a_u, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        gau, tam = await gau_tam.communicate()
+        LOGGER.info(gau)
+        gautam = gau.decode("utf-8")
+        LOGGER.info(gautam)
+        LOGGER.info(tam.decode("utf-8"))
 
-            if _drive == "folderba":
-                gautii = f"https://drive.google.com/folderview?id={gautam}"
-            else:
-                gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
+        if _drive == "folderba":
+            gautii = f"https://drive.google.com/folderview?id={gautam}"
+        else:
+            gautii = f"https://drive.google.com/file/d/{gautam}/view?usp=drivesdk"
 
-            LOGGER.info(gautii)
-            gau_link = search(r"(?P<url>https?://[^\s]+)", gautii).group("url")
-            LOGGER.info(gau_link)
-            button = []
-            button.append([
-                InlineKeyboardButton(text="☁️ GDrive Link ☁️", url=f"{gau_link}")
-            ])
-            if INDEX_LINK:
-                _idno = 1
-                INDEXS = INDEX_LINK.split(" ")
-                for indexes in INDEXS:
-                    if _flag == "--files-only":
-                        indexurl = f"{indexes}/{self.name}"
-                    else:
-                        indexurl = f"{indexes}/{self.name}/"
-                    tam_link = utils.requote_uri(indexurl)
-                    LOGGER.info(f"Index Link: {tam_link}, ID No. : {_idno}")
-                    if VIEW_LINK and (not indexurl.endswith('/')):
-                        view_link_ = f"{tam_link}?a=view"
-                        button.append([
-                            InlineKeyboardButton(text=f"⚡️ Index Link #{_idno}⚡️", url=f"{tam_link}"),
-                            InlineKeyboardButton(text=f"🌐 View Link #{_idno}", url=f"{view_link_}")
-                            ]
-                        )
-                    else:
-                        button.append([
-                            InlineKeyboardButton(
-                                text=f"⚡️ Index Link #{_idno}⚡️", url=f"{tam_link}"
-                            )]
-                        )
-                    _idno += 1
-            button_markup = InlineKeyboardMarkup(button)
-            msg = await self.lsg.edit_text(
-                f"📨 **Name** : `{self.name}`\n\n📚 **Type** : __{_up}__\n\n🗃 **Total Files** : `Calculating ..` 🛃\n📊 **Total Size** : `Calculating ..` 🛃\n\n👤 Req By: {self.u_men} ( #ID{self.u_id} )",
-                reply_markup=button_markup,
-            )
-            g_cmd = ["rclone", "size", "--config=rclone.conf", f"{self.dname}:{destination}/{self.name}"]
-            LOGGER.info(g_cmd)
-            gaut_am = await create_subprocess_exec(
-                *g_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-            )
-            gaut, am = await gaut_am.communicate()
-            g_autam = gaut.decode("utf-8")
-            LOGGER.info(g_autam)
-            LOGGER.info(am.decode("utf-8"))
-            await asleep(EDIT_SLEEP_TIME_OUT)
-            g_autam = g_autam.replace("Total objects:", "🗃 **Total Files** :").replace("Total size:", "📊 **Total Size** :")
-            await msg.edit_text(
-                f"📨 **Name** : `{self.name}`\n\n📚 **Type** : __{_up}__\n\n{g_autam}\n👤 Req By: {self.u_men} ( #ID{self.u_id} )",
-                reply_markup=button_markup,
-            )
+        LOGGER.info(gautii)
+        gau_link = search(r"(?P<url>https?://[^\s]+)", gautii).group("url")
+        LOGGER.info(gau_link)
+        button = [[InlineKeyboardButton(text="☁️ GDrive Link ☁️", url=f"{gau_link}")]]
+        if INDEX_LINK:
+            INDEXS = INDEX_LINK.split(" ")
+            for _idno, indexes in enumerate(INDEXS, start=1):
+                if _flag == "--files-only":
+                    indexurl = f"{indexes}/{self.name}"
+                else:
+                    indexurl = f"{indexes}/{self.name}/"
+                tam_link = utils.requote_uri(indexurl)
+                LOGGER.info(f"Index Link: {tam_link}, ID No. : {_idno}")
+                if VIEW_LINK and (not indexurl.endswith('/')):
+                    view_link_ = f"{tam_link}?a=view"
+                    button.append([
+                        InlineKeyboardButton(text=f"⚡️ Index Link #{_idno}⚡️", url=f"{tam_link}"),
+                        InlineKeyboardButton(text=f"🌐 View Link #{_idno}", url=f"{view_link_}")
+                        ]
+                    )
+                else:
+                    button.append([
+                        InlineKeyboardButton(
+                            text=f"⚡️ Index Link #{_idno}⚡️", url=f"{tam_link}"
+                        )]
+                    )
+        button_markup = InlineKeyboardMarkup(button)
+        msg = await self.lsg.edit_text(
+            f"📨 **Name** : `{self.name}`\n\n📚 **Type** : __{_up}__\n\n🗃 **Total Files** : `Calculating ..` 🛃\n📊 **Total Size** : `Calculating ..` 🛃\n\n👤 Req By: {self.u_men} ( #ID{self.u_id} )",
+            reply_markup=button_markup,
+        )
+        g_cmd = ["rclone", "size", "--config=rclone.conf", f"{self.dname}:{destination}/{self.name}"]
+        LOGGER.info(g_cmd)
+        gaut_am = await create_subprocess_exec(
+            *g_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        gaut, am = await gaut_am.communicate()
+        g_autam = gaut.decode("utf-8")
+        LOGGER.info(g_autam)
+        LOGGER.info(am.decode("utf-8"))
+        await asleep(EDIT_SLEEP_TIME_OUT)
+        g_autam = g_autam.replace("Total objects:", "🗃 **Total Files** :").replace("Total size:", "📊 **Total Size** :")
+        await msg.edit_text(
+            f"📨 **Name** : `{self.name}`\n\n📚 **Type** : __{_up}__\n\n{g_autam}\n👤 Req By: {self.u_men} ( #ID{self.u_id} )",
+            reply_markup=button_markup,
+        )
 
     async def gcl(self):
-        self.lsg = await self.mess.reply_text(f"`♻️ Cloning GDrive Link`")
+        self.lsg = await self.mess.reply_text("`♻️ Cloning GDrive Link`")
         destination = f"{DESTINATION_FOLDER}"
         idd = "{" f"{self.g_id}" "}"
         cmd = [
