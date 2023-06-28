@@ -21,12 +21,12 @@ def extract_info_hash_from_ml(magnetic_link):
         return ml_re_match.group(1)
 
 async def copy_file(input_file, output_dir): #Ref :https://stackoverflow.com/a/123212/4723940
-    output_file = opath.join(output_dir, str(time()) + ".jpg")
+    output_file = opath.join(output_dir, f"{str(time())}.jpg")
     copyfile(input_file, output_file)
     return output_file
 
 async def take_screen_shot(video_file, output_directory, ttl):
-    out_put_file_name = opath.join(output_directory, str(time()) + ".jpg")
+    out_put_file_name = opath.join(output_directory, f"{str(time())}.jpg")
     VIDEO_SUFFIXES = ("MKV", "MP4", "MOV", "WMV", "3GP", "MPG", "WEBM", "AVI", "FLV", "M4V", "GIF")
     if video_file.upper().endswith(VIDEO_SUFFIXES):
         file_genertor_command = ["opera", "-ss", str(ttl), "-i", video_file, "-vframes", "1", out_put_file_name]
@@ -39,6 +39,4 @@ async def take_screen_shot(video_file, output_directory, ttl):
         stdout, stderr = await process.communicate()
         e_response = stderr.decode().strip()
         t_response = stdout.decode().strip()
-    if opath.lexists(out_put_file_name):
-        return out_put_file_name
-    return None
+    return out_put_file_name if opath.lexists(out_put_file_name) else None

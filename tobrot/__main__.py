@@ -293,8 +293,24 @@ if __name__ == "__main__":
         a.add_handler(MessageHandler(imdb_search, filters=filters.command(["imdb", f"imdb@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
         a.add_handler(MessageHandler(template_set, filters=filters.command(["set_template", f"set_template@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
         a.add_handler(MessageHandler(index_scrape, filters=filters.command([f"{INDEX_SCRAPE}", f"{INDEX_SCRAPE}@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(theme_set, filters=filters.command([f"choosetheme", f"choosetheme@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
-        a.add_handler(MessageHandler(user_settings, filters=filters.command([f"usersettings", f"usersettings@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
+        a.add_handler(
+            MessageHandler(
+                theme_set,
+                filters=filters.command(
+                    ["choosetheme", f"choosetheme@{username}"]
+                )
+                & filters.chat(chats=AUTH_CHANNEL),
+            )
+        )
+        a.add_handler(
+            MessageHandler(
+                user_settings,
+                filters=filters.command(
+                    ["usersettings", f"usersettings@{username}"]
+                )
+                & filters.chat(chats=AUTH_CHANNEL),
+            )
+        )
         a.add_handler(MessageHandler(get_anime_query, filters=filters.command(["ani", f"ani@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
         a.add_handler(MessageHandler(anilist_set, filters=filters.command(["anime_template", f"anime_template@{username}"]) & filters.chat(chats=AUTH_CHANNEL)))
         a.add_handler(MessageHandler(nyaa_search, filters=filters.command(['nyaasi', f'nyaasi@{username}']) & filters.chat(chats=AUTH_CHANNEL)))

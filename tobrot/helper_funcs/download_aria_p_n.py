@@ -332,15 +332,15 @@ async def call_apropriate_function(
                 return True, None
             try:
                 timeuti = TimeFormatter((end_upload - start_upload) * 1000)
-                message_to_send = ""
                 mention_req_user = ((BotTheme(u_id)).TOP_LIST_FILES_MSG).format(
                     user_id = u_id,
                     u_men = u_men,
                     timeuti = timeuti
-                )                
+                )
                 message_credits = ((BotTheme(u_id)).BOTTOM_LIST_FILES_MSG).format(
                     UPDATES_CHANNEL = UPDATES_CHANNEL
                 )
+                message_to_send = ""
                 for key_f_res_se in final_response:
                     local_file_name = key_f_res_se
                     message_id = final_response[key_f_res_se]

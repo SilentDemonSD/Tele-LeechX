@@ -15,6 +15,7 @@ async def AdminCheck(client, chat_id, user_id):
     if chat.type == enums.ChatType.PRIVATE and chat_id in AUTH_CHANNEL:
         return True
     SELF = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
-    if SELF.status not in (enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
-        return False
-    return True
+    return SELF.status in (
+        enums.ChatMemberStatus.ADMINISTRATOR,
+        enums.ChatMemberStatus.OWNER,
+    )
